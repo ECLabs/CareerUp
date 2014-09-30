@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ec_logo_header" translatesAutoresizingMaskIntoConstraints="NO" id="ROa-H8-iR2">
+                                <rect key="frame" x="176" y="57" width="249" height="43"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otv-Dd-HSe">
+                                <rect key="frame" x="56" y="209" width="488" height="159"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMN-e1-AxK">
+                                <rect key="frame" x="480" y="517" width="64" height="30"/>
+                                <state key="normal" title="RESUME">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nX7-O8-bHr" kind="presentation" id="2fb-v8-oeL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RMN-e1-AxK" secondAttribute="bottom" constant="50" id="93v-nu-oB1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RMN-e1-AxK" secondAttribute="trailing" constant="50" id="B7B-c5-dlD"/>
+                            <constraint firstItem="otv-Dd-HSe" firstAttribute="top" secondItem="ROa-H8-iR2" secondAttribute="bottom" constant="50" id="FQB-aK-3eq"/>
+                            <constraint firstAttribute="centerX" secondItem="otv-Dd-HSe" secondAttribute="centerX" id="IRe-iC-aRt"/>
+                            <constraint firstItem="RMN-e1-AxK" firstAttribute="top" secondItem="otv-Dd-HSe" secondAttribute="bottom" constant="50" id="ba8-oF-5rA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="otv-Dd-HSe" secondAttribute="trailing" constant="40" id="iNo-2O-ncj"/>
+                            <constraint firstAttribute="centerX" secondItem="ROa-H8-iR2" secondAttribute="centerX" id="l5X-vy-4hh"/>
+                            <constraint firstItem="otv-Dd-HSe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="tvw-oJ-hIL"/>
+                            <constraint firstItem="RMN-e1-AxK" firstAttribute="top" secondItem="otv-Dd-HSe" secondAttribute="bottom" constant="50" id="v9O-z2-JP6"/>
+                            <constraint firstItem="ROa-H8-iR2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="x9a-P4-hzY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="426"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="2Lr-ou-Gzs">
+            <objects>
+                <viewController id="nX7-O8-bHr" customClass="CameraViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hC4-7p-1yv"/>
+                        <viewControllerLayoutGuide type="bottom" id="X7b-9I-pae"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RJr-u5-qps">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="diR-AJ-ucr">
+                                <rect key="frame" x="101" y="99" width="398" height="402"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jds-Db-4c0">
+                                <rect key="frame" x="270" y="550" width="61" height="30"/>
+                                <state key="normal" title="submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sKw-89-0lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="426"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ec_logo_header" width="249" height="43"/>
+    </resources>
+</document>
