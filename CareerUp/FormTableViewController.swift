@@ -10,7 +10,7 @@ import UIKit
 
 class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var firstName:UITextField?
-    @IBOutlet var LastName:UITextField?
+    @IBOutlet var lastName:UITextField?
     @IBOutlet var email:UITextField?
     @IBOutlet var jobTitle:UITextField?
     @IBOutlet var linkedIn:UITextField?
@@ -41,8 +41,14 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             emailMissingAlert.show()
             
             
-        } else {
-            println("submitting form")
+        } else { 
+            let submission = Resume()
+            submission.firstName = firstName!.text
+            submission.lastName = lastName!.text
+            submission.email = email!.text
+            submission.linkedIn = linkedIn!.text
+            submission.comments = comments!.text
+            submission.resume = resume!.image
         }
     }
     
