@@ -21,8 +21,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func cancelTapped(AnyObject) {
-        println("hide form")
         self.dismissViewControllerAnimated(true, completion: {})
     }
+    
 
 }

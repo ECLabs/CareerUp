@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		983E0BEA19E846D4005C913A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BE919E846D4005C913A /* DataHandler.swift */; };
+		983E0BEC19E84AB9005C913A /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEB19E84AB9005C913A /* Setting.swift */; };
+		983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */; };
+		983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */; };
 		987BC8D319E484850061F012 /* Resume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987BC8D219E484850061F012 /* Resume.swift */; };
 		988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988415F519E495E900D0AD08 /* SettingsTableViewController.swift */; };
-		988415F819E4980200D0AD08 /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988415F719E4980200D0AD08 /* ApplicantsTableViewController.swift */; };
+		98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */; };
+		98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */; };
 		989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */; };
 		989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B7BF719DAEDBA001E3C60 /* ViewController.swift */; };
 		989B7BFD19DAEDBA001E3C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989B7BFC19DAEDBA001E3C60 /* Images.xcassets */; };
@@ -30,9 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		983E0BE919E846D4005C913A /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicantsTableViewController.swift; path = ../ApplicantsTableViewController.swift; sourceTree = "<group>"; };
+		983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSelectTableViewController.swift; sourceTree = "<group>"; };
 		987BC8D219E484850061F012 /* Resume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resume.swift; sourceTree = "<group>"; };
 		988415F519E495E900D0AD08 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		988415F719E4980200D0AD08 /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantsTableViewController.swift; sourceTree = "<group>"; };
+		98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantDetailTableViewController.swift; sourceTree = "<group>"; };
 		989B7BF019DAEDBA001E3C60 /* CareerUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareerUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B7BF419DAEDBA001E3C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +74,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98921B7B19EC9B2100AEF986 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				988415F519E495E900D0AD08 /* SettingsTableViewController.swift */,
+				983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */,
+				983E0BEB19E84AB9005C913A /* Setting.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		98921B7D19EC9B4900AEF986 /* Applicants */ = {
+			isa = PBXGroup;
+			children = (
+				98DCFFE319DF031200E58A12 /* FormTableViewController.swift */,
+				987BC8D219E484850061F012 /* Resume.swift */,
+				983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */,
+				98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */,
+			);
+			name = Applicants;
+			sourceTree = "<group>";
+		};
 		989B7BE719DAEDBA001E3C60 = {
 			isa = PBXGroup;
 			children = (
@@ -85,16 +116,16 @@
 		989B7BF219DAEDBA001E3C60 /* CareerUp */ = {
 			isa = PBXGroup;
 			children = (
+				98921B7D19EC9B4900AEF986 /* Applicants */,
+				98921B7B19EC9B2100AEF986 /* Settings */,
 				989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */,
 				989B7BF719DAEDBA001E3C60 /* ViewController.swift */,
 				989B7C1919DAEE72001E3C60 /* Main.storyboard */,
-				988415F719E4980200D0AD08 /* ApplicantsTableViewController.swift */,
-				988415F519E495E900D0AD08 /* SettingsTableViewController.swift */,
-				98DCFFE319DF031200E58A12 /* FormTableViewController.swift */,
 				989B7BFC19DAEDBA001E3C60 /* Images.xcassets */,
 				989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */,
 				989B7BF319DAEDBA001E3C60 /* Supporting Files */,
-				987BC8D219E484850061F012 /* Resume.swift */,
+				983E0BE919E846D4005C913A /* DataHandler.swift */,
+				98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */,
 			);
 			path = CareerUp;
 			sourceTree = "<group>";
@@ -225,11 +256,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */,
+				98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */,
 				987BC8D319E484850061F012 /* Resume.swift in Sources */,
+				983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */,
+				983E0BEA19E846D4005C913A /* DataHandler.swift in Sources */,
 				988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */,
 				989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */,
+				983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */,
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
-				988415F819E4980200D0AD08 /* ApplicantsTableViewController.swift in Sources */,
+				983E0BEC19E84AB9005C913A /* Setting.swift in Sources */,
 				989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

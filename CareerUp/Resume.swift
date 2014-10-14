@@ -16,4 +16,5 @@ class Resume: NSObject {
     var comments:String?
     var linkedIn:String?
     var resume:UIImage?
+    var notes:String?
 }
