@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate {
     @IBOutlet var firstName:UITextField?
     @IBOutlet var lastName:UITextField?
     @IBOutlet var email:UITextField?
@@ -26,7 +26,6 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     }
 
     @IBAction func cancelTapped(AnyObject) {
-        println("hide form")
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
@@ -60,14 +59,48 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     
     
     @IBAction func cameraTapped(AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        {
+            let actionSheet = UIActionSheet()
+            actionSheet.addButtonWithTitle("Camera")
+            actionSheet.addButtonWithTitle("Photo Library")
+            actionSheet.addButtonWithTitle("Cancel")
+            actionSheet.cancelButtonIndex = 2
+            actionSheet.showInView(self.view)
+            actionSheet.delegate = self
+        }
+        else {
+            usePhotoLibrary()
+        }
+    }
+    func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            usePhotoLibrary()
+        }
+        else if buttonIndex == 0 {
+            useCamera()
+        }
+    }
+    
+    func usePhotoLibrary(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(imagePicker, animated: true, completion: {})
+    
+    }
+    
+    func useCamera(){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
         imagePicker.allowsEditing = false
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(imagePicker, animated: true, completion: {})
-    }
     
+    }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         resume!.image = image
