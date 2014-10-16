@@ -27,6 +27,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         overlayButton?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
         overlayButton?.addTarget(self, action: "toggleFullscreenMap", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        updateMapView()
+        
+//        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateMapView"), userInfo: nil, repeats: true)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -49,7 +53,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func toggleFullscreenMap(){
-        println("fullscreen map")
         self.navigationController?.setNavigationBarHidden(showMap, animated: true)
         
         UIView.animateWithDuration(1, animations: {
@@ -71,6 +74,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         })
         showMap = !showMap
         
+    }
+    
+    func updateMapView(){
+    
+        let address = "1934 Old Gallows Road Vienna, VA 22182"
+        
+        let gecooder = CLGeocoder()
+
+        gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+            if ((placemarks.count > 0) && error == nil) {
+            
+                let pm = placemarks[0] as CLPlacemark
+                
+                
+        
+                let pin = MKPointAnnotation()
+                pin.coordinate = pm.location.coordinate
+                
+                self.map?.addAnnotation(pin)
+                
+                
+                let region = MKCoordinateRegion(center:  pm.location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+                
+                // calulate gps point on outside of the circle
+                // it may be more effective to fly between job locations
+                
+                self.map?.setRegion(region, animated: true)
+            }
+        })
     }
 }
 
