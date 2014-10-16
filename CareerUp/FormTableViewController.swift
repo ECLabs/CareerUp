@@ -8,7 +8,8 @@
 
 import UIKit
 
-class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate {
+class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate
+{
     @IBOutlet var firstName:UITextField?
     @IBOutlet var lastName:UITextField?
     @IBOutlet var email:UITextField?
@@ -16,6 +17,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var linkedIn:UITextField?
     @IBOutlet var comments:UITextView?
     @IBOutlet var resume:UIImageView?
+    @IBOutlet var emailCell:UITableViewCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     @IBAction func submitTapped(AnyObject) {
-        if(email!.text.isEmpty) {
+        if(!validateEmail(email!.text)) {
         
             self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
         
@@ -108,5 +110,25 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         picker.dismissViewControllerAnimated(true, completion: {})
     }
     
+    @IBAction func emailChanged() {
+        if(validateEmail(email!.text)){
+            emailCell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
+        else {
+            emailCell?.accessoryType = UITableViewCellAccessoryType.None
+        }
+    }
+    
+    
+    func validateEmail(email:String)->Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+
+        let range = NSMakeRange(0, countElements(email))
+
+        let regex = NSRegularExpression(pattern: emailRegex, options: nil, error: nil)
+
+        let matches = regex.matchesInString(email, options: NSMatchingOptions.ReportProgress, range: range)
+        return (matches.count > 0)
+    }
 }
 

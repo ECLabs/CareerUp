@@ -481,7 +481,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOM-ad-l7A" id="AqC-eH-qKr">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp2-dX-Dpt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp2-dX-Dpt">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -949,7 +949,7 @@ We have successfully delivered on our promise, creating productive web developme
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="hOA-mD-A9P">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hOA-mD-A9P">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOA-mD-A9P" id="dh3-xy-7dv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -960,10 +960,13 @@ We have successfully delivered on our promise, creating productive web developme
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czY-hT-3jx">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czY-hT-3jx">
                                                     <rect key="frame" x="82" y="11" width="471" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <connections>
+                                                        <action selector="emailChanged" destination="gNr-6x-1D8" eventType="editingChanged" id="wnD-Ca-Jbs"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1138,6 +1141,7 @@ We have successfully delivered on our promise, creating productive web developme
                     <connections>
                         <outlet property="comments" destination="QC2-6W-xrs" id="oyL-DT-uFQ"/>
                         <outlet property="email" destination="czY-hT-3jx" id="8tO-OV-Hi5"/>
+                        <outlet property="emailCell" destination="hOA-mD-A9P" id="B1y-AV-ENp"/>
                         <outlet property="firstName" destination="J36-Uu-7SE" id="FOs-S2-5dc"/>
                         <outlet property="jobTitle" destination="Qej-Ih-z9s" id="lho-Hs-6sP"/>
                         <outlet property="lastName" destination="hKJ-Z5-avX" id="jJC-H5-9p1"/>
