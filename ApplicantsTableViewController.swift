@@ -40,8 +40,6 @@ class ApplicantsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         selectedIndex = indexPath.row as Int
-        println("setting index")
-        
         return indexPath
     }
     

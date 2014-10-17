@@ -9,16 +9,57 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate {
+    var eventSetting:Setting?
+    var selectedPicker:String?
+    var dateDisplay:NSDate?
+    var pagingText:[String:String]?
+    
+    //info
+    @IBOutlet var nameField:UITextField?
+    @IBOutlet var detailsField:UITextField?
+    @IBOutlet var dateField:UIButton?
+    
+    //colors
     @IBOutlet var textColor:UIButton?
     @IBOutlet var backgroundColor:UIButton?
+    @IBOutlet var logobackgroundColor:UIButton?
     @IBOutlet var highlightColor:UIButton?
-    @IBOutlet var pageText:UITextView?
+    
+    //text
+    @IBOutlet var pageText:UITableViewCell?
+    //images
+    
     @IBOutlet var logoImage:UIImageView?
     @IBOutlet var backgroundImage:UIImageView?
-    var selectedPicker:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = eventSetting?.name
+        
+        // set info fields
+        nameField?.text = eventSetting?.name
+        detailsField?.text = eventSetting?.details
+        
+        dateDisplay = eventSetting?.date
+        
+        let dateFormater = NSDateFormatter()
+        dateFormater.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        dateField?.setTitle(dateFormater.stringFromDate(dateDisplay!), forState: UIControlState.Normal)
+        
+        textColor?.backgroundColor = eventSetting?.textColor
+        backgroundColor?.backgroundColor = eventSetting?.backgroundColor
+        logobackgroundColor?.backgroundColor = eventSetting?.iconBackgroundColor
+        highlightColor?.backgroundColor = eventSetting?.highlightColor
+        
+        //paging text
+        pageText?.textLabel?.text =  "\(eventSetting!.pagingText.count) Paging Text Items"
+        pagingText = eventSetting?.pagingText
+
+        //images
+        logoImage?.image = eventSetting?.icon
+        backgroundImage?.image = eventSetting?.backgroundImage
     }
     
     func createPhotoActionSheet(){
@@ -83,5 +124,19 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         
         picker.dismissViewControllerAnimated(true, completion: {})
     }
-
+    
+    @IBAction func applyTapped(AnyObject) {
+        eventSetting?.name = nameField!.text
+        eventSetting?.details = detailsField!.text
+        eventSetting?.date = dateDisplay
+        eventSetting?.textColor = textColor!.backgroundColor!
+        eventSetting?.backgroundColor = backgroundColor!.backgroundColor!
+        eventSetting?.iconBackgroundColor = logobackgroundColor!.backgroundColor!
+        eventSetting?.highlightColor = highlightColor!.backgroundColor!
+        eventSetting?.pagingText = pagingText!
+        eventSetting?.icon = logoImage!.image!
+        eventSetting?.backgroundImage = backgroundImage?.image!
+        
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }
