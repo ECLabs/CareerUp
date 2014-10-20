@@ -9,10 +9,12 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIScrollViewDelegate {
     var map:MKMapView?
     var overlayButton:UIButton?
     var showMap = false
+    
+    @IBOutlet var pageScroll:UIScrollView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +26,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         overlayButton = UIButton(frame: self.view.frame)
         self.view.insertSubview(overlayButton!, atIndex: 1)
-        overlayButton?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        overlayButton?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
         
         overlayButton?.addTarget(self, action: "toggleFullscreenMap", forControlEvents: UIControlEvents.TouchUpInside)
         
         updateMapView()
         
-//        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateMapView"), userInfo: nil, repeats: true)
+        pageScroll?.backgroundColor = UIColor.blueColor()
+        
+        let firstText = UITextView(frame: pageScroll!.frame)
+        firstText.text = "jklafjsdfklasdkl aklsdf jkalsjdfkl asdkf jklsdfj ldjs lkjsdfl jasdlkfj aklsd klsaj dflksjd fkljsdfl ksadklf jlksdfj lksdjf lkjsadf"
+        firstText.textAlignment = NSTextAlignment.Center
+        firstText.backgroundColor = UIColor.whiteColor()
+        
+        pageScroll?.contentSize = CGSizeMake(pageScroll!.frame.width*3, pageScroll!.frame.height)
+        pageScroll?.addSubview(firstText)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -75,6 +85,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         showMap = !showMap
         
     }
+    
+
     
     func updateMapView(){
     
