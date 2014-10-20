@@ -16,6 +16,7 @@
 		98010C2C19F559C900236D89 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2B19F559C900236D89 /* libz.1.1.3.dylib */; };
 		98010C2E19F559D600236D89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2D19F559D600236D89 /* Security.framework */; };
 		98010C3019F559F800236D89 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2F19F559F800236D89 /* MobileCoreServices.framework */; };
+		98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98010C3319F5D08400236D89 /* ThankYouViewController.swift */; };
 		983E0BEA19E846D4005C913A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BE919E846D4005C913A /* DataHandler.swift */; };
 		983E0BEC19E84AB9005C913A /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEB19E84AB9005C913A /* Setting.swift */; };
 		983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		98010C2B19F559C900236D89 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		98010C2D19F559D600236D89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		98010C2F19F559F800236D89 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		98010C3319F5D08400236D89 /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
 		983E0BE919E846D4005C913A /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicantsTableViewController.swift; path = ../ApplicantsTableViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */,
 				989B7BF719DAEDBA001E3C60 /* ViewController.swift */,
 				989B7C1919DAEE72001E3C60 /* Main.storyboard */,
+				98010C3319F5D08400236D89 /* ThankYouViewController.swift */,
 				989B7BFC19DAEDBA001E3C60 /* Images.xcassets */,
 				989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */,
 				989B7BF319DAEDBA001E3C60 /* Supporting Files */,
@@ -321,6 +324,7 @@
 				989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */,
 				983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */,
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
+				98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */,
 				983E0BEC19E84AB9005C913A /* Setting.swift in Sources */,
 				989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */,
 			);

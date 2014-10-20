@@ -48,6 +48,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
 
     }
     override func viewWillAppear(animated: Bool) {
+        icon?.backgroundColor = UIColor.lightGrayColor()
+        settingButton?.tintColor = UIColor.orangeColor()
+        submitButton?.tintColor = UIColor.orangeColor()
+        overlayButton?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        //overlayButton?.backgroundColor?.
 
     }
     

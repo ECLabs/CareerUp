@@ -1323,6 +1323,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="submitTapped:" destination="gNr-6x-1D8" eventType="touchUpInside" id="Isr-gR-HEh"/>
+                                                        <segue destination="teD-jh-0K6" kind="presentation" animates="NO" id="pfS-yD-mKn"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1358,10 +1359,11 @@
             </objects>
             <point key="canvasLocation" x="690" y="1116"/>
         </scene>
-        <!--View Controller-->
+        <!--Thank You View Controller-->
         <scene sceneID="cOE-zo-ZVt">
             <objects>
-                <viewController id="teD-jh-0K6" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="um3-yg-OH5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="teD-jh-0K6" customClass="ThankYouViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZUf-Pj-sZy"/>
                         <viewControllerLayoutGuide type="bottom" id="Nda-aO-WyB"/>
@@ -1370,17 +1372,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNp-iJ-7CP">
-                                <rect key="frame" x="51" y="71" width="157" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNp-iJ-7CP">
+                                <rect key="frame" x="16" y="20" width="568" height="580"/>
                                 <state key="normal" title="Thank you for applying">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="closeTapped:" destination="teD-jh-0K6" eventType="touchUpInside" id="axz-ai-hRr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SNp-iJ-7CP" firstAttribute="top" secondItem="ZUf-Pj-sZy" secondAttribute="bottom" id="8Qy-0v-jkP"/>
+                            <constraint firstItem="Nda-aO-WyB" firstAttribute="top" secondItem="SNp-iJ-7CP" secondAttribute="bottom" id="YVX-wU-ncb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SNp-iJ-7CP" secondAttribute="trailing" id="YmV-6r-l2n"/>
+                            <constraint firstItem="SNp-iJ-7CP" firstAttribute="leading" secondItem="oyZ-a8-hel" secondAttribute="leadingMargin" id="okV-3x-dc4"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="um3-yg-OH5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10" y="1116"/>
         </scene>

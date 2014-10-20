@@ -133,5 +133,14 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         let matches = regex.matchesInString(email, options: NSMatchingOptions.ReportProgress, range: range)
         return (matches.count > 0)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        println(validateEmail(email!.text))
+        if !validateEmail(email!.text){
+            let destination = segue.destinationViewController as ThankYouViewController
+            destination.hide = true
+        }
+    }
+    
 }
 
