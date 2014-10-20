@@ -17,14 +17,15 @@ class ApplicantsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         DataHandler.sharedInstance().getAplicants()
-        loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
     }
     
     func reloadTable(timer: NSTimer){
         let loadingCount = DataHandler.sharedInstance().applicantLoadingObjectCount
+        let reloaded = DataHandler.sharedInstance().applicantsReloaded
         
-        if loadingCount != 0 && loadedContent == 0 {
+        if reloaded {
             loadedContent = -1
+            DataHandler.sharedInstance().applicantsReloaded = false
         }
         
         if loadedContent != 0 {
@@ -39,7 +40,12 @@ class ApplicantsTableViewController: UITableViewController {
             DataHandler.sharedInstance().getAplicantsCount()
         }
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        loadDelay?.invalidate()
+    }
+    override func viewDidAppear(animated: Bool) {
+        loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

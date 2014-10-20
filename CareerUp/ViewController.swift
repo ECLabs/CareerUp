@@ -13,6 +13,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     var map:MKMapView?
     var overlayButton:UIButton?
     var showMap = false
+    @IBOutlet var icon:UIImageView?
+    @IBOutlet var settingButton:UIButton?
+    @IBOutlet var submitButton:UIButton?
+    
     
     @IBOutlet var pageScroll:UIScrollView?
 
@@ -41,6 +45,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         pageScroll?.contentSize = CGSizeMake(pageScroll!.frame.width*3, pageScroll!.frame.height)
         pageScroll?.addSubview(firstText)
+
+    }
+    override func viewWillAppear(animated: Bool) {
 
     }
     

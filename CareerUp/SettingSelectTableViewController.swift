@@ -10,9 +10,42 @@ import UIKit
 
 class SettingSelectTableViewController: UITableViewController {
     var selectedIndex = 0
+    var loadDelay:NSTimer?
+    var loadedContent = -1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataHandler.sharedInstance().getEvents()
+    }
+    
+    func reloadTable(timer: NSTimer){
+        let loadingCount = DataHandler.sharedInstance().settingLoadingObjectCount
+        let reloaded = DataHandler.sharedInstance().settingsReloaded
+        
+        if reloaded {
+            loadedContent = -1
+            DataHandler.sharedInstance().settingsReloaded = false
+        }
+        
+        if loadedContent != 0 {
+            println("load \(loadingCount)")
+            self.tableView.reloadData()
+            loadedContent = loadingCount
+            loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
+        }
+        else {
+            println("checking")
+            loadDelay = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
+            DataHandler.sharedInstance().getEventsCount()
+        }
+    }
+    override func viewWillDisappear(animated: Bool) {
+        loadDelay?.invalidate()
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
     }
 
     override func didReceiveMemoryWarning() {
