@@ -41,6 +41,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         pageScroll?.contentSize = CGSizeMake(pageScroll!.frame.width*3, pageScroll!.frame.height)
         pageScroll?.addSubview(firstText)
+
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

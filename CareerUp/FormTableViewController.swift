@@ -44,18 +44,21 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             
         } else { 
             let submission = Resume()
-            submission.firstName = firstName?.text
-            submission.lastName = lastName?.text
-            submission.email = email?.text
-            submission.linkedIn = linkedIn?.text
-            submission.comments = comments?.text
-            submission.jobTitle = jobTitle?.text
+            submission.firstName = firstName!.text
+            submission.lastName = lastName!.text
+            submission.email = email!.text
+            submission.linkedIn = linkedIn!.text
+            submission.comments = comments!.text
+            submission.jobTitle = jobTitle!.text
             submission.resume = resume?.image
             
             DataHandler.sharedInstance().localApplicants.append(submission)
             
             println(DataHandler.sharedInstance().localApplicants)
-            self.dismissViewControllerAnimated(true, completion: {})
+            
+            DataHandler.sharedInstance().submitResume(submission)
+            
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     

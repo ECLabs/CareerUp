@@ -9,12 +9,12 @@
 import UIKit
 
 class Resume: NSObject {
-    var firstName:String?
-    var lastName:String?
-    var email:String?
-    var jobTitle:String?
-    var comments:String?
-    var linkedIn:String?
+    var firstName = ""
+    var lastName = ""
+    var email = ""
+    var jobTitle = ""
+    var comments = ""
+    var linkedIn = ""
     var resume:UIImage?
-    var notes:String?
+    var notes = ""
 }
