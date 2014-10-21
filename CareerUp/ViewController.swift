@@ -13,13 +13,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     var map:MKMapView?
     var overlayButton:UIButton?
     var showMap = false
+    var animating = false
+    
     @IBOutlet var icon:UIImageView?
     @IBOutlet var settingButton:UIButton?
     @IBOutlet var submitButton:UIButton?
+    var pagingText:UITextView?
+    @IBOutlet var pageIndicator:UIPageControl?
     
-    
-    @IBOutlet var pageScroll:UIScrollView?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.delegate = self
@@ -36,23 +37,83 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         updateMapView()
         
-        pageScroll?.backgroundColor = UIColor.blueColor()
+        let loadDelay = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
         
-        let firstText = UITextView(frame: pageScroll!.frame)
-        firstText.text = "jklafjsdfklasdkl aklsdf jkalsjdfkl asdkf jklsdfj ldjs lkjsdfl jasdlkfj aklsd klsaj dflksjd fkljsdfl ksadklf jlksdfj lksdjf lkjsadf"
-        firstText.textAlignment = NSTextAlignment.Center
-        firstText.backgroundColor = UIColor.whiteColor()
+        pagingText = UITextView()
+        pagingText?.text = "Growth\n\nStay on top of your game with company sponsored training, and the opportunity to support cutting-edge internal R&D programs."
+        pagingText?.font = UIFont.boldSystemFontOfSize(14)
+        pagingText?.textColor = UIColor.whiteColor()
+        pagingText?.textAlignment = NSTextAlignment.Center
+        pagingText?.backgroundColor = UIColor.clearColor()
         
-        pageScroll?.contentSize = CGSizeMake(pageScroll!.frame.width*3, pageScroll!.frame.height)
-        pageScroll?.addSubview(firstText)
-
+        self.view.addSubview(pagingText!)
     }
+    
+    override func viewDidLayoutSubviews() {
+        if !animating {
+            let width = self.view.frame.width - 80.0
+            let height:CGFloat = 84.0
+            
+            let y = pageIndicator!.frame.origin.y - height
+            self.pagingText?.frame = CGRectMake(40, y, width, height)
+        }
+    }
+    
+    func pageInfo(){
+
+        let frameWidth = self.view.frame.width - 80.0
+        let height:CGFloat = 84.0
+        let y = pageIndicator!.frame.origin.y - height
+        
+        let newTextView = UITextView(frame: CGRectMake(40, y, frameWidth, height))
+        newTextView.font = self.pagingText?.font
+        newTextView.text = "\(pageIndicator!.currentPage + 1)"
+        newTextView.textColor = self.pagingText?.textColor
+        newTextView.textAlignment = self.pagingText!.textAlignment
+        newTextView.backgroundColor = UIColor.clearColor()
+        
+        
+        
+        let width = self.view.frame.width
+        
+        newTextView.center = CGPointMake(newTextView.center.x + width, newTextView.center.y)
+        self.view.addSubview(newTextView)
+        
+        UIView.animateWithDuration(3, animations: {
+            self.animating = true
+            
+            newTextView.center = CGPointMake(newTextView.center.x - width, newTextView.center.y)
+
+            let x = newTextView.center.x - width
+            let y = newTextView.center.y
+            
+            self.pagingText!.center = CGPointMake(x,y)
+            
+                        
+            let current = self.pageIndicator!.currentPage
+            
+            if current < self.pageIndicator!.numberOfPages - 1{
+                self.pageIndicator!.currentPage = current + 1
+            } else {
+                self.pageIndicator!.currentPage = 0
+            }
+            
+            self.pageIndicator!.updateCurrentPageDisplay()
+        }, completion: { finished in
+            self.animating = false
+            self.pagingText!.removeFromSuperview()
+            self.pagingText! = newTextView
+            
+
+        })
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
-        icon?.backgroundColor = UIColor.lightGrayColor()
-        settingButton?.tintColor = UIColor.orangeColor()
-        submitButton?.tintColor = UIColor.orangeColor()
-        overlayButton?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-        //overlayButton?.backgroundColor?.
+//        icon?.backgroundColor = UIColor.lightGrayColor()
+//        settingButton?.tintColor = UIColor.orangeColor()
+//        submitButton?.tintColor = UIColor.orangeColor()
+//        overlayButton?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
 
     }
     
@@ -98,8 +159,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         showMap = !showMap
         
     }
-    
-
     
     func updateMapView(){
     

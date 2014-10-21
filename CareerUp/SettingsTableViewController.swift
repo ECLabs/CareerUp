@@ -128,7 +128,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
     @IBAction func applyTapped(AnyObject) {
         eventSetting?.name = nameField!.text
         eventSetting?.details = detailsField!.text
-        eventSetting?.date = dateDisplay
+        eventSetting?.date = dateDisplay!
         eventSetting?.textColor = textColor!.backgroundColor!
         eventSetting?.backgroundColor = backgroundColor!.backgroundColor!
         eventSetting?.iconBackgroundColor = logobackgroundColor!.backgroundColor!

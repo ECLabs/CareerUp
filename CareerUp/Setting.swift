@@ -12,7 +12,7 @@ class Setting:NSObject {
 
     //info
     var name = "New Event"
-    var date = NSDate.date()
+    var date = NSDate()
     var details = "No Details Yet"
     
     //colors
