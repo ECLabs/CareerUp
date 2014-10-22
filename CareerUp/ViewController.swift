@@ -103,8 +103,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             self.animating = false
             self.pagingText!.removeFromSuperview()
             self.pagingText! = newTextView
-            
-
         })
         
     }
@@ -129,11 +127,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     }
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-
-        let hideNav = (viewController == self)
+        if !showMap {
+            let hideNav = (viewController == self)
         
-        navigationController.setNavigationBarHidden(hideNav, animated: true)
-        
+            navigationController.setNavigationBarHidden(hideNav, animated: true)
+        }
     }
     
     @IBAction func toggleFullscreenMap(){

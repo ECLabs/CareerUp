@@ -9,20 +9,18 @@
 import UIKit
 
 class Setting:NSObject {
-
-    //info
-    var name = "New Event"
-    var date = NSDate()
-    var details = "No Details Yet"
+    var objectId = ""
+    var updatedAt:NSDate?
+    var modified = false
     
     //colors
-    var iconBackgroundColor = UIColor.whiteColor()
-    var backgroundColor = UIColor.lightGrayColor()
-    var textColor = UIColor.whiteColor()
-    var highlightColor = UIColor.orangeColor()
+    var iconBackgroundColor:Color?
+    var backgroundColor:Color?
+    var textColor:Color?
+    var highlightColor:Color?
     
     // paging text
-    var pagingText = ["test":"This is a test", "test 2":"this is another test"]
+    var pagingText:[PageText] = []
     
     //background type
     var backgroundType = "map"
@@ -30,7 +28,6 @@ class Setting:NSObject {
     //images
     var icon = UIImage(named: "ec_logo_header.png")
     var backgroundImage:UIImage?
-    
     
     //map details
     var address = "1934 Old Gallows Road Vienna, VA 22182"

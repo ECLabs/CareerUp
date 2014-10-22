@@ -9,10 +9,10 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate {
-    var eventSetting:Setting?
+    var eventSetting:Event?
     var selectedPicker:String?
     var dateDisplay:NSDate?
-    var pagingText:[String:String]?
+    var pagingItems:[PageText]?
     
     //info
     @IBOutlet var nameField:UITextField?
@@ -48,18 +48,29 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         
         dateField?.setTitle(dateFormater.stringFromDate(dateDisplay!), forState: UIControlState.Normal)
         
-        textColor?.backgroundColor = eventSetting?.textColor
-        backgroundColor?.backgroundColor = eventSetting?.backgroundColor
-        logobackgroundColor?.backgroundColor = eventSetting?.iconBackgroundColor
-        highlightColor?.backgroundColor = eventSetting?.highlightColor
+        let setting = eventSetting?.setting
+        textColor?.backgroundColor = setting?.textColor?.color
+        backgroundColor?.backgroundColor = setting?.backgroundColor?.color
+        logobackgroundColor?.backgroundColor = setting?.iconBackgroundColor?.color
+        highlightColor?.backgroundColor = setting?.highlightColor?.color
         
         //paging text
-        pageText?.textLabel?.text =  "\(eventSetting!.pagingText.count) Paging Text Items"
-        pagingText = eventSetting?.pagingText
+        var text:String?
+        
+        
+        if (setting? != nil) {
+            text = "\(setting!.pagingText.count) Paging Text Items"
+        }
+        else {
+            text = "0 Paging Text Items"
+        }
+        pageText?.textLabel?.text = text
 
+        pagingItems = setting?.pagingText
+        
         //images
-        logoImage?.image = eventSetting?.icon
-        backgroundImage?.image = eventSetting?.backgroundImage
+        logoImage?.image = setting?.icon
+        backgroundImage?.image = setting?.backgroundImage
     }
     
     func createPhotoActionSheet(){
@@ -129,13 +140,15 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         eventSetting?.name = nameField!.text
         eventSetting?.details = detailsField!.text
         eventSetting?.date = dateDisplay!
-        eventSetting?.textColor = textColor!.backgroundColor!
-        eventSetting?.backgroundColor = backgroundColor!.backgroundColor!
-        eventSetting?.iconBackgroundColor = logobackgroundColor!.backgroundColor!
-        eventSetting?.highlightColor = highlightColor!.backgroundColor!
-        eventSetting?.pagingText = pagingText!
-        eventSetting?.icon = logoImage!.image!
-        eventSetting?.backgroundImage = backgroundImage?.image!
+        
+        let setting = eventSetting?.setting
+        setting?.textColor?.color = textColor!.backgroundColor!
+        setting?.backgroundColor?.color = backgroundColor!.backgroundColor!
+        setting?.iconBackgroundColor?.color = logobackgroundColor!.backgroundColor!
+        setting?.highlightColor?.color = highlightColor!.backgroundColor!
+        setting?.pagingText = pagingItems!
+        setting?.icon = logoImage!.image!
+        setting?.backgroundImage = backgroundImage?.image!
         
         self.navigationController?.popViewControllerAnimated(true)
     }

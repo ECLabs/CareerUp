@@ -18,7 +18,7 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBOutlet var resume:UIImageView?
     @IBOutlet var notes:UITextView?
     
-    var applicantResume:Resume?
+    var applicantResume:Candidate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

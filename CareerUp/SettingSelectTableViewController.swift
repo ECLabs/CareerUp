@@ -15,16 +15,17 @@ class SettingSelectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataHandler.sharedInstance().getEvents()
+        EventHandler.sharedInstance().get()
+        
     }
     
     func reloadTable(timer: NSTimer){
-        let loadingCount = DataHandler.sharedInstance().settingLoadingObjectCount
-        let reloaded = DataHandler.sharedInstance().settingsReloaded
+        let loadingCount = EventHandler.sharedInstance().loadingCount
+        let reloaded = EventHandler.sharedInstance().reloaded
         
         if reloaded {
             loadedContent = -1
-            DataHandler.sharedInstance().settingsReloaded = false
+            EventHandler.sharedInstance().reloaded = false
         }
         
         if loadedContent != 0 {
@@ -36,7 +37,7 @@ class SettingSelectTableViewController: UITableViewController {
         else {
             println("checking")
             loadDelay = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
-            DataHandler.sharedInstance().getEventsCount()
+            EventHandler.sharedInstance().count()
         }
     }
     override func viewWillDisappear(animated: Bool) {
@@ -61,13 +62,13 @@ class SettingSelectTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataHandler.sharedInstance().localSettings.count
+        return EventHandler.sharedInstance().events.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        let setting = DataHandler.sharedInstance().localSettings[indexPath.row]
+        let setting = EventHandler.sharedInstance().events[indexPath.row]
         
         cell.textLabel?.text = setting.name
         cell.detailTextLabel?.text = setting.details
@@ -76,11 +77,9 @@ class SettingSelectTableViewController: UITableViewController {
     }
 
     @IBAction func AddSettings(AnyObject) {
-        let setting = Setting()
-        setting.name = "New Event"
-    
-        DataHandler.sharedInstance().localSettings.append(setting)
-        
+        let event = Event()
+        event.name = "New Event"
+        EventHandler.sharedInstance().events.append(event)
         self.tableView.reloadData()
     }
 
@@ -92,7 +91,7 @@ class SettingSelectTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
     
         let settingDetail: SettingsTableViewController = segue.destinationViewController as SettingsTableViewController
-        let selectedSetting = DataHandler.sharedInstance().localSettings[selectedIndex]
-        settingDetail.eventSetting = selectedSetting
+        let selectedEvent = EventHandler.sharedInstance().events[selectedIndex]
+        settingDetail.eventSetting = selectedEvent
     }
 }

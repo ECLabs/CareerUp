@@ -8,7 +8,12 @@
 
 import UIKit
 
-class Resume: NSObject {
+class Candidate: NSObject {
+    var objectId = ""
+    var updatedAt:NSDate?
+    var modified = false
+    var eventId = ""
+    
     var firstName = ""
     var lastName = ""
     var email = ""

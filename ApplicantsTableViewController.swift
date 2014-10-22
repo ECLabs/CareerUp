@@ -16,16 +16,16 @@ class ApplicantsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataHandler.sharedInstance().getAplicants()
+        CandidateHandler.sharedInstance().get()
     }
     
     func reloadTable(timer: NSTimer){
-        let loadingCount = DataHandler.sharedInstance().applicantLoadingObjectCount
-        let reloaded = DataHandler.sharedInstance().applicantsReloaded
+        let loadingCount = CandidateHandler.sharedInstance().loadingCount
+        let reloaded = CandidateHandler.sharedInstance().reloaded
         
         if reloaded {
             loadedContent = -1
-            DataHandler.sharedInstance().applicantsReloaded = false
+            CandidateHandler.sharedInstance().reloaded = false
         }
         
         if loadedContent != 0 {
@@ -37,7 +37,7 @@ class ApplicantsTableViewController: UITableViewController {
         else {
             println("checking")
             loadDelay = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
-            DataHandler.sharedInstance().getAplicantsCount()
+            CandidateHandler.sharedInstance().count()
         }
     }
     override func viewWillDisappear(animated: Bool) {
@@ -54,13 +54,13 @@ class ApplicantsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataHandler.sharedInstance().parseApplicants.count
+        return CandidateHandler.sharedInstance().candidates.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resumeCell", forIndexPath: indexPath) as UITableViewCell
         
-        let resume = DataHandler.sharedInstance().parseApplicants[indexPath.row]
+        let resume = CandidateHandler.sharedInstance().candidates[indexPath.row]
         
         cell.textLabel?.text = resume.email
     
@@ -79,7 +79,7 @@ class ApplicantsTableViewController: UITableViewController {
     
        let applicantDetail: ApplicantDetailTableViewController = segue.destinationViewController as ApplicantDetailTableViewController
         
-        let selectedResume = DataHandler.sharedInstance().parseApplicants[selectedIndex]
+        let selectedResume = CandidateHandler.sharedInstance().candidates[selectedIndex]
         applicantDetail.applicantResume = selectedResume
         
         applicantDetail.title = selectedResume.email

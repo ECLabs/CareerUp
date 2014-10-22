@@ -43,7 +43,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             
             
         } else { 
-            let submission = Resume()
+            let submission = Candidate()
             submission.firstName = firstName!.text
             submission.lastName = lastName!.text
             submission.email = email!.text
@@ -52,11 +52,9 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             submission.jobTitle = jobTitle!.text
             submission.resume = resume?.image
             
-            DataHandler.sharedInstance().localApplicants.append(submission)
+            CandidateHandler.sharedInstance().candidates.append(submission)
             
-            println(DataHandler.sharedInstance().localApplicants)
-            
-            DataHandler.sharedInstance().submitResume(submission)
+            CandidateHandler.sharedInstance().put(submission)
             
             self.navigationController?.popViewControllerAnimated(true)
         }

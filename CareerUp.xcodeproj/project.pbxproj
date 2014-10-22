@@ -17,11 +17,17 @@
 		98010C2E19F559D600236D89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2D19F559D600236D89 /* Security.framework */; };
 		98010C3019F559F800236D89 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2F19F559F800236D89 /* MobileCoreServices.framework */; };
 		98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98010C3319F5D08400236D89 /* ThankYouViewController.swift */; };
-		983E0BEA19E846D4005C913A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BE919E846D4005C913A /* DataHandler.swift */; };
 		983E0BEC19E84AB9005C913A /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEB19E84AB9005C913A /* Setting.swift */; };
 		983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */; };
 		983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */; };
-		987BC8D319E484850061F012 /* Resume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987BC8D219E484850061F012 /* Resume.swift */; };
+		987BC8D319E484850061F012 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987BC8D219E484850061F012 /* Candidate.swift */; };
+		9883887119F7F818007DCB20 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887019F7F818007DCB20 /* Location.swift */; };
+		9883887319F7F83E007DCB20 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887219F7F83E007DCB20 /* Job.swift */; };
+		9883887619F7FBC1007DCB20 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887519F7FBC1007DCB20 /* Color.swift */; };
+		9883887819F7FC10007DCB20 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887719F7FC10007DCB20 /* Event.swift */; };
+		9883887A19F800B5007DCB20 /* PageText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887919F800B5007DCB20 /* PageText.swift */; };
+		9883887D19F8057B007DCB20 /* CandidateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887C19F8057B007DCB20 /* CandidateHandler.swift */; };
+		9883887F19F80601007DCB20 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887E19F80601007DCB20 /* EventHandler.swift */; };
 		988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988415F519E495E900D0AD08 /* SettingsTableViewController.swift */; };
 		98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */; };
 		98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */; };
@@ -58,11 +64,17 @@
 		98010C2D19F559D600236D89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		98010C2F19F559F800236D89 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		98010C3319F5D08400236D89 /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
-		983E0BE919E846D4005C913A /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
-		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = CareerUp/Setting.swift; sourceTree = "<group>"; };
 		983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicantsTableViewController.swift; path = ../ApplicantsTableViewController.swift; sourceTree = "<group>"; };
 		983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSelectTableViewController.swift; sourceTree = "<group>"; };
-		987BC8D219E484850061F012 /* Resume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resume.swift; sourceTree = "<group>"; };
+		987BC8D219E484850061F012 /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Candidate.swift; path = CareerUp/Candidate.swift; sourceTree = "<group>"; };
+		9883887019F7F818007DCB20 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = CareerUp/Location.swift; sourceTree = "<group>"; };
+		9883887219F7F83E007DCB20 /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Job.swift; path = CareerUp/Job.swift; sourceTree = "<group>"; };
+		9883887519F7FBC1007DCB20 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		9883887719F7FC10007DCB20 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9883887919F800B5007DCB20 /* PageText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageText.swift; sourceTree = "<group>"; };
+		9883887C19F8057B007DCB20 /* CandidateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateHandler.swift; sourceTree = "<group>"; };
+		9883887E19F80601007DCB20 /* EventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 		988415F519E495E900D0AD08 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -112,12 +124,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9883886F19F7F7BE007DCB20 /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Jobs;
+			sourceTree = "<group>";
+		};
+		9883887419F7FB73007DCB20 /* ParseObjects */ = {
+			isa = PBXGroup;
+			children = (
+				987BC8D219E484850061F012 /* Candidate.swift */,
+				9883887519F7FBC1007DCB20 /* Color.swift */,
+				9883887719F7FC10007DCB20 /* Event.swift */,
+				9883887219F7F83E007DCB20 /* Job.swift */,
+				9883887019F7F818007DCB20 /* Location.swift */,
+				983E0BEB19E84AB9005C913A /* Setting.swift */,
+				9883887919F800B5007DCB20 /* PageText.swift */,
+			);
+			name = ParseObjects;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9883887B19F80536007DCB20 /* ParseDataHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				9883887C19F8057B007DCB20 /* CandidateHandler.swift */,
+				9883887E19F80601007DCB20 /* EventHandler.swift */,
+			);
+			name = ParseDataHandlers;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		98921B7B19EC9B2100AEF986 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				988415F519E495E900D0AD08 /* SettingsTableViewController.swift */,
 				983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */,
-				983E0BEB19E84AB9005C913A /* Setting.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -126,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				98DCFFE319DF031200E58A12 /* FormTableViewController.swift */,
-				987BC8D219E484850061F012 /* Resume.swift */,
 				983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */,
 				98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */,
 			);
@@ -155,16 +197,18 @@
 		989B7BF219DAEDBA001E3C60 /* CareerUp */ = {
 			isa = PBXGroup;
 			children = (
+				9883887B19F80536007DCB20 /* ParseDataHandlers */,
+				9883887419F7FB73007DCB20 /* ParseObjects */,
 				98921B7D19EC9B4900AEF986 /* Applicants */,
 				98921B7B19EC9B2100AEF986 /* Settings */,
 				989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */,
+				9883886F19F7F7BE007DCB20 /* Jobs */,
 				989B7BF719DAEDBA001E3C60 /* ViewController.swift */,
 				989B7C1919DAEE72001E3C60 /* Main.storyboard */,
 				98010C3319F5D08400236D89 /* ThankYouViewController.swift */,
 				989B7BFC19DAEDBA001E3C60 /* Images.xcassets */,
 				989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */,
 				989B7BF319DAEDBA001E3C60 /* Supporting Files */,
-				983E0BE919E846D4005C913A /* DataHandler.swift */,
 				98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */,
 			);
 			path = CareerUp;
@@ -317,10 +361,16 @@
 			files = (
 				98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */,
 				98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */,
-				987BC8D319E484850061F012 /* Resume.swift in Sources */,
+				9883887F19F80601007DCB20 /* EventHandler.swift in Sources */,
+				9883887A19F800B5007DCB20 /* PageText.swift in Sources */,
+				987BC8D319E484850061F012 /* Candidate.swift in Sources */,
 				983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */,
-				983E0BEA19E846D4005C913A /* DataHandler.swift in Sources */,
+				9883887319F7F83E007DCB20 /* Job.swift in Sources */,
 				988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */,
+				9883887119F7F818007DCB20 /* Location.swift in Sources */,
+				9883887819F7FC10007DCB20 /* Event.swift in Sources */,
+				9883887D19F8057B007DCB20 /* CandidateHandler.swift in Sources */,
+				9883887619F7FBC1007DCB20 /* Color.swift in Sources */,
 				989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */,
 				983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */,
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
