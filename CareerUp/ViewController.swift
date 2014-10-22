@@ -8,14 +8,17 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIScrollViewDelegate {
     var map:MKMapView?
     var overlayButton:UIButton?
     var showMap = false
     var animating = false
+    var currentEvent:Event?
     
     @IBOutlet var icon:UIImageView?
+    @IBOutlet var iconBackground:UIView?
     @IBOutlet var settingButton:UIButton?
     @IBOutlet var submitButton:UIButton?
     var pagingText:UITextView?
@@ -47,6 +50,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         pagingText?.backgroundColor = UIColor.clearColor()
         
         self.view.addSubview(pagingText!)
+        
+        
+        let event = DefaultEventHandler.sharedInstance().get()
+        
+        
+        iconBackground?.backgroundColor = event.setting?.iconBackgroundColor?.color
+        settingButton?.tintColor = event.setting?.highlightColor?.color
+        submitButton?.tintColor = event.setting?.highlightColor?.color
+        overlayButton?.backgroundColor = event.setting?.backgroundColor?.color
+        pagingText?.textColor = event.setting?.textColor?.color
+        
+        icon?.image = event.setting?.icon
     }
     
     override func viewDidLayoutSubviews() {

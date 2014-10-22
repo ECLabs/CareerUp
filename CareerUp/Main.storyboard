@@ -547,24 +547,15 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMN-e1-AxK">
                                 <rect key="frame" x="228" y="520" width="144" height="30"/>
                                 <state key="normal" title="Submit Your Resume">
-                                    <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="CK2-Oe-af1" kind="show" id="rnD-et-6I0"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ec_logo_header" translatesAutoresizingMaskIntoConstraints="NO" id="ROa-H8-iR2">
-                                <rect key="frame" x="-4" y="114" width="608" height="103"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="103" id="4Ty-sc-zsp"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DlA-SN-MGk">
                                 <rect key="frame" x="527" y="72" width="57" height="30"/>
                                 <state key="normal" title="Settings">
-                                    <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -574,19 +565,35 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="abc-ZO-hvO">
                                 <rect key="frame" x="281" y="475" width="39" height="37"/>
                             </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-13-3Z4">
+                                <rect key="frame" x="-4" y="114" width="608" height="103"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ec_logo_header" translatesAutoresizingMaskIntoConstraints="NO" id="ROa-H8-iR2">
+                                        <rect key="frame" x="40" y="8" width="528" height="87"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ROa-H8-iR2" firstAttribute="top" secondItem="lF3-13-3Z4" secondAttribute="top" constant="8" id="8fg-jI-A6B"/>
+                                    <constraint firstAttribute="height" constant="103" id="A5b-R4-K8O"/>
+                                    <constraint firstAttribute="trailing" secondItem="ROa-H8-iR2" secondAttribute="trailing" constant="40" id="I0w-ki-HGB"/>
+                                    <constraint firstAttribute="bottom" secondItem="ROa-H8-iR2" secondAttribute="bottom" constant="8" id="ZMN-0T-AnP"/>
+                                    <constraint firstItem="ROa-H8-iR2" firstAttribute="leading" secondItem="lF3-13-3Z4" secondAttribute="leading" constant="40" id="q5a-NE-PZm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ROa-H8-iR2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="13c-0S-IPx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ROa-H8-iR2" secondAttribute="trailing" constant="-20" id="VOU-4S-q9k"/>
+                            <constraint firstItem="lF3-13-3Z4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="0yb-rZ-s96"/>
+                            <constraint firstItem="lF3-13-3Z4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ON8-Yc-GnL"/>
                             <constraint firstItem="RMN-e1-AxK" firstAttribute="top" secondItem="abc-ZO-hvO" secondAttribute="bottom" constant="8" id="bKB-JW-Wt3"/>
                             <constraint firstAttribute="centerX" secondItem="abc-ZO-hvO" secondAttribute="centerX" id="d6f-y3-vdW"/>
                             <constraint firstItem="DlA-SN-MGk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="e9U-w8-Ohb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RMN-e1-AxK" secondAttribute="bottom" constant="50" id="jhB-0X-BA6"/>
                             <constraint firstItem="DlA-SN-MGk" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="k0a-lI-JCo"/>
-                            <constraint firstAttribute="centerX" secondItem="ROa-H8-iR2" secondAttribute="centerX" id="l5X-vy-4hh"/>
                             <constraint firstAttribute="centerX" secondItem="RMN-e1-AxK" secondAttribute="centerX" id="o3x-dT-hyt"/>
-                            <constraint firstItem="ROa-H8-iR2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="x9a-P4-hzY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lF3-13-3Z4" secondAttribute="trailing" constant="-20" id="yWW-Qt-2sa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I4P-g0-B2q">
@@ -604,6 +611,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="icon" destination="ROa-H8-iR2" id="Au0-ys-WT4"/>
+                        <outlet property="iconBackground" destination="lF3-13-3Z4" id="3UK-OT-v9z"/>
                         <outlet property="pageIndicator" destination="abc-ZO-hvO" id="r8r-Ts-L73"/>
                         <outlet property="settingButton" destination="DlA-SN-MGk" id="kWm-FY-fW3"/>
                         <outlet property="submitButton" destination="RMN-e1-AxK" id="NUn-zk-TB0"/>

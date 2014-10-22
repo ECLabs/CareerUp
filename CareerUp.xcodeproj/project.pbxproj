@@ -28,6 +28,13 @@
 		9883887A19F800B5007DCB20 /* PageText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887919F800B5007DCB20 /* PageText.swift */; };
 		9883887D19F8057B007DCB20 /* CandidateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887C19F8057B007DCB20 /* CandidateHandler.swift */; };
 		9883887F19F80601007DCB20 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887E19F80601007DCB20 /* EventHandler.swift */; };
+		9883888119F84CDC007DCB20 /* SettingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888019F84CDC007DCB20 /* SettingHandler.swift */; };
+		9883888319F856D7007DCB20 /* ColorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888219F856D7007DCB20 /* ColorHandler.swift */; };
+		9883888519F8573E007DCB20 /* PageTextHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888419F8573E007DCB20 /* PageTextHandler.swift */; };
+		9883888719F859A7007DCB20 /* DefaultEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888619F859A7007DCB20 /* DefaultEventHandler.swift */; };
+		9883888919F85A46007DCB20 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888819F85A46007DCB20 /* LocationHandler.swift */; };
+		9883888B19F85A68007DCB20 /* JobHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888A19F85A68007DCB20 /* JobHandler.swift */; };
+		9883888D19F85DB9007DCB20 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888C19F85DB9007DCB20 /* DefaultEvent.swift */; };
 		988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988415F519E495E900D0AD08 /* SettingsTableViewController.swift */; };
 		98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */; };
 		98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */; };
@@ -75,6 +82,13 @@
 		9883887919F800B5007DCB20 /* PageText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageText.swift; sourceTree = "<group>"; };
 		9883887C19F8057B007DCB20 /* CandidateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateHandler.swift; sourceTree = "<group>"; };
 		9883887E19F80601007DCB20 /* EventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
+		9883888019F84CDC007DCB20 /* SettingHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingHandler.swift; sourceTree = "<group>"; };
+		9883888219F856D7007DCB20 /* ColorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHandler.swift; sourceTree = "<group>"; };
+		9883888419F8573E007DCB20 /* PageTextHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTextHandler.swift; sourceTree = "<group>"; };
+		9883888619F859A7007DCB20 /* DefaultEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultEventHandler.swift; sourceTree = "<group>"; };
+		9883888819F85A46007DCB20 /* LocationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
+		9883888A19F85A68007DCB20 /* JobHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobHandler.swift; sourceTree = "<group>"; };
+		9883888C19F85DB9007DCB20 /* DefaultEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultEvent.swift; sourceTree = "<group>"; };
 		988415F519E495E900D0AD08 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				987BC8D219E484850061F012 /* Candidate.swift */,
+				9883888C19F85DB9007DCB20 /* DefaultEvent.swift */,
 				9883887519F7FBC1007DCB20 /* Color.swift */,
 				9883887719F7FC10007DCB20 /* Event.swift */,
 				9883887219F7F83E007DCB20 /* Job.swift */,
@@ -150,7 +165,13 @@
 			isa = PBXGroup;
 			children = (
 				9883887C19F8057B007DCB20 /* CandidateHandler.swift */,
+				9883888619F859A7007DCB20 /* DefaultEventHandler.swift */,
 				9883887E19F80601007DCB20 /* EventHandler.swift */,
+				9883888019F84CDC007DCB20 /* SettingHandler.swift */,
+				9883888219F856D7007DCB20 /* ColorHandler.swift */,
+				9883888419F8573E007DCB20 /* PageTextHandler.swift */,
+				9883888819F85A46007DCB20 /* LocationHandler.swift */,
+				9883888A19F85A68007DCB20 /* JobHandler.swift */,
 			);
 			name = ParseDataHandlers;
 			path = ..;
@@ -360,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */,
+				9883888919F85A46007DCB20 /* LocationHandler.swift in Sources */,
 				98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */,
 				9883887F19F80601007DCB20 /* EventHandler.swift in Sources */,
 				9883887A19F800B5007DCB20 /* PageText.swift in Sources */,
@@ -369,12 +391,18 @@
 				988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */,
 				9883887119F7F818007DCB20 /* Location.swift in Sources */,
 				9883887819F7FC10007DCB20 /* Event.swift in Sources */,
+				9883888319F856D7007DCB20 /* ColorHandler.swift in Sources */,
+				9883888B19F85A68007DCB20 /* JobHandler.swift in Sources */,
 				9883887D19F8057B007DCB20 /* CandidateHandler.swift in Sources */,
 				9883887619F7FBC1007DCB20 /* Color.swift in Sources */,
+				9883888519F8573E007DCB20 /* PageTextHandler.swift in Sources */,
+				9883888D19F85DB9007DCB20 /* DefaultEvent.swift in Sources */,
 				989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */,
 				983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */,
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
+				9883888119F84CDC007DCB20 /* SettingHandler.swift in Sources */,
 				98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */,
+				9883888719F859A7007DCB20 /* DefaultEventHandler.swift in Sources */,
 				983E0BEC19E84AB9005C913A /* Setting.swift in Sources */,
 				989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */,
 			);
