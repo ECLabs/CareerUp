@@ -31,7 +31,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         map = MKMapView(frame: self.view.frame)
         self.view.insertSubview(map!, atIndex: 0)
         
-        
         overlayButton = UIButton(frame: self.view.frame)
         self.view.insertSubview(overlayButton!, atIndex: 1)
         overlayButton?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
@@ -120,14 +119,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             self.pagingText! = newTextView
         })
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-//        icon?.backgroundColor = UIColor.lightGrayColor()
-//        settingButton?.tintColor = UIColor.orangeColor()
-//        submitButton?.tintColor = UIColor.orangeColor()
-//        overlayButton?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

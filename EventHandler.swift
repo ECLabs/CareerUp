@@ -90,4 +90,21 @@ class EventHandler: NSObject {
         
         return event
     }
+    
+    func put(submission:Event){
+        let event = PFObject(className: "Event")
+        //let setting = PFObject(className: "Setting")
+        
+        event["name"] = submission.name
+        event["eventDate"] = submission.date
+        event["description"] = submission.details
+        
+        
+        event.saveInBackgroundWithBlock({(success, error) -> Void in
+            if (error == nil) {
+                println("uploadComplete")
+            }
+        })
+        events.append(submission)
+    }
 }

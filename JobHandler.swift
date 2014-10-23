@@ -19,4 +19,39 @@ class JobHandler: NSObject {
         }
         return jobInstance!
     }
+    
+    func getAllForLocation(locationObjectId:String)->[Job] {
+        let pagingQuery = PFQuery(className: "Job")
+        pagingQuery.whereKey("location", equalTo: PFObject(withoutDataWithClassName: "Location", objectId: locationObjectId))
+        
+        var error = NSErrorPointer()
+        
+        let objects = pagingQuery.findObjects(error)
+        
+        var jobs:[Job] = []
+        
+        if error == nil {
+            for object in objects{
+                let job = Job()
+                job.objectId = object.objectId
+                job.updatedAt = object.updatedAt
+                
+                if (object["jobTitle"]? != nil) {
+                    job.title = object["jobTitle"] as String
+                }
+                if (object["experianceLevel"]? != nil) {
+                    job.experianceLevel = object["experianceLevel"] as String
+                }
+                if (object["customer"]? != nil) {
+                    job.customer = object["customer"] as String
+                }
+                if (object["details"]? != nil) {
+                    job.details = object["details"] as String
+                }
+                jobs.append(job)
+            }
+        }
+        
+        return jobs
+    }
 }

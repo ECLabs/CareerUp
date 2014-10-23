@@ -79,7 +79,7 @@ class SettingSelectTableViewController: UITableViewController {
     @IBAction func AddSettings(AnyObject) {
         let event = Event()
         event.name = "New Event"
-        EventHandler.sharedInstance().events.append(event)
+        EventHandler.sharedInstance().put(event)
         self.tableView.reloadData()
     }
 
