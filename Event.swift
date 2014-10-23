@@ -16,5 +16,5 @@ class Event: NSObject {
     var name = "New Event"
     var details = "No Details Yet"
     var date = NSDate()
-    var setting:Setting?
+    var setting = Setting()
 }

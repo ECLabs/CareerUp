@@ -49,10 +49,10 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         dateField?.setTitle(dateFormater.stringFromDate(dateDisplay!), forState: UIControlState.Normal)
         
         let setting = eventSetting?.setting
-        textColor?.backgroundColor = setting?.textColor?.color
-        backgroundColor?.backgroundColor = setting?.backgroundColor?.color
-        logobackgroundColor?.backgroundColor = setting?.iconBackgroundColor?.color
-        highlightColor?.backgroundColor = setting?.highlightColor?.color
+        textColor?.backgroundColor = setting?.textColor.color
+        backgroundColor?.backgroundColor = setting?.backgroundColor.color
+        logobackgroundColor?.backgroundColor = setting?.iconBackgroundColor.color
+        highlightColor?.backgroundColor = setting?.highlightColor.color
         
         //paging text
         var text:String?
@@ -142,10 +142,10 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         eventSetting?.date = dateDisplay!
         
         let setting = eventSetting?.setting
-        setting?.textColor?.color = textColor!.backgroundColor!
-        setting?.backgroundColor?.color = backgroundColor!.backgroundColor!
-        setting?.iconBackgroundColor?.color = logobackgroundColor!.backgroundColor!
-        setting?.highlightColor?.color = highlightColor!.backgroundColor!
+        setting?.textColor.color = textColor!.backgroundColor!
+        setting?.backgroundColor.color = backgroundColor!.backgroundColor!
+        setting?.iconBackgroundColor.color = logobackgroundColor!.backgroundColor!
+        setting?.highlightColor.color = highlightColor!.backgroundColor!
         setting?.pagingText = pagingItems!
         setting?.icon = logoImage!.image!
         setting?.backgroundImage = backgroundImage?.image!

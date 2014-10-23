@@ -14,10 +14,10 @@ class Setting:NSObject {
     var modified = false
     
     //colors
-    var iconBackgroundColor:Color?
-    var backgroundColor:Color?
-    var textColor:Color?
-    var highlightColor:Color?
+    var iconBackgroundColor = Color()
+    var backgroundColor = Color()
+    var textColor = Color()
+    var highlightColor = Color()
     
     // paging text
     var pagingText:[PageText] = []

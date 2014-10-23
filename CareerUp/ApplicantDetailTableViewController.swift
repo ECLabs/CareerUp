@@ -50,5 +50,7 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
 
     func textViewDidEndEditing(textView: UITextView) {
         applicantResume?.notes = textView.text
+        
+        CandidateHandler.sharedInstance().save(applicantResume!)
     }
 }

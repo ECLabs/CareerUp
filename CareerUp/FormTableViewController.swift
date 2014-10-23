@@ -54,7 +54,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             
             CandidateHandler.sharedInstance().candidates.append(submission)
             
-            CandidateHandler.sharedInstance().put(submission)
+            CandidateHandler.sharedInstance().save(submission)
             
             self.navigationController?.popViewControllerAnimated(true)
         }

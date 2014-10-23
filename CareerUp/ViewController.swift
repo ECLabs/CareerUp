@@ -54,13 +54,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         let event = DefaultEventHandler.sharedInstance().get()
         
         
-        iconBackground?.backgroundColor = event.setting?.iconBackgroundColor?.color
-        settingButton?.tintColor = event.setting?.highlightColor?.color
-        submitButton?.tintColor = event.setting?.highlightColor?.color
-        overlayButton?.backgroundColor = event.setting?.backgroundColor?.color
-        pagingText?.textColor = event.setting?.textColor?.color
+        iconBackground?.backgroundColor = event.setting.iconBackgroundColor.color
+        settingButton?.tintColor = event.setting.highlightColor.color
+        submitButton?.tintColor = event.setting.highlightColor.color
+        overlayButton?.backgroundColor = event.setting.backgroundColor.color
+        pagingText?.textColor = event.setting.textColor.color
         
-        icon?.image = event.setting?.icon
+        icon?.image = event.setting.icon
     }
     
     override func viewDidLayoutSubviews() {

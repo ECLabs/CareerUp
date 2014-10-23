@@ -35,6 +35,8 @@ class CandidateHandler: NSObject {
                 self.loadingCount = objects.count
                 for object in objects {
                     let resume = Candidate()
+                    
+                    resume.objectId = object.objectId
                 
                     if (object["firstName"]? != nil) {
                         resume.firstName = object["firstName"] as String
@@ -95,9 +97,13 @@ class CandidateHandler: NSObject {
         })
     }
     
-    func put(submission:Candidate){
+    func save(submission:Candidate){
         let object = PFObject(className: "Candidate")
         
+        if !submission.objectId.isEmpty{
+            object.objectId = submission.objectId
+        }
+        println(submission.objectId)
         object["firstName"] = submission.firstName
         object["lastName"] = submission.lastName
         object["email"] = submission.email
