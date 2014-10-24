@@ -51,16 +51,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         self.view.addSubview(pagingText!)
         
         
-        let event = DefaultEventHandler.sharedInstance().get()
+        currentEvent = DefaultEventHandler.sharedInstance().get()
         
         
-        iconBackground?.backgroundColor = event.setting.iconBackgroundColor.color
-        settingButton?.tintColor = event.setting.highlightColor.color
-        submitButton?.tintColor = event.setting.highlightColor.color
-        overlayButton?.backgroundColor = event.setting.backgroundColor.color
-        pagingText?.textColor = event.setting.textColor.color
+        iconBackground?.backgroundColor = currentEvent?.setting.iconBackgroundColor.color
+        settingButton?.tintColor = currentEvent?.setting.highlightColor.color
+        submitButton?.tintColor = currentEvent?.setting.highlightColor.color
+        overlayButton?.backgroundColor = currentEvent?.setting.backgroundColor.color
+        pagingText?.textColor = currentEvent?.setting.textColor.color
         
-        icon?.image = event.setting.icon
+        icon?.image = currentEvent?.setting.icon
+        
+        pageIndicator?.numberOfPages = currentEvent!.setting.pagingText.count
+        
+        pagingText?.text = getPageTextString(currentEvent!.setting.pagingText[0])
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,6 +78,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         }
     }
     
+    func getPageTextString(page:PageText)->String{
+        return "\(page.title)\n\n\(page.content)"
+    }
+    
     func pageInfo(){
 
         let frameWidth = self.view.frame.width - 80.0
@@ -81,11 +90,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         let newTextView = UITextView(frame: CGRectMake(40, y, frameWidth, height))
         newTextView.font = self.pagingText?.font
-        newTextView.text = "\(pageIndicator!.currentPage + 1)"
+        
         newTextView.textColor = self.pagingText?.textColor
         newTextView.textAlignment = self.pagingText!.textAlignment
         newTextView.backgroundColor = UIColor.clearColor()
-        
         
         
         let width = self.view.frame.width
@@ -111,6 +119,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             } else {
                 self.pageIndicator!.currentPage = 0
             }
+            newTextView.text = self.getPageTextString(self.currentEvent!.setting.pagingText[self.pageIndicator!.currentPage])
             
             self.pageIndicator!.updateCurrentPageDisplay()
         }, completion: { finished in
