@@ -154,4 +154,8 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         
         colorPicker.colorButton = sender as UIButton
     }
+    
+    @IBAction func defaultTapped(AnyObject) {
+        DefaultEventHandler.sharedInstance().save(eventSetting!.objectId)
+    }
 }

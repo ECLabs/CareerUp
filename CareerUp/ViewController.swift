@@ -50,10 +50,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
 
         flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
         
-        let pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
-        
         pagingText = UITextView()
-        pagingText?.text = "Growth\n\nStay on top of your game with company sponsored training, and the opportunity to support cutting-edge internal R&D programs."
+        //pagingText?.text = "Growth\n\nStay on top of your game with company sponsored training, and the opportunity to support cutting-edge internal R&D programs."
         pagingText?.font = UIFont.boldSystemFontOfSize(14)
         pagingText?.textColor = UIColor.whiteColor()
         pagingText?.textAlignment = NSTextAlignment.Center
@@ -75,7 +73,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         pageIndicator?.numberOfPages = currentEvent!.setting.pagingText.count
         
-        pagingText?.text = getPageTextString(currentEvent!.setting.pagingText[0])
+        if currentEvent!.setting.pagingText.count > 0 {
+            pagingText?.text = getPageTextString(currentEvent!.setting.pagingText[0])
+            let pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
+        }
         
     }
     

@@ -39,4 +39,16 @@ class DefaultEventHandler: NSObject {
         }
         return self.defaultEvent.event
     }
+    
+    func save(eventId:String){
+        let submit = PFObject(className: "DefaultEvent")
+        submit.objectId = defaultEvent.objectId
+        submit["event"] = PFObject(withoutDataWithClassName: "Event", objectId: eventId)
+        
+        submit.saveInBackgroundWithBlock({(success, error) -> Void in
+            if (error == nil) {
+                println("uploadComplete")
+            }
+        })
+    }
 }

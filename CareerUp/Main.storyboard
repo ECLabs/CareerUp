@@ -967,7 +967,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="XBq-ql-vWb">
-                        <barButtonItem key="rightBarButtonItem" title="Use Settings" id="ZEa-aD-JAT"/>
+                        <barButtonItem key="rightBarButtonItem" title="Use Settings" id="ZEa-aD-JAT">
+                            <connections>
+                                <action selector="defaultTapped:" destination="6n8-w1-vQg" id="Y1Y-OV-KgS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundColor" destination="32S-h1-lEJ" id="VS5-9r-h2E"/>
