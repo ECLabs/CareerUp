@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Parse
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIScrollViewDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIScrollViewDelegate, MKMapViewDelegate {
     var map:MKMapView?
     var overlayButton:UIButton?
     var showMap = false
@@ -21,14 +21,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     @IBOutlet var iconBackground:UIView?
     @IBOutlet var settingButton:UIButton?
     @IBOutlet var submitButton:UIButton?
-    var pagingText:UITextView?
     @IBOutlet var pageIndicator:UIPageControl?
+    var pagingText:UITextView?
+    
+    var loadDelay:NSTimer?
+    var flyTimer:NSTimer?
+    var currentPin = 0
+    var loadedContent = -1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.delegate = self
         
         map = MKMapView(frame: self.view.frame)
+        map?.delegate = self
         self.view.insertSubview(map!, atIndex: 0)
         
         overlayButton = UIButton(frame: self.view.frame)
@@ -37,9 +43,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         overlayButton?.addTarget(self, action: "toggleFullscreenMap", forControlEvents: UIControlEvents.TouchUpInside)
         
+        LocationHandler.sharedInstance().get()
         updateMapView()
         
-        let loadDelay = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
+        self.loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateMapView", userInfo: nil, repeats: false)
+
+        flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
+        
+        let pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
         
         pagingText = UITextView()
         pagingText?.text = "Growth\n\nStay on top of your game with company sponsored training, and the opportunity to support cutting-edge internal R&D programs."
@@ -94,6 +105,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         newTextView.textColor = self.pagingText?.textColor
         newTextView.textAlignment = self.pagingText!.textAlignment
         newTextView.backgroundColor = UIColor.clearColor()
+        newTextView.alpha = self.pagingText!.alpha
         
         
         let width = self.view.frame.width
@@ -169,37 +181,98 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
                 }
             }
         })
+        
+        if showMap{
+            flyBetweenLocations()
+            flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
+        }
+        else{
+            flyTimer?.invalidate()
+        }
+        
+        
         showMap = !showMap
+        
         
     }
     
     func updateMapView(){
-    
-        let address = "1934 Old Gallows Road Vienna, VA 22182"
+        let loadingCount = LocationHandler.sharedInstance().loadingCount
         
-        let gecooder = CLGeocoder()
-
-        gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
-            if ((placemarks.count > 0) && error == nil) {
+        if loadedContent != 0 {
+            loadedContent = loadingCount
+            dropPins()
+            loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateMapView", userInfo: nil, repeats: false)
             
-                let pm = placemarks[0] as CLPlacemark
-                
-                
+        }
+
+    }
+    
+    func dropPins(){
+        map?.removeAnnotations(map?.annotations)
         
-                let pin = MKPointAnnotation()
-                pin.coordinate = pm.location.coordinate
+        let locations = LocationHandler.sharedInstance().locations
+        
+        for location in locations {
+        
+            let address = location.address
+            
+            let gecooder = CLGeocoder()
+
+            gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+                if ((placemarks.count > 0) && error == nil) {
                 
-                self.map?.addAnnotation(pin)
-                
-                
-                let region = MKCoordinateRegion(center:  pm.location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-                
-                // calulate gps point on outside of the circle
-                // it may be more effective to fly between job locations
-                
-                self.map?.setRegion(region, animated: true)
+                    let pm = placemarks[0] as CLPlacemark
+            
+                    let pin = MKPointAnnotation()
+                    pin.title = location.name
+                    let jobNumber = location.jobs.count
+                    pin.subtitle = "\(jobNumber) Jobs Availible"
+                    pin.coordinate = pm.location.coordinate
+                    
+                    self.map?.addAnnotation(pin)
+                    
+                    let detailButton: UIButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+                    
+                    let pinview = self.map?.viewForAnnotation(pin)
+                    
+                    pinview?.rightCalloutAccessoryView = detailButton
+                }
+                self.flyBetweenLocations()
+            })
+        }
+    }
+    
+    func flyBetweenLocations(){
+        let annotations = map?.annotations
+        
+        if annotations?.count > 0 {
+            let pin = annotations?[currentPin] as MKPointAnnotation
+            
+            let region = MKCoordinateRegion(center:  pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+            self.map?.setRegion(region, animated: true)
+            
+            currentPin++
+            if currentPin + 1 > annotations?.count {
+                currentPin = 0
             }
-        })
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        let identifier = "pinview"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+        
+        if (pinView == nil) {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        } else {
+            pinView.annotation = annotation
+        }
+        pinView.canShowCallout = true
+        pinView.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+        
+        
+        return pinView
     }
 }
 
