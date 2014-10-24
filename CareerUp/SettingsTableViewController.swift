@@ -11,13 +11,12 @@ import UIKit
 class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate {
     var eventSetting:Event?
     var selectedPicker:String?
-    var dateDisplay:NSDate?
     var pagingItems:[PageText]?
     
     //info
     @IBOutlet var nameField:UITextField?
     @IBOutlet var detailsField:UITextField?
-    @IBOutlet var dateField:UIButton?
+    @IBOutlet var dateField:UIDatePicker?
     
     //colors
     @IBOutlet var textColor:UIButton?
@@ -41,12 +40,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         nameField?.text = eventSetting?.name
         detailsField?.text = eventSetting?.details
         
-        dateDisplay = eventSetting?.date
-        
-        let dateFormater = NSDateFormatter()
-        dateFormater.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateField?.setTitle(dateFormater.stringFromDate(dateDisplay!), forState: UIControlState.Normal)
+        dateField?.setDate(eventSetting!.date, animated: false)
         
         let setting = eventSetting?.setting
         textColor?.backgroundColor = setting?.textColor.color
@@ -139,17 +133,25 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
     @IBAction func applyTapped(AnyObject) {
         eventSetting?.name = nameField!.text
         eventSetting?.details = detailsField!.text
-        eventSetting?.date = dateDisplay!
+        eventSetting?.date = dateField!.date
         
         let setting = eventSetting?.setting
-        setting?.textColor.color = textColor!.backgroundColor!
-        setting?.backgroundColor.color = backgroundColor!.backgroundColor!
-        setting?.iconBackgroundColor.color = logobackgroundColor!.backgroundColor!
-        setting?.highlightColor.color = highlightColor!.backgroundColor!
+        setting?.textColor.convert(textColor!.backgroundColor!)
+        setting?.backgroundColor.convert(backgroundColor!.backgroundColor!)
+        setting?.iconBackgroundColor.convert(logobackgroundColor!.backgroundColor!)
+        setting?.highlightColor.convert(highlightColor!.backgroundColor!)
         setting?.pagingText = pagingItems!
-        setting?.icon = logoImage!.image!
-        setting?.backgroundImage = backgroundImage?.image!
+        setting?.icon = logoImage?.image?
+        setting?.backgroundImage = backgroundImage?.image?
         
+        
+        EventHandler.sharedInstance().save(eventSetting!)
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let colorPicker: ColorPickerViewController = segue.destinationViewController as ColorPickerViewController
+        
+        colorPicker.colorButton = sender as UIButton
     }
 }

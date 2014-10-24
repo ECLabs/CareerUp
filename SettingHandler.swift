@@ -32,18 +32,26 @@ class SettingHandler: NSObject {
             setting.objectId = settingObject.objectId
             setting.updatedAt = settingObject.updatedAt
             
-            let backgroundColor: PFObject = settingObject["backgroundColor"] as PFObject
-            let highlightColor: PFObject = settingObject["highlightColor"] as PFObject
-            let logoColor: PFObject = settingObject["logoColor"] as PFObject
-            let textColor: PFObject = settingObject["textColor"] as PFObject
-            
             let colorHandler = ColorHandler.sharedInstance()
             let pageHandler = PageTextHandler.sharedInstance()
-
-            setting.backgroundColor = colorHandler.get(backgroundColor.objectId)
-            setting.highlightColor = colorHandler.get(highlightColor.objectId)
-            setting.iconBackgroundColor = colorHandler.get(logoColor.objectId)
-            setting.textColor = colorHandler.get(textColor.objectId)
+            
+            if (settingObject["backgroundColor"]? != nil) {
+                let backgroundColor: PFObject = settingObject["backgroundColor"] as PFObject
+                setting.backgroundColor = colorHandler.get(backgroundColor.objectId)
+            }
+            if (settingObject["highlightColor"]? != nil) {
+                let highlightColor: PFObject = settingObject["highlightColor"] as PFObject
+                setting.highlightColor = colorHandler.get(highlightColor.objectId)
+            }
+            if (settingObject["logoColor"]? != nil) {
+                let logoColor: PFObject = settingObject["logoColor"] as PFObject
+                setting.iconBackgroundColor = colorHandler.get(logoColor.objectId)
+            }
+            if (settingObject["textColor"]? != nil) {
+                let textColor: PFObject = settingObject["textColor"] as PFObject
+                setting.textColor = colorHandler.get(textColor.objectId)
+            }
+            
             setting.pagingText = pageHandler.getAllForSetting(setting.objectId)
             
             
@@ -58,10 +66,22 @@ class SettingHandler: NSObject {
                 
                 }
             }
+            
+            if (settingObject["backgroundImage"]? != nil) {
+                let backgroundImageFile:PFFile = settingObject["backgroundImage"] as PFFile
+                
+                let fileError = NSErrorPointer()
+                let backgroundImageData = backgroundImageFile.getData(fileError)
+                if error == nil {
+                    setting.backgroundImage = UIImage(data: backgroundImageData)
+                
+                }
+            }
         }
         return setting
     }
     
+
     
 }
 

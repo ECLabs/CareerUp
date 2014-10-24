@@ -36,7 +36,6 @@
 		9883888B19F85A68007DCB20 /* JobHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888A19F85A68007DCB20 /* JobHandler.swift */; };
 		9883888D19F85DB9007DCB20 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883888C19F85DB9007DCB20 /* DefaultEvent.swift */; };
 		988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988415F519E495E900D0AD08 /* SettingsTableViewController.swift */; };
-		98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */; };
 		98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */; };
 		989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */; };
 		989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B7BF719DAEDBA001E3C60 /* ViewController.swift */; };
@@ -48,6 +47,7 @@
 		98EDAB3019F553D800D688B0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2D19F553D800D688B0 /* Bolts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98EDAB3119F553D800D688B0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2E19F553D800D688B0 /* Parse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98EDAB3219F553D800D688B0 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		98F4BB5119FABF9A00A81330 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 		9883888A19F85A68007DCB20 /* JobHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobHandler.swift; sourceTree = "<group>"; };
 		9883888C19F85DB9007DCB20 /* DefaultEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultEvent.swift; sourceTree = "<group>"; };
 		988415F519E495E900D0AD08 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantDetailTableViewController.swift; sourceTree = "<group>"; };
 		989B7BF019DAEDBA001E3C60 /* CareerUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareerUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B7BF419DAEDBA001E3C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		98EDAB2D19F553D800D688B0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		98EDAB2E19F553D800D688B0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +182,7 @@
 			children = (
 				988415F519E495E900D0AD08 /* SettingsTableViewController.swift */,
 				983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */,
+				98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -230,7 +231,6 @@
 				989B7BFC19DAEDBA001E3C60 /* Images.xcassets */,
 				989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */,
 				989B7BF319DAEDBA001E3C60 /* Supporting Files */,
-				98921B7719EC67E600AEF986 /* ColorPickerViewController.swift */,
 			);
 			path = CareerUp;
 			sourceTree = "<group>";
@@ -380,9 +380,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98F4BB5119FABF9A00A81330 /* ColorPickerViewController.swift in Sources */,
 				98921B8119EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift in Sources */,
 				9883888919F85A46007DCB20 /* LocationHandler.swift in Sources */,
-				98921B7919EC67E600AEF986 /* ColorPickerViewController.swift in Sources */,
 				9883887F19F80601007DCB20 /* EventHandler.swift in Sources */,
 				9883887A19F800B5007DCB20 /* PageText.swift in Sources */,
 				987BC8D319E484850061F012 /* Candidate.swift in Sources */,

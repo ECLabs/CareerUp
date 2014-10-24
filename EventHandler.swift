@@ -93,23 +93,17 @@ class EventHandler: NSObject {
     
     func save(submission:Event){
         let event = PFObject(className: "Event")
-        let setting = PFObject(className: "Setting")
         
+        if !submission.objectId.isEmpty{
+            event.objectId = submission.objectId
+        }
         event["name"] = submission.name
         event["eventDate"] = submission.date
         event["description"] = submission.details
         
-        event["setting"] = setting
+        event["setting"] = submission.setting.prepareForParse()
         
-        let textColor = PFObject(className: "Color")
-        let submissonTextColor = submission.setting.textColor
-        
-        textColor["red"] = submissonTextColor.red
-        textColor["green"] = submissonTextColor.green
-        textColor["blue"] = submissonTextColor.blue
-        textColor["alpha"] = submissonTextColor.alpha
-        
-        setting["textColor"] = textColor
+
         
         
         event.saveInBackgroundWithBlock({(success, error) -> Void in
@@ -119,4 +113,7 @@ class EventHandler: NSObject {
         })
         events.append(submission)
     }
+    
+    
+    
 }
