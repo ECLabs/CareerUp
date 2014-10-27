@@ -30,7 +30,7 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         jobTitle?.text = applicantResume?.jobTitle
         linkedIn?.text = applicantResume?.linkedIn
         comments?.text = applicantResume?.comments
-        resume?.image = applicantResume?.resume
+        //resume?.image = applicantResume?.resumeImages
         notes?.text = applicantResume?.notes
         
         notes?.delegate = self

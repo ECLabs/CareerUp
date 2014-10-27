@@ -63,19 +63,19 @@ class CandidateHandler: NSObject {
                     self.candidates.append(resume)
                     
                     println("adding Object")
-                    if (object["resumeImage"]? != nil) {
-                        self.loadingCount++
-                        let userImageFile:PFFile = object["resumeImage"] as PFFile
-                        
-                        userImageFile.getDataInBackgroundWithBlock({(imageData, error) -> Void in
-                            if (error == nil) {
-                                let image = UIImage(data: imageData)
-                                
-                                resume.resume = image
-                            }
-                            self.loadingCount--
-                        })
-                    }
+//                    if (object["resumeImage"]? != nil) {
+//                        self.loadingCount++
+//                        let userImageFile:PFFile = object["resumeImage"] as PFFile
+//                        
+//                        userImageFile.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+//                            if (error == nil) {
+//                                let image = UIImage(data: imageData)
+//                                
+//                                resume.resumeImages.append(image)
+//                            }
+//                            self.loadingCount--
+//                        })
+//                    }
                     self.loadingCount--
                 }
             }
@@ -112,9 +112,11 @@ class CandidateHandler: NSObject {
         object["comments"] = submission.comments
         object["notes"] = submission.notes
         
-        if (submission.resume != nil) {
-            let imageData = UIImagePNGRepresentation(submission.resume)
-            let imageFile = PFFile(name: "image.png", data: imageData)
+        if (submission.resumeImages.count > 0) {
+            let pdfData = submission.getResumePDF()
+            let imageFile = PFFile(name: "resume.pdf", data: pdfData)
+            
+            
             object["resumeImage"] = imageFile
         }
         

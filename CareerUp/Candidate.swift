@@ -20,6 +20,37 @@ class Candidate: NSObject {
     var jobTitle = ""
     var comments = ""
     var linkedIn = ""
-    var resume:UIImage?
+    var resumeImages:[UIImage] = []
     var notes = ""
+    
+    
+    func getResumePDF()->NSData{
+    
+        // get your images
+        let image = UIImage(named: "thing.png")
+
+        //create an image view to size the image
+        let pdfRect = CGRectMake(0, 0, 612, 792)
+        let imageView = UIImageView(frame: pdfRect)
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        // create data variable to store the pdf
+        var data = NSMutableData()
+
+        //begin writing pdf
+        UIGraphicsBeginPDFContextToData(data, pdfRect, nil);
+
+        //draw pages
+        for image in resumeImages {
+            imageView.image = image
+            
+            UIGraphicsBeginPDFPage()
+            var pdfContext = UIGraphicsGetCurrentContext()
+            
+            imageView.layer.renderInContext(pdfContext)
+        }
+        UIGraphicsEndPDFContext()
+
+        return data
+    }
 }

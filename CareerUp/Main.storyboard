@@ -1248,6 +1248,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="G7V-SS-U4f">
+                            <rect key="frame" x="0.0" y="852" width="600" height="129"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection headerTitle="Applicant Information" id="ar3-bh-g5C">
                                 <cells>
@@ -1434,28 +1438,28 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="GaY-4f-jga" id="xka-8N-wrg">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXe-dG-ZKS">
-                                                    <rect key="frame" x="8" y="9" width="447" height="247"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K3-fm-HZc">
-                                                    <rect key="frame" x="467" y="115" width="105" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K3-fm-HZc">
+                                                    <rect key="frame" x="481" y="116" width="91" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="105" id="EdL-X0-jSs"/>
                                                     </constraints>
-                                                    <state key="normal" title="Attach Resume">
+                                                    <state key="normal" title="Attach Image">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="cameraTapped:" destination="gNr-6x-1D8" eventType="touchUpInside" id="J0m-ul-hFj"/>
                                                     </connections>
                                                 </button>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-fH-uET">
+                                                    <rect key="frame" x="8" y="8" width="451" height="244"/>
+                                                </scrollView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5K3-fm-HZc" firstAttribute="leading" secondItem="PXe-dG-ZKS" secondAttribute="trailing" constant="12" id="A8u-a8-Hsc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="PXe-dG-ZKS" secondAttribute="bottom" constant="-4" id="Lyy-QO-Oqw"/>
-                                                <constraint firstItem="PXe-dG-ZKS" firstAttribute="leading" secondItem="xka-8N-wrg" secondAttribute="leadingMargin" id="NJU-Qe-ckK"/>
-                                                <constraint firstItem="PXe-dG-ZKS" firstAttribute="top" secondItem="xka-8N-wrg" secondAttribute="topMargin" constant="1" id="UGM-bi-Ms8"/>
+                                                <constraint firstItem="w1Q-fH-uET" firstAttribute="bottom" secondItem="xka-8N-wrg" secondAttribute="bottomMargin" id="H8F-GL-VNn"/>
+                                                <constraint firstItem="5K3-fm-HZc" firstAttribute="leading" secondItem="w1Q-fH-uET" secondAttribute="trailing" constant="8" id="Jwo-N8-UJN"/>
+                                                <constraint firstItem="w1Q-fH-uET" firstAttribute="leading" secondItem="xka-8N-wrg" secondAttribute="leadingMargin" id="RGS-KR-u21"/>
                                                 <constraint firstAttribute="centerY" secondItem="5K3-fm-HZc" secondAttribute="centerY" id="aTG-4z-XGZ"/>
+                                                <constraint firstItem="w1Q-fH-uET" firstAttribute="top" secondItem="xka-8N-wrg" secondAttribute="topMargin" id="eJ0-pn-XXm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="5K3-fm-HZc" secondAttribute="trailing" constant="20" id="xcP-bX-5wS"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1505,12 +1509,12 @@
                         <outlet property="jobTitle" destination="Qej-Ih-z9s" id="lho-Hs-6sP"/>
                         <outlet property="lastName" destination="hKJ-Z5-avX" id="jJC-H5-9p1"/>
                         <outlet property="linkedIn" destination="z3Y-BH-aFI" id="u6F-JY-TPh"/>
-                        <outlet property="resume" destination="PXe-dG-ZKS" id="cwL-ay-Qa0"/>
+                        <outlet property="resumeScroll" destination="w1Q-fH-uET" id="1qq-Vt-Aq7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNr-6x-1D8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="1116"/>
+            <point key="canvasLocation" x="690" y="1111"/>
         </scene>
         <!--Thank You View Controller-->
         <scene sceneID="cOE-zo-ZVt">

@@ -65,7 +65,7 @@ class ApplicantsTableViewController: UITableViewController {
         cell.textLabel?.text = resume.email
     
         cell.detailTextLabel?.text = "\(resume.firstName) \(resume.lastName)"
-        cell.imageView?.image = resume.resume
+        //cell.imageView?.image = resume.resume
         return cell
 
     }

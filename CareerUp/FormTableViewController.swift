@@ -16,8 +16,10 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var jobTitle:UITextField?
     @IBOutlet var linkedIn:UITextField?
     @IBOutlet var comments:UITextView?
-    @IBOutlet var resume:UIImageView?
+    @IBOutlet var resumeScroll:UIScrollView?
     @IBOutlet var emailCell:UITableViewCell?
+    
+    var imageViews:[UIImageView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +52,11 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
             submission.linkedIn = linkedIn!.text
             submission.comments = comments!.text
             submission.jobTitle = jobTitle!.text
-            submission.resume = resume?.image
             
+            for imageView in imageViews {
+                submission.resumeImages.append(imageView.image!)
+            }
+
             CandidateHandler.sharedInstance().candidates.append(submission)
             
             CandidateHandler.sharedInstance().save(submission)
@@ -106,7 +111,26 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        resume!.image = image
+        let imageView = UIImageView(image: image)
+        
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        var currentViewCount:CGFloat = CGFloat(imageViews.count)
+        
+        println(resumeScroll!.subviews)
+        
+        let width:CGFloat = resumeScroll!.frame.size.width
+        let offset:CGFloat = width / 2.0 * currentViewCount + (8 * currentViewCount)
+
+        
+        imageView.frame = CGRectMake(offset, 0, width/2, resumeScroll!.frame.size.height)
+        
+        resumeScroll?.addSubview(imageView)
+        
+        imageViews.append(imageView)
+        currentViewCount++
+        resumeScroll?.contentSize = CGSizeMake(resumeScroll!.frame.width/2 * currentViewCount + (8 * currentViewCount), resumeScroll!.frame.size.height)
+        
         
         picker.dismissViewControllerAnimated(true, completion: {})
     }
