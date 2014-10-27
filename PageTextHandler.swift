@@ -47,4 +47,22 @@ class PageTextHandler: NSObject {
         
         return pageTexts
     }
+    
+    func save(submission:PageText, settingId:String){
+        let page = PFObject(className: "PageText")
+        
+        if !submission.objectId.isEmpty{
+            page.objectId = submission.objectId
+        }
+        page["title"] = submission.title
+        page["content"] = submission.content
+        
+        page["setting"] = PFObject(withoutDataWithClassName: "Setting", objectId: settingId)
+
+        page.saveInBackgroundWithBlock({(success, error) -> Void in
+            if (error == nil) {
+                println("uploadComplete")
+            }
+        })
+    }
 }

@@ -14,5 +14,5 @@ class PageText: NSObject {
     var modified = false
     
     var title = "New Text"
-    var content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tortor erat, accumsan at turpis et, sollicitudin vehicula ante. Quisque volutpat velit non dui pretium, vitae laoreet elit lacinia."
+    var content = "No content yet."
 }

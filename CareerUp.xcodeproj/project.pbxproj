@@ -20,6 +20,8 @@
 		983E0BEC19E84AB9005C913A /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEB19E84AB9005C913A /* Setting.swift */; };
 		983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */; };
 		983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */; };
+		98638A6619FE885000A258F7 /* PagingTextSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98638A6519FE885000A258F7 /* PagingTextSelect.swift */; };
+		98638A6819FE886A00A258F7 /* PagingTextDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98638A6719FE886A00A258F7 /* PagingTextDetails.swift */; };
 		987BC8D319E484850061F012 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987BC8D219E484850061F012 /* Candidate.swift */; };
 		9883887119F7F818007DCB20 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887019F7F818007DCB20 /* Location.swift */; };
 		9883887319F7F83E007DCB20 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883887219F7F83E007DCB20 /* Job.swift */; };
@@ -74,6 +76,8 @@
 		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = CareerUp/Setting.swift; sourceTree = "<group>"; };
 		983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicantsTableViewController.swift; path = ../ApplicantsTableViewController.swift; sourceTree = "<group>"; };
 		983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSelectTableViewController.swift; sourceTree = "<group>"; };
+		98638A6519FE885000A258F7 /* PagingTextSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingTextSelect.swift; sourceTree = "<group>"; };
+		98638A6719FE886A00A258F7 /* PagingTextDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingTextDetails.swift; sourceTree = "<group>"; };
 		987BC8D219E484850061F012 /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Candidate.swift; path = CareerUp/Candidate.swift; sourceTree = "<group>"; };
 		9883887019F7F818007DCB20 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = CareerUp/Location.swift; sourceTree = "<group>"; };
 		9883887219F7F83E007DCB20 /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Job.swift; path = CareerUp/Job.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				988415F519E495E900D0AD08 /* SettingsTableViewController.swift */,
 				983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */,
 				98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */,
+				98638A6519FE885000A258F7 /* PagingTextSelect.swift */,
+				98638A6719FE886A00A258F7 /* PagingTextDetails.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -402,7 +408,9 @@
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
 				9883888119F84CDC007DCB20 /* SettingHandler.swift in Sources */,
 				98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */,
+				98638A6619FE885000A258F7 /* PagingTextSelect.swift in Sources */,
 				9883888719F859A7007DCB20 /* DefaultEventHandler.swift in Sources */,
+				98638A6819FE886A00A258F7 /* PagingTextDetails.swift in Sources */,
 				983E0BEC19E84AB9005C913A /* Setting.swift in Sources */,
 				989B7BF619DAEDBA001E3C60 /* AppDelegate.swift in Sources */,
 			);

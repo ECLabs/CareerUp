@@ -103,15 +103,16 @@ class EventHandler: NSObject {
         
         event["setting"] = submission.setting.prepareForParse()
         
-
-        
+        for page in submission.setting.pagingText {
+            PageTextHandler.sharedInstance().save(page, settingId: submission.setting.objectId)
+        }
         
         event.saveInBackgroundWithBlock({(success, error) -> Void in
             if (error == nil) {
                 println("uploadComplete")
             }
         })
-        events.append(submission)
+        //events.append(submission)
     }
     
     

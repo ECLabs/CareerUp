@@ -48,9 +48,18 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         logobackgroundColor?.backgroundColor = setting?.iconBackgroundColor.color
         highlightColor?.backgroundColor = setting?.highlightColor.color
         
+
+        
+        //images
+        logoImage?.image = setting?.icon
+        backgroundImage?.image = setting?.backgroundImage
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
         //paging text
         var text:String?
-        
+        let setting = eventSetting?.setting
         
         if (setting? != nil) {
             text = "\(setting!.pagingText.count) Paging Text Items"
@@ -61,10 +70,6 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         pageText?.textLabel?.text = text
 
         pagingItems = setting?.pagingText
-        
-        //images
-        logoImage?.image = setting?.icon
-        backgroundImage?.image = setting?.backgroundImage
     }
     
     func createPhotoActionSheet(){
@@ -150,9 +155,11 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let colorPicker: ColorPickerViewController = segue.destinationViewController as ColorPickerViewController
-        
-        colorPicker.colorButton = sender as UIButton
+        if let colorPicker = segue.destinationViewController as? ColorPickerViewController {
+            colorPicker.colorButton = sender as UIButton
+        } else if let pageSelect = segue.destinationViewController as? PagingTextSelect {
+            pageSelect.activeSetting = eventSetting?.setting
+        }
     }
     
     @IBAction func defaultTapped(AnyObject) {
