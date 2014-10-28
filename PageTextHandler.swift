@@ -12,6 +12,9 @@ import Parse
 var pageTextInstance: PageTextHandler?
 
 class PageTextHandler: NSObject {
+    var localPages:[String:PageText] = [:]
+    var timer:NSTimer?
+    
     class func sharedInstance() -> PageTextHandler {
         if !(pageTextInstance != nil) {
             pageTextInstance = PageTextHandler()
@@ -22,6 +25,7 @@ class PageTextHandler: NSObject {
     func getAllForSetting(settingObjectId:String)->[PageText] {
         let pagingQuery = PFQuery(className: "PageText")
         pagingQuery.whereKey("setting", equalTo: PFObject(withoutDataWithClassName: "Setting", objectId: settingObjectId))
+        pagingQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
         
         var error = NSErrorPointer()
         
@@ -49,6 +53,8 @@ class PageTextHandler: NSObject {
     }
     
     func save(submission:PageText, settingId:String){
+        self.localPages[settingId] = submission
+        
         let page = PFObject(className: "PageText")
         
         if !submission.objectId.isEmpty{
@@ -60,9 +66,29 @@ class PageTextHandler: NSObject {
         page["setting"] = PFObject(withoutDataWithClassName: "Setting", objectId: settingId)
 
         page.saveInBackgroundWithBlock({(success, error) -> Void in
-            if (error == nil) {
+            if success {
                 println("uploadComplete")
+                self.localPages.removeValueForKey(settingId)
+                if (self.timer != nil) && self.localPages.count == 0{
+                    self.timer?.invalidate()
+                    self.timer = nil
+                } else if (self.timer != nil) {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.resave()
+                }
+            } else if self.timer == nil{
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
             }
         })
+    }
+    
+    func resave(){
+        if localPages.count > 0 {
+            let key = self.localPages.keys.first
+            let value = self.localPages[key!]
+            
+            save(value!, settingId: key!)
+        }
     }
 }

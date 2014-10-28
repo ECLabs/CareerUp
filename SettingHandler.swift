@@ -21,7 +21,7 @@ class SettingHandler: NSObject {
     
     func get(objectId:String)->Setting {
         let settingQuery = PFQuery(className: "Setting")
-        
+        settingQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
         let settingObject = settingQuery.getObjectWithId(objectId, error: error)
         

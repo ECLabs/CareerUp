@@ -13,6 +13,7 @@ var eventInstance: EventHandler?
 
 class EventHandler: NSObject {
     var events:[Event] = []
+    var localEvents:[Event] = []
     var loadingCount = 0
     var reloaded = false
     
@@ -28,6 +29,7 @@ class EventHandler: NSObject {
         loadingCount = -1
         
         let query = PFQuery(className: "Event")
+        query.cachePolicy = kPFCachePolicyNetworkElseCache;
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.loadingCount = objects.count
@@ -42,6 +44,7 @@ class EventHandler: NSObject {
     
     func get(objectId:String)->Event{
         let query = PFQuery(className: "Event")
+        query.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
         let object = query.getObjectWithId(objectId, error: error)
         

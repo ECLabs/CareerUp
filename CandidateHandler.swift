@@ -13,8 +13,10 @@ var candidateInstance: CandidateHandler?
 
 class CandidateHandler: NSObject {
     var candidates:[Candidate] = []
+    var localCandidates:[Candidate] = []
     var loadingCount = 0
     var reloaded = false
+    var timer:NSTimer?
     
     class func sharedInstance() -> CandidateHandler {
         if !(candidateInstance != nil) {
@@ -30,6 +32,7 @@ class CandidateHandler: NSObject {
         self.candidates.removeAll(keepCapacity: false)
 
         let query = PFQuery(className: "Candidate")
+        query.cachePolicy = kPFCachePolicyNetworkElseCache;
         query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
             if (error == nil) {
                 self.loadingCount = objects.count
@@ -100,6 +103,8 @@ class CandidateHandler: NSObject {
     func save(submission:Candidate){
         let object = PFObject(className: "Candidate")
         
+        self.localCandidates.append(submission)
+        
         if !submission.objectId.isEmpty{
             object.objectId = submission.objectId
         }
@@ -121,9 +126,30 @@ class CandidateHandler: NSObject {
         }
         
         object.saveInBackgroundWithBlock({(success, error) -> Void in
-            if (error == nil) {
-                println("uploadComplete")
+            if success {
+                self.localCandidates.removeLast()
+                
+                if (self.timer != nil) && self.localCandidates.count == 0{
+                    self.timer?.invalidate()
+                    self.timer = nil
+                } else if (self.timer != nil) {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.resave()
+                }
             }
+            else{
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
+            }
+            println("--------------------------")
+            println("canidate uploaded:\(success) with error:\(error)")
         })
+    }
+    func resave(){
+        if self.localCandidates.count > 0 {
+            let candidate = localCandidates.last
+            localCandidates.removeLast()
+            save(candidate!)
+        }
     }
 }

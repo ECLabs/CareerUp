@@ -28,6 +28,7 @@ class LocationHandler: NSObject {
         loadingCount = -1
         
         let query = PFQuery(className: "Location")
+        query.cachePolicy = kPFCachePolicyNetworkElseCache;
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.loadingCount = objects.count

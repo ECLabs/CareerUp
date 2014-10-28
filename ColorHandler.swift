@@ -23,6 +23,7 @@ class ColorHandler: NSObject {
     func get(objectId:String)->Color {
         println(objectId)
         let colorQuery = PFQuery(className: "Color")
+        colorQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
         let colorObject = colorQuery.getObjectWithId(objectId, error: error)
         

@@ -22,6 +22,7 @@ class JobHandler: NSObject {
     
     func getAllForLocation(locationObjectId:String)->[Job] {
         let pagingQuery = PFQuery(className: "Job")
+        pagingQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
         pagingQuery.whereKey("location", equalTo: PFObject(withoutDataWithClassName: "Location", objectId: locationObjectId))
         
         var error = NSErrorPointer()

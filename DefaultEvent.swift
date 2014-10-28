@@ -10,7 +10,6 @@ import UIKit
 
 class DefaultEvent: NSObject {
     var objectId = ""
-    var updatedAt:NSDate?
     var modified = false
     
     var event = Event()

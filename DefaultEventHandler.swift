@@ -23,11 +23,11 @@ class DefaultEventHandler: NSObject {
     
     func get()->Event{
         let defaultEvent = PFQuery(className: "DefaultEvent")
+        defaultEvent.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
         let defaultObject = defaultEvent.getFirstObject(error)
         if error == nil {
             self.defaultEvent.objectId = defaultObject.objectId
-            self.defaultEvent.updatedAt = defaultObject.updatedAt
             
             if (defaultObject["event"]? != nil) {
                 let eventObject = defaultObject["event"] as PFObject
