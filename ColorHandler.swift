@@ -21,7 +21,6 @@ class ColorHandler: NSObject {
     }
     
     func get(objectId:String)->Color {
-        println(objectId)
         let colorQuery = PFQuery(className: "Color")
         colorQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
@@ -34,6 +33,7 @@ class ColorHandler: NSObject {
             let green = colorObject["green"] as CGFloat
             let blue = colorObject["blue"] as CGFloat
             let alpha = colorObject["alpha"] as CGFloat
+            color.objectId = colorObject.objectId
             color.color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         }
         return color

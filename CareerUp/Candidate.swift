@@ -11,8 +11,8 @@ import UIKit
 class Candidate: NSObject {
     var objectId = ""
     var updatedAt:NSDate?
-    var modified = false
     var eventId = ""
+    var editing = false
     
     var firstName = ""
     var lastName = ""

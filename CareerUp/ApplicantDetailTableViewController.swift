@@ -41,6 +41,15 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        applicantResume?.editing = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        applicantResume?.editing = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

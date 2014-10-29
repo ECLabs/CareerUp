@@ -103,47 +103,60 @@ class CandidateHandler: NSObject {
     func save(submission:Candidate){
         let object = PFObject(className: "Candidate")
         
-        self.localCandidates.append(submission)
+        if !contains(self.localCandidates, submission){
+            self.localCandidates.append(submission)
+        }
         
         if !submission.objectId.isEmpty{
             object.objectId = submission.objectId
         }
-        println(submission.objectId)
-        object["firstName"] = submission.firstName
-        object["lastName"] = submission.lastName
-        object["email"] = submission.email
-        object["desiredJobTitle"] = submission.jobTitle
-        object["linkedInUrl"] = submission.linkedIn
-        object["comments"] = submission.comments
-        object["notes"] = submission.notes
         
-        if (submission.resumeImages.count > 0) {
-            let pdfData = submission.getResumePDF()
-            let imageFile = PFFile(name: "resume.pdf", data: pdfData)
-            
-            
-            object["resumeImage"] = imageFile
-        }
         
-        object.saveInBackgroundWithBlock({(success, error) -> Void in
-            if success {
-                self.localCandidates.removeLast()
+        if !submission.editing {
+            object["firstName"] = submission.firstName
+            object["lastName"] = submission.lastName
+            object["email"] = submission.email
+            object["desiredJobTitle"] = submission.jobTitle
+            object["linkedInUrl"] = submission.linkedIn
+            object["comments"] = submission.comments
+            object["notes"] = submission.notes
+            
+            if (submission.resumeImages.count > 0) {
+                let pdfData = submission.getResumePDF()
+                let imageFile = PFFile(name: "resume.pdf", data: pdfData)
                 
-                if (self.timer != nil) && self.localCandidates.count == 0{
-                    self.timer?.invalidate()
-                    self.timer = nil
-                } else if (self.timer != nil) {
-                    self.timer?.invalidate()
-                    self.timer = nil
-                    self.resave()
+                
+                object["resumeImage"] = imageFile
+            }
+            
+            object.saveInBackgroundWithBlock({(success, error) -> Void in
+                if success {
+                    self.localCandidates.removeLast()
+                    
+                    if (self.timer != nil) && self.localCandidates.count == 0{
+                        self.timer?.invalidate()
+                        self.timer = nil
+                    } else if (self.timer != nil) {
+                        self.timer?.invalidate()
+                        self.timer = nil
+                        self.resave()
+                    }
                 }
+                else{
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
+                }
+                println("--------------------------")
+                println("canidate uploaded:\(success) with error:\(error)")
+            })
+        }
+        else {
+            if (self.timer != nil) {
+                self.timer?.invalidate()
+                self.timer = nil
             }
-            else{
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
-            }
-            println("--------------------------")
-            println("canidate uploaded:\(success) with error:\(error)")
-        })
+            
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "resave", userInfo: nil, repeats: false)
+        }
     }
     func resave(){
         if self.localCandidates.count > 0 {

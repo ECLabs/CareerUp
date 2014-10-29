@@ -11,7 +11,8 @@ import UIKit
 class ApplicantsTableViewController: UITableViewController {
     var selectedIndex = 0
     var loadDelay:NSTimer?
-    var loadedContent = -1;
+    var loadedContent = -1
+    var candidateArray:[Candidate] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +55,16 @@ class ApplicantsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CandidateHandler.sharedInstance().candidates.count
+        candidateArray = CandidateHandler.sharedInstance().candidates + CandidateHandler.sharedInstance().localCandidates
+    
+        return candidateArray.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resumeCell", forIndexPath: indexPath) as UITableViewCell
+    
         
-        let resume = CandidateHandler.sharedInstance().candidates[indexPath.row]
+        let resume = candidateArray[indexPath.row]
         
         cell.textLabel?.text = resume.email
     
@@ -79,7 +83,7 @@ class ApplicantsTableViewController: UITableViewController {
     
        let applicantDetail: ApplicantDetailTableViewController = segue.destinationViewController as ApplicantDetailTableViewController
         
-        let selectedResume = CandidateHandler.sharedInstance().candidates[selectedIndex]
+        let selectedResume = candidateArray[selectedIndex]
         applicantDetail.applicantResume = selectedResume
         
         applicantDetail.title = selectedResume.email
