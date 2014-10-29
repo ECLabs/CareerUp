@@ -55,8 +55,9 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         backgroundImage?.image = setting?.backgroundImage
     }
     
-    
     override func viewWillAppear(animated: Bool) {
+        eventSetting?.editing = true
+        
         //paging text
         var text:String?
         let setting = eventSetting?.setting
@@ -157,6 +158,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         }
         
         self.navigationController?.popViewControllerAnimated(true)
+        eventSetting?.editing = false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -164,6 +166,8 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
             colorPicker.colorButton = sender as UIButton
         } else if let pageSelect = segue.destinationViewController as? PagingTextSelect {
             pageSelect.activeSetting = eventSetting?.setting
+        } else {
+            eventSetting?.editing = false
         }
     }
     

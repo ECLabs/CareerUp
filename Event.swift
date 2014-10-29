@@ -13,6 +13,8 @@ class Event: NSObject {
     var updatedAt:NSDate?
     var modified = false
     
+    var editing = false
+    
     var name = "New Event"
     var details = "No Details Yet"
     var date = NSDate()

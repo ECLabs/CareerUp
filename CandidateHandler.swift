@@ -17,6 +17,7 @@ class CandidateHandler: NSObject {
     var loadingCount = 0
     var reloaded = false
     var timer:NSTimer?
+    var pullDate:NSDate?
     
     class func sharedInstance() -> CandidateHandler {
         if !(candidateInstance != nil) {
@@ -27,7 +28,6 @@ class CandidateHandler: NSObject {
     
     func get() {
         loadingCount = -1
-        
         // need to change to compare to loaded objects
         self.candidates.removeAll(keepCapacity: false)
 
@@ -35,6 +35,7 @@ class CandidateHandler: NSObject {
         query.cachePolicy = kPFCachePolicyNetworkElseCache;
         query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
             if (error == nil) {
+                self.pullDate = NSDate()
                 self.loadingCount = objects.count
                 for object in objects {
                     let resume = Candidate()
@@ -90,9 +91,10 @@ class CandidateHandler: NSObject {
     
     func count() {
         let query:PFQuery = PFQuery(className: "Candidate")
+        query.whereKey("updatedAt", greaterThan: pullDate)
         query.countObjectsInBackgroundWithBlock({(objectCount, error) -> Void in
             if (error == nil) {
-                if Int(objectCount) != self.candidates.count {
+                if Int(objectCount) > 0 {
                     self.get()
                     self.reloaded = true
                 }
@@ -131,6 +133,7 @@ class CandidateHandler: NSObject {
             
             object.saveInBackgroundWithBlock({(success, error) -> Void in
                 if success {
+                    submission.objectId = object.objectId
                     self.localCandidates.removeLast()
                     
                     if (self.timer != nil) && self.localCandidates.count == 0{
@@ -145,8 +148,6 @@ class CandidateHandler: NSObject {
                 else{
                     self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
                 }
-                println("--------------------------")
-                println("canidate uploaded:\(success) with error:\(error)")
             })
         }
         else {

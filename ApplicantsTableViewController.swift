@@ -36,8 +36,7 @@ class ApplicantsTableViewController: UITableViewController {
             loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
         }
         else {
-            println("checking")
-            loadDelay = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
+            loadDelay = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
             CandidateHandler.sharedInstance().count()
         }
     }

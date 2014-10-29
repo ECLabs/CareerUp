@@ -12,11 +12,11 @@ class SettingSelectTableViewController: UITableViewController {
     var selectedIndex = 0
     var loadDelay:NSTimer?
     var loadedContent = -1;
+    var eventArray:[Event] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         EventHandler.sharedInstance().get()
-        
     }
     
     func reloadTable(timer: NSTimer){
@@ -35,8 +35,7 @@ class SettingSelectTableViewController: UITableViewController {
             loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
         }
         else {
-            println("checking")
-            loadDelay = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
+            loadDelay = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
             EventHandler.sharedInstance().count()
         }
     }
@@ -62,13 +61,14 @@ class SettingSelectTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return EventHandler.sharedInstance().events.count
+        eventArray = EventHandler.sharedInstance().events + EventHandler.sharedInstance().localEvents
+        return eventArray.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        let setting = EventHandler.sharedInstance().events[indexPath.row]
+        let setting = eventArray[indexPath.row]
         
         cell.textLabel?.text = setting.name
         cell.detailTextLabel?.text = setting.details
@@ -91,7 +91,7 @@ class SettingSelectTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
     
         let settingDetail: SettingsTableViewController = segue.destinationViewController as SettingsTableViewController
-        let selectedEvent = EventHandler.sharedInstance().events[selectedIndex]
+        let selectedEvent = eventArray[selectedIndex]
         settingDetail.eventSetting = selectedEvent
     }
 }

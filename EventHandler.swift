@@ -17,6 +17,7 @@ class EventHandler: NSObject {
     var loadingCount = 0
     var reloaded = false
     var timer:NSTimer?
+    var pullDate:NSDate?
     
     class func sharedInstance() -> EventHandler {
         if !(eventInstance != nil) {
@@ -33,6 +34,7 @@ class EventHandler: NSObject {
         query.cachePolicy = kPFCachePolicyNetworkElseCache;
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
+                self.pullDate = NSDate()
                 self.loadingCount = objects.count
                 for object in objects {
                     let event = self.parseEvent(object as PFObject)
@@ -60,9 +62,10 @@ class EventHandler: NSObject {
     
     func count() {
         let query:PFQuery = PFQuery(className: "Event")
+        query.whereKey("updatedAt", greaterThan: pullDate)
         query.countObjectsInBackgroundWithBlock({(objectCount, error) -> Void in
             if (error == nil) {
-                if Int(objectCount) != self.events.count {
+                if Int(objectCount) > 0{
                     self.get()
                     self.reloaded = true
                 }
@@ -98,37 +101,53 @@ class EventHandler: NSObject {
     func save(submission:Event){
         let event = PFObject(className: "Event")
         
-        self.localEvents.append(submission)
+        
+        if !contains(self.localEvents, submission){
+            self.localEvents.append(submission)
+        }
         
         if !submission.objectId.isEmpty{
             event.objectId = submission.objectId
         }
-        event["name"] = submission.name
-        event["eventDate"] = submission.date
-        event["description"] = submission.details
         
-        event["setting"] = submission.setting.prepareForParse()
-        
-        event.saveInBackgroundWithBlock({(success, error) -> Void in
-            if success {
-                self.localEvents.removeLast()
-                
-                if (self.timer != nil) && self.localEvents.count == 0{
-                    self.timer?.invalidate()
-                    self.timer = nil
-                } else if (self.timer != nil) {
-                    self.timer?.invalidate()
-                    self.timer = nil
-                    self.resave()
+        if !submission.editing {
+            
+            event["name"] = submission.name
+            event["eventDate"] = submission.date
+            event["description"] = submission.details
+            
+            event["setting"] = submission.setting.prepareForParse()
+            
+            event.saveInBackgroundWithBlock({(success, error) -> Void in
+                if success {
+                    submission.objectId = event.objectId
+
+                    self.localEvents.removeLast()
+                    
+                    if (self.timer != nil) && self.localEvents.count == 0{
+                        self.timer?.invalidate()
+                        self.timer = nil
+                    } else if (self.timer != nil) {
+                        self.timer?.invalidate()
+                        self.timer = nil
+                        self.resave()
+                    }
+                    
+                    for page in submission.setting.pagingText {
+                        PageTextHandler.sharedInstance().save(page, settingId: submission.setting.objectId)
+                    }
+                } else{
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
                 }
-                
-                for page in submission.setting.pagingText {
-                    PageTextHandler.sharedInstance().save(page, settingId: submission.setting.objectId)
-                }
-            } else{
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
+            })
+        } else {
+            if (self.timer != nil) {
+                self.timer?.invalidate()
+                self.timer = nil
             }
-        })
+            
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "resave", userInfo: nil, repeats: false)
+        }
     }
     
     func resave(){

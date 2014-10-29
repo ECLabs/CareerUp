@@ -67,6 +67,7 @@ class PageTextHandler: NSObject {
 
         page.saveInBackgroundWithBlock({(success, error) -> Void in
             if success {
+                submission.objectId = page.objectId
                 println("uploadComplete")
                 self.localPages.removeValueForKey(settingId)
                 if (self.timer != nil) && self.localPages.count == 0{
