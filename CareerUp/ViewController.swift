@@ -51,7 +51,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
         
         pagingText = UITextView()
-        //pagingText?.text = "Growth\n\nStay on top of your game with company sponsored training, and the opportunity to support cutting-edge internal R&D programs."
         pagingText?.font = UIFont.boldSystemFontOfSize(14)
         pagingText?.textColor = UIColor.whiteColor()
         pagingText?.textAlignment = NSTextAlignment.Center
@@ -94,8 +93,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         return "\(page.title)\n\n\(page.content)"
     }
     
-    func pageInfo(){
-
+    func pageInfo() { 
         let frameWidth = self.view.frame.width - 80.0
         let height:CGFloat = 84.0
         let y = pageIndicator!.frame.origin.y - height
@@ -151,7 +149,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
@@ -193,8 +190,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         
         showMap = !showMap
-        
-        
     }
     
     func updateMapView(){
@@ -206,18 +201,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateMapView", userInfo: nil, repeats: false)
             
         }
-
     }
     
     func dropPins(){
         map?.removeAnnotations(map?.annotations)
-        
         let locations = LocationHandler.sharedInstance().locations
         
         for location in locations {
-        
             let address = location.address
-            
             let gecooder = CLGeocoder()
 
             gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
@@ -238,8 +229,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
                     let pinview = self.map?.viewForAnnotation(pin)
                     
                     pinview?.rightCalloutAccessoryView = detailButton
+                    self.flyBetweenLocations()
                 }
-                self.flyBetweenLocations()
             })
         }
     }
@@ -271,7 +262,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         }
         pinView.canShowCallout = true
         pinView.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-        
         
         return pinView
     }

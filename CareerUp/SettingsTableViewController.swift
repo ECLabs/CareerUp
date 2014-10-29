@@ -148,9 +148,14 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         setting?.pagingText = pagingItems!
         setting?.icon = logoImage?.image?
         setting?.backgroundImage = backgroundImage?.image?
-        
+    
         
         EventHandler.sharedInstance().save(eventSetting!)
+        
+        if let index = find(EventHandler.sharedInstance().events, eventSetting!) {
+            EventHandler.sharedInstance().events.removeAtIndex(index)
+        }
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

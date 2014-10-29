@@ -16,6 +16,7 @@ class EventHandler: NSObject {
     var localEvents:[Event] = []
     var loadingCount = 0
     var reloaded = false
+    var timer:NSTimer?
     
     class func sharedInstance() -> EventHandler {
         if !(eventInstance != nil) {
@@ -97,6 +98,8 @@ class EventHandler: NSObject {
     func save(submission:Event){
         let event = PFObject(className: "Event")
         
+        self.localEvents.append(submission)
+        
         if !submission.objectId.isEmpty{
             event.objectId = submission.objectId
         }
@@ -108,15 +111,32 @@ class EventHandler: NSObject {
         
         event.saveInBackgroundWithBlock({(success, error) -> Void in
             if success {
-                println("uploadComplete")
+                self.localEvents.removeLast()
+                
+                if (self.timer != nil) && self.localEvents.count == 0{
+                    self.timer?.invalidate()
+                    self.timer = nil
+                } else if (self.timer != nil) {
+                    self.timer?.invalidate()
+                    self.timer = nil
+                    self.resave()
+                }
                 
                 for page in submission.setting.pagingText {
                     PageTextHandler.sharedInstance().save(page, settingId: submission.setting.objectId)
                 }
+            } else{
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: "resave", userInfo: nil, repeats: false)
             }
         })
     }
     
-    
+    func resave(){
+        if localEvents.count > 0 {
+            let event = localEvents.last
+            localEvents.removeLast()
+            save(event!)
+        }
+    }
     
 }
