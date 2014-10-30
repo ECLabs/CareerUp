@@ -758,6 +758,32 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qkn-37-GWV">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qkn-37-GWV" id="r9Z-31-SAD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Map:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaK-ln-8YR">
+                                                    <rect key="frame" x="16" y="11" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jnx-Iv-zRp">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uaK-ln-8YR" secondAttribute="bottom" constant="3" id="68J-mV-hYN"/>
+                                                <constraint firstItem="uaK-ln-8YR" firstAttribute="leading" secondItem="r9Z-31-SAD" secondAttribute="leadingMargin" constant="8" id="OeO-YD-DjQ"/>
+                                                <constraint firstItem="uaK-ln-8YR" firstAttribute="top" secondItem="r9Z-31-SAD" secondAttribute="topMargin" constant="3" id="Oh1-Jf-x3K"/>
+                                                <constraint firstItem="jnx-Iv-zRp" firstAttribute="trailing" secondItem="r9Z-31-SAD" secondAttribute="trailingMargin" id="PT5-Hp-mHb"/>
+                                                <constraint firstItem="jnx-Iv-zRp" firstAttribute="top" secondItem="r9Z-31-SAD" secondAttribute="topMargin" constant="-2" id="RdF-Fg-ZFC"/>
+                                                <constraint firstItem="jnx-Iv-zRp" firstAttribute="leading" secondItem="uaK-ln-8YR" secondAttribute="trailing" constant="439" id="Tvi-Tx-NMO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jnx-Iv-zRp" secondAttribute="bottom" constant="-2" id="fHg-Dp-qqn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Colors" id="cGn-H3-htA">
@@ -1023,6 +1049,7 @@
                         <outlet property="highlightColor" destination="19C-v7-fxF" id="XCp-7A-fuG"/>
                         <outlet property="logoImage" destination="viS-v2-a8D" id="BdA-bI-LFr"/>
                         <outlet property="logobackgroundColor" destination="gJ3-0M-dsX" id="H0O-Ix-OES"/>
+                        <outlet property="mapSwitch" destination="jnx-Iv-zRp" id="Jmf-Yx-nNP"/>
                         <outlet property="nameField" destination="Z4s-92-FOK" id="HA3-iP-dgT"/>
                         <outlet property="pageText" destination="g9z-Sj-4sh" id="fYw-WZ-Cek"/>
                         <outlet property="textColor" destination="36Y-B8-aUc" id="rAj-r1-qDK"/>

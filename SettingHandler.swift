@@ -48,6 +48,10 @@ class SettingHandler: NSObject {
                 setting.textColor = colorHandler.get(textUnwrap.objectId)
             }
             
+            if let showMap = settingObject["showMap"] as? Bool{
+                setting.hasMap = showMap
+            }
+            
             setting.pagingText = pageHandler.getAllForSetting(setting.objectId)
             
             

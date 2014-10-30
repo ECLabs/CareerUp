@@ -30,6 +30,8 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
     
     @IBOutlet var logoImage:UIImageView?
     @IBOutlet var backgroundImage:UIImageView?
+    
+    @IBOutlet var mapSwitch:UISwitch?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         backgroundColor?.backgroundColor = setting?.backgroundColor.color
         logobackgroundColor?.backgroundColor = setting?.iconBackgroundColor.color
         highlightColor?.backgroundColor = setting?.highlightColor.color
-        
+        mapSwitch?.setOn(setting!.hasMap, animated: false)
 
         
         //images
@@ -149,6 +151,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         setting?.pagingText = pagingItems!
         setting?.icon = logoImage?.image?
         setting?.backgroundImage = backgroundImage?.image?
+        setting?.hasMap = mapSwitch!.on
     
         
         EventHandler.sharedInstance().save(eventSetting!)

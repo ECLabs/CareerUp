@@ -42,6 +42,7 @@ class Setting:NSObject {
         setting["backgroundColor"] = self.backgroundColor.prepareForParse()
         setting["logoColor"] = self.iconBackgroundColor.prepareForParse()
         setting["highlightColor"] = self.highlightColor.prepareForParse()
+        setting["showMap"] = self.hasMap
         
         if (self.icon != nil) {
             
