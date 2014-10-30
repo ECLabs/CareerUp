@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resumeCell" textLabel="pTE-K0-8bx" detailTextLabel="7rM-K7-Bl0" imageView="JfL-QI-Ltq" style="IBUITableViewCellStyleSubtitle" id="JH1-K4-KJX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="resumeCell" textLabel="pTE-K0-8bx" detailTextLabel="7rM-K7-Bl0" style="IBUITableViewCellStyleSubtitle" id="JH1-K4-KJX">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JH1-K4-KJX" id="Sqw-w0-lCU">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -254,9 +254,6 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="adam-resume" id="JfL-QI-Ltq">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -461,22 +458,22 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Resume" id="LDi-3P-Mrc">
                                 <cells>
-                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="444" id="m1n-RY-e1l">
+                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dy4-BA-5I3" rowHeight="55" style="IBUITableViewCellStyleDefault" id="m1n-RY-e1l">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1n-RY-e1l" id="56W-L9-Lcz">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zoJ-n6-3gw">
-                                                    <rect key="frame" x="8" y="8" width="584" height="427"/>
-                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="View Attached Resume" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dy4-BA-5I3">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zoJ-n6-3gw" firstAttribute="top" secondItem="56W-L9-Lcz" secondAttribute="topMargin" id="H7L-n1-4wb"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="zoJ-n6-3gw" secondAttribute="trailing" id="HBi-o6-Szf"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="zoJ-n6-3gw" secondAttribute="bottom" id="o0l-2Z-G4F"/>
-                                                <constraint firstItem="zoJ-n6-3gw" firstAttribute="leading" secondItem="56W-L9-Lcz" secondAttribute="leadingMargin" id="oma-OY-e1L"/>
-                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bK0-S2-ouc" kind="show" id="HFB-BZ-DFw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -525,12 +522,49 @@
                         <outlet property="lastName" destination="ARN-Vw-FVl" id="uk8-eL-96Q"/>
                         <outlet property="linkedIn" destination="mmS-Dp-uPA" id="yGQ-OF-UHR"/>
                         <outlet property="notes" destination="GwE-Em-woy" id="j7y-sC-L6B"/>
-                        <outlet property="resume" destination="zoJ-n6-3gw" id="ba7-xd-9pg"/>
+                        <outlet property="resume" destination="m1n-RY-e1l" id="klm-ud-4X2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgl-Wf-wdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="-258"/>
+            <point key="canvasLocation" x="2706" y="-258"/>
+        </scene>
+        <!--Resume Viewer-->
+        <scene sceneID="wqO-2X-giB">
+            <objects>
+                <viewController id="bK0-S2-ouc" customClass="ResumeViewer" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hFL-kh-Hkj"/>
+                        <viewControllerLayoutGuide type="bottom" id="8rk-wD-rKn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jbq-5Y-24e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-Mx-LNg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="leading" secondItem="8rk-wD-rKn" secondAttribute="leading" id="1xC-cw-efY"/>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="top" secondItem="jbq-5Y-24e" secondAttribute="topMargin" id="2Qe-gD-cjK"/>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="bottom" secondItem="8rk-wD-rKn" secondAttribute="top" id="8kQ-5k-8yq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uVv-Mx-LNg" secondAttribute="trailing" constant="-16" id="XOx-tM-lFG"/>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="leading" secondItem="jbq-5Y-24e" secondAttribute="leadingMargin" constant="-16" id="bgC-y4-59n"/>
+                            <constraint firstItem="8rk-wD-rKn" firstAttribute="top" secondItem="uVv-Mx-LNg" secondAttribute="bottom" id="drS-gR-iDY"/>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="trailing" secondItem="8rk-wD-rKn" secondAttribute="trailing" id="h1Y-2n-e8S"/>
+                            <constraint firstItem="uVv-Mx-LNg" firstAttribute="top" secondItem="jbq-5Y-24e" secondAttribute="top" id="paQ-fo-FPx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="uVv-Mx-LNg" id="r0d-gO-s5L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNA-Do-W2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3362" y="-258"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1729,7 +1763,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="adam-resume" width="249" height="43"/>
         <image name="ec_logo_header" width="249" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>

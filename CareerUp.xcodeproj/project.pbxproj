@@ -17,6 +17,7 @@
 		98010C2E19F559D600236D89 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2D19F559D600236D89 /* Security.framework */; };
 		98010C3019F559F800236D89 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98010C2F19F559F800236D89 /* MobileCoreServices.framework */; };
 		98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98010C3319F5D08400236D89 /* ThankYouViewController.swift */; };
+		982B1DA91A0199D90053AF1F /* ResumeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982B1DA81A0199D90053AF1F /* ResumeViewer.swift */; };
 		983E0BEC19E84AB9005C913A /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEB19E84AB9005C913A /* Setting.swift */; };
 		983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */; };
 		983E0BF019E86B9E005C913A /* SettingSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */; };
@@ -73,6 +74,7 @@
 		98010C2D19F559D600236D89 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		98010C2F19F559F800236D89 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		98010C3319F5D08400236D89 /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
+		982B1DA81A0199D90053AF1F /* ResumeViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeViewer.swift; sourceTree = "<group>"; };
 		983E0BEB19E84AB9005C913A /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = CareerUp/Setting.swift; sourceTree = "<group>"; };
 		983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicantsTableViewController.swift; path = ../ApplicantsTableViewController.swift; sourceTree = "<group>"; };
 		983E0BEF19E86B9E005C913A /* SettingSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSelectTableViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				98DCFFE319DF031200E58A12 /* FormTableViewController.swift */,
 				983E0BED19E84CE2005C913A /* ApplicantsTableViewController.swift */,
 				98921B8019EC9CAF00AEF986 /* ApplicantDetailTableViewController.swift */,
+				982B1DA81A0199D90053AF1F /* ResumeViewer.swift */,
 			);
 			name = Applicants;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				989B7BF819DAEDBA001E3C60 /* ViewController.swift in Sources */,
 				983E0BEE19E84CE2005C913A /* ApplicantsTableViewController.swift in Sources */,
 				98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */,
+				982B1DA91A0199D90053AF1F /* ResumeViewer.swift in Sources */,
 				9883888119F84CDC007DCB20 /* SettingHandler.swift in Sources */,
 				98010C3419F5D08400236D89 /* ThankYouViewController.swift in Sources */,
 				98638A6619FE885000A258F7 /* PagingTextSelect.swift in Sources */,

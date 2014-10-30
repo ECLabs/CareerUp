@@ -67,19 +67,17 @@ class CandidateHandler: NSObject {
                     self.candidates.append(resume)
                     
                     println("adding Object")
-//                    if (object["resumeImage"]? != nil) {
-//                        self.loadingCount++
-//                        let userImageFile:PFFile = object["resumeImage"] as PFFile
-//                        
-//                        userImageFile.getDataInBackgroundWithBlock({(imageData, error) -> Void in
-//                            if (error == nil) {
-//                                let image = UIImage(data: imageData)
-//                                
-//                                resume.resumeImages.append(image)
-//                            }
-//                            self.loadingCount--
-//                        })
-//                    }
+                    if (object["resumeImage"]? != nil) {
+                        self.loadingCount++
+                        let userImageFile:PFFile = object["resumeImage"] as PFFile
+                        
+                        userImageFile.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                            if (error == nil) {
+                                resume.pdfData = imageData
+                            }
+                            self.loadingCount--
+                        })
+                    }
                     self.loadingCount--
                 }
             }
@@ -125,6 +123,7 @@ class CandidateHandler: NSObject {
             
             if (submission.resumeImages.count > 0) {
                 let pdfData = submission.getResumePDF()
+                submission.pdfData = pdfData
                 let imageFile = PFFile(name: "resume.pdf", data: pdfData)
                 
                 

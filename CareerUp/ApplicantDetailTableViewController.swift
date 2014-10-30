@@ -15,7 +15,7 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBOutlet var jobTitle:UITextField?
     @IBOutlet var linkedIn:UITextField?
     @IBOutlet var comments:UITextView?
-    @IBOutlet var resume:UIImageView?
+    @IBOutlet var resume:UITableViewCell?
     @IBOutlet var notes:UITextView?
     
     var applicantResume:Candidate?
@@ -31,6 +31,14 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         linkedIn?.text = applicantResume?.linkedIn
         comments?.text = applicantResume?.comments
         //resume?.image = applicantResume?.resumeImages
+        
+        
+        if applicantResume?.pdfData == nil {
+            resume?.textLabel?.text = "No Attached Resume"
+            resume?.userInteractionEnabled = false
+            resume?.accessoryType = UITableViewCellAccessoryType.None
+        }
+        
         notes?.text = applicantResume?.notes
         
         notes?.delegate = self
@@ -54,6 +62,19 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        println("hello test")
+//        if applicantResume?.pdfData == nil {
+//            return false
+//        }
+//        return true
+//    }
+//    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let resumeView: ResumeViewer = segue.destinationViewController as ResumeViewer
+        resumeView.imageData = applicantResume?.pdfData
     }
 
 

@@ -21,6 +21,7 @@ class Candidate: NSObject {
     var comments = ""
     var linkedIn = ""
     var resumeImages:[UIImage] = []
+    var pdfData:NSData?
     var notes = ""
     
     
