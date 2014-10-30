@@ -175,6 +175,11 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
     }
     
     @IBAction func defaultTapped(AnyObject) {
+        if let root = self.navigationController?.viewControllers.first as? ViewController {
+            root.loadEvent(eventSetting!)
+        }
+        applyTapped("")
+        
         DefaultEventHandler.sharedInstance().save(eventSetting!.objectId)
     }
 }

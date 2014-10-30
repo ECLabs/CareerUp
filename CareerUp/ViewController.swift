@@ -16,6 +16,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     var showMap = false
     var animating = false
     var currentEvent:Event?
+    var pageTimer:NSTimer?
     
     @IBOutlet var icon:UIImageView?
     @IBOutlet var iconBackground:UIView?
@@ -61,39 +62,45 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         currentEvent = DefaultEventHandler.sharedInstance().get()
         
+        loadEvent(currentEvent!)
+
+    }
+    
+    func loadEvent(loadEvent:Event){
+        currentEvent = loadEvent
+        iconBackground?.backgroundColor = loadEvent.setting.iconBackgroundColor.color
+        settingButton?.tintColor = loadEvent.setting.highlightColor.color
+        submitButton?.tintColor = loadEvent.setting.highlightColor.color
+        overlayButton?.backgroundColor = loadEvent.setting.backgroundColor.color
+        pagingText?.textColor = loadEvent.setting.textColor.color
         
-        iconBackground?.backgroundColor = currentEvent?.setting.iconBackgroundColor.color
-        settingButton?.tintColor = currentEvent?.setting.highlightColor.color
-        submitButton?.tintColor = currentEvent?.setting.highlightColor.color
-        overlayButton?.backgroundColor = currentEvent?.setting.backgroundColor.color
-        pagingText?.textColor = currentEvent?.setting.textColor.color
+        icon?.image = loadEvent.setting.icon
         
-        icon?.image = currentEvent?.setting.icon
-        
-        pageIndicator?.numberOfPages = currentEvent!.setting.pagingText.count
-        
-        if currentEvent!.setting.pagingText.count > 0 {
-            pagingText?.text = getPageTextString(currentEvent!.setting.pagingText[0])
-            let pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
+        pageIndicator?.numberOfPages = loadEvent.setting.pagingText.count
+        pageTimer?.invalidate()
+        if loadEvent.setting.pagingText.count > 0 {
+            pagingText?.text = getPageTextString(loadEvent.setting.pagingText[0])
+            
+            pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
         }
         
-        if let backgroundImage = currentEvent!.setting.backgroundImage {
-        
+        if let backgroundImage = loadEvent.setting.backgroundImage {
             gifView?.image = backgroundImage
-            println(backgroundImage.images?.count)
-            println(backgroundImage.images)
-            
         }
     
         
-        if currentEvent!.setting.hasMap {
+        if loadEvent.setting.hasMap && map == nil {
             map = MKMapView(frame: self.view.frame)
             map?.delegate = self
             self.view.insertSubview(map!, atIndex: 0)
             
         } else {
+            map?.removeFromSuperview()
+            map = nil
             self.overlayButton?.userInteractionEnabled = false
         }
+    
+    
     }
     
     override func viewDidLayoutSubviews() {
