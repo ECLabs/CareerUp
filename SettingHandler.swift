@@ -55,7 +55,7 @@ class SettingHandler: NSObject {
                 let fileError = NSErrorPointer()
                 let logoData = logoFile.getData(fileError)
                 if error == nil {
-                    setting.icon = UIImage(data: logoData)
+                    setting.icon = UIImage.animatedImageWithAnimatedGIFData(logoData)
                 
                 }
             }
@@ -64,7 +64,7 @@ class SettingHandler: NSObject {
                 let fileError = NSErrorPointer()
                 let backgroundImageData = backgroundImageFile.getData(fileError)
                 if error == nil {
-                    setting.backgroundImage = UIImage(data: backgroundImageData)
+                    setting.backgroundImage = UIImage.animatedImageWithAnimatedGIFData(backgroundImageData)
                 
                 }
             }

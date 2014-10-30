@@ -67,8 +67,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     
     
     @IBAction func cameraTapped(AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let actionSheet = UIActionSheet()
             actionSheet.addButtonWithTitle("Camera")
             actionSheet.addButtonWithTitle("Photo Library")

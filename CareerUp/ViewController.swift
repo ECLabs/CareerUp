@@ -22,6 +22,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     @IBOutlet var settingButton:UIButton?
     @IBOutlet var submitButton:UIButton?
     @IBOutlet var pageIndicator:UIPageControl?
+    
+    @IBOutlet var gifView:UIImageView?
+    
+    
     var pagingText:UITextView?
     
     var loadDelay:NSTimer?
@@ -32,10 +36,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.delegate = self
-        
-        map = MKMapView(frame: self.view.frame)
-        map?.delegate = self
-        self.view.insertSubview(map!, atIndex: 0)
         
         overlayButton = UIButton(frame: self.view.frame)
         self.view.insertSubview(overlayButton!, atIndex: 1)
@@ -77,6 +77,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             let pageTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
         }
         
+        if let backgroundImage = currentEvent!.setting.backgroundImage {
+        
+            gifView?.image = backgroundImage
+            println(backgroundImage.images?.count)
+            println(backgroundImage.images)
+            
+        }
+    
+        
+        if currentEvent!.setting.hasMap {
+            map = MKMapView(frame: self.view.frame)
+            map?.delegate = self
+            self.view.insertSubview(map!, atIndex: 0)
+            
+        } else {
+            self.overlayButton?.userInteractionEnabled = false
+        }
     }
     
     override func viewDidLayoutSubviews() {

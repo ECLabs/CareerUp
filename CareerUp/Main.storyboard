@@ -578,6 +578,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jh-XL-f7A">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMN-e1-AxK">
                                 <rect key="frame" x="228" y="520" width="144" height="30"/>
                                 <state key="normal" title="Submit Your Resume">
@@ -619,14 +622,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3jh-XL-f7A" secondAttribute="bottom" id="0nV-0p-3gE"/>
                             <constraint firstItem="lF3-13-3Z4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="0yb-rZ-s96"/>
                             <constraint firstItem="lF3-13-3Z4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ON8-Yc-GnL"/>
                             <constraint firstItem="RMN-e1-AxK" firstAttribute="top" secondItem="abc-ZO-hvO" secondAttribute="bottom" constant="8" id="bKB-JW-Wt3"/>
+                            <constraint firstItem="3jh-XL-f7A" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="bmf-H5-JVA"/>
                             <constraint firstAttribute="centerX" secondItem="abc-ZO-hvO" secondAttribute="centerX" id="d6f-y3-vdW"/>
                             <constraint firstItem="DlA-SN-MGk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="e9U-w8-Ohb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3jh-XL-f7A" secondAttribute="trailing" constant="-20" id="hmJ-VR-Fn3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RMN-e1-AxK" secondAttribute="bottom" constant="50" id="jhB-0X-BA6"/>
                             <constraint firstItem="DlA-SN-MGk" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="k0a-lI-JCo"/>
                             <constraint firstAttribute="centerX" secondItem="RMN-e1-AxK" secondAttribute="centerX" id="o3x-dT-hyt"/>
+                            <constraint firstItem="3jh-XL-f7A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="xgP-Zo-XV9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lF3-13-3Z4" secondAttribute="trailing" constant="-20" id="yWW-Qt-2sa"/>
                         </constraints>
                     </view>
@@ -644,6 +651,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gifView" destination="3jh-XL-f7A" id="7xi-l9-gc3"/>
                         <outlet property="icon" destination="ROa-H8-iR2" id="Au0-ys-WT4"/>
                         <outlet property="iconBackground" destination="lF3-13-3Z4" id="3UK-OT-v9z"/>
                         <outlet property="pageIndicator" destination="abc-ZO-hvO" id="r8r-Ts-L73"/>

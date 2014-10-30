@@ -23,15 +23,12 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         firstName?.text = applicantResume?.firstName
         lastName?.text = applicantResume?.lastName
         email?.text = applicantResume?.email
         jobTitle?.text = applicantResume?.jobTitle
         linkedIn?.text = applicantResume?.linkedIn
         comments?.text = applicantResume?.comments
-        //resume?.image = applicantResume?.resumeImages
-        
         
         if applicantResume?.pdfData == nil {
             resume?.textLabel?.text = "No Attached Resume"
@@ -42,12 +39,6 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         notes?.text = applicantResume?.notes
         
         notes?.delegate = self
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     
@@ -61,17 +52,8 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//        println("hello test")
-//        if applicantResume?.pdfData == nil {
-//            return false
-//        }
-//        return true
-//    }
-//    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let resumeView: ResumeViewer = segue.destinationViewController as ResumeViewer
         resumeView.imageData = applicantResume?.pdfData

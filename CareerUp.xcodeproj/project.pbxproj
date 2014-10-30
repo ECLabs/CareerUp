@@ -47,6 +47,8 @@
 		989B7C1A19DAEE72001E3C60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989B7C1919DAEE72001E3C60 /* Main.storyboard */; };
 		989B7C1E19DB0ED6001E3C60 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */; };
 		98DCFFE419DF031200E58A12 /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DCFFE319DF031200E58A12 /* FormTableViewController.swift */; };
+		98E8FA901A02930500E16821 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E8FA8F1A02930500E16821 /* ImageIO.framework */; };
+		98E8FA931A02993800E16821 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E8FA921A02993800E16821 /* UIImage+animatedGIF.m */; };
 		98EDAB3019F553D800D688B0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2D19F553D800D688B0 /* Bolts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98EDAB3119F553D800D688B0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2E19F553D800D688B0 /* Parse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98EDAB3219F553D800D688B0 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -108,6 +110,10 @@
 		989B7C1919DAEE72001E3C60 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		989B7C1D19DB0ED6001E3C60 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		98DCFFE319DF031200E58A12 /* FormTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
+		98E8FA8B1A0292D000E16821 /* CareerUp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CareerUp-Bridging-Header.h"; sourceTree = "<group>"; };
+		98E8FA8F1A02930500E16821 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		98E8FA911A02993800E16821 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		98E8FA921A02993800E16821 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		98EDAB2D19F553D800D688B0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		98EDAB2E19F553D800D688B0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E8FA901A02930500E16821 /* ImageIO.framework in Frameworks */,
 				98010C3019F559F800236D89 /* MobileCoreServices.framework in Frameworks */,
 				98010C2E19F559D600236D89 /* Security.framework in Frameworks */,
 				98010C2C19F559C900236D89 /* libz.1.1.3.dylib in Frameworks */,
@@ -247,7 +254,10 @@
 		989B7BF319DAEDBA001E3C60 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				98E8FA911A02993800E16821 /* UIImage+animatedGIF.h */,
+				98E8FA921A02993800E16821 /* UIImage+animatedGIF.m */,
 				989B7BF419DAEDBA001E3C60 /* Info.plist */,
+				98E8FA8B1A0292D000E16821 /* CareerUp-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -272,6 +282,7 @@
 		98EDAB3319F5540500D688B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98E8FA8F1A02930500E16821 /* ImageIO.framework */,
 				98010C2F19F559F800236D89 /* MobileCoreServices.framework */,
 				98010C2D19F559D600236D89 /* Security.framework */,
 				98010C2B19F559C900236D89 /* libz.1.1.3.dylib */,
@@ -400,6 +411,7 @@
 				988415F619E495E900D0AD08 /* SettingsTableViewController.swift in Sources */,
 				9883887119F7F818007DCB20 /* Location.swift in Sources */,
 				9883887819F7FC10007DCB20 /* Event.swift in Sources */,
+				98E8FA931A02993800E16821 /* UIImage+animatedGIF.m in Sources */,
 				9883888319F856D7007DCB20 /* ColorHandler.swift in Sources */,
 				9883888B19F85A68007DCB20 /* JobHandler.swift in Sources */,
 				9883887D19F8057B007DCB20 /* CandidateHandler.swift in Sources */,
@@ -522,6 +534,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -530,6 +544,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CareerUp/CareerUp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -537,6 +553,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -545,6 +563,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CareerUp/CareerUp-Bridging-Header.h";
 			};
 			name = Release;
 		};

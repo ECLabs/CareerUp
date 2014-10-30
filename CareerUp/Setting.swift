@@ -24,7 +24,8 @@ class Setting:NSObject {
     var pagingText:[PageText] = []
     
     //background type
-    var backgroundType = "map"
+    var hasMap = false
+    var backgroundIsGif = false
     
     //images
     var icon:UIImage?
@@ -43,18 +44,33 @@ class Setting:NSObject {
         setting["highlightColor"] = self.highlightColor.prepareForParse()
         
         if (self.icon != nil) {
-            let imageData = UIImagePNGRepresentation(self.icon)
-            let imageFile = PFFile(name: "image.png", data: imageData)
-            setting["logo"] = imageFile
+            
+            if self.icon?.duration > 0 {
+                let imageData = self.icon?.getGIFdata()
+                let imageFile = PFFile(name: "image.gif", data: imageData)
+                setting["logo"] = imageFile
+            
+            }
+            else {
+                let imageData = UIImagePNGRepresentation(self.icon)
+                let imageFile = PFFile(name: "image.png", data: imageData)
+                setting["logo"] = imageFile
+            }
         }
         if (self.backgroundImage != nil) {
-            let imageData = UIImagePNGRepresentation(self.backgroundImage)
-            let imageFile = PFFile(name: "background.png", data: imageData)
-            setting["backgroundImage"] = imageFile
+        
+            if self.backgroundImage?.duration > 0 {
+                let imageData = self.backgroundImage?.getGIFdata()
+                let imageFile = PFFile(name: "background.gif", data: imageData)
+                setting["backgroundImage"] = imageFile
+            
+            }
+            else {
+                let imageData = UIImagePNGRepresentation(self.backgroundImage)
+                let imageFile = PFFile(name: "background.png", data: imageData)
+                setting["backgroundImage"] = imageFile
+            }
         }
-    
-        
-        
         return setting
     }
 }
