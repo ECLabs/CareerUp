@@ -32,6 +32,9 @@ class Color: NSObject {
         self.color = colorIn
     }
     
+    func updateUIColor(){
+        color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
     
     func prepareForParse()->PFObject {
         let color = PFObject(className: "Color")
@@ -46,5 +49,29 @@ class Color: NSObject {
         color["alpha"] = self.alpha
         
         return color
+    }
+    
+    func getSaveDictionary()->NSDictionary {
+        let dic = NSMutableDictionary()
+        
+        dic.setValue(objectId, forKey: "objectId")
+        dic.setValue(red, forKey: "red")
+        dic.setValue(green, forKey: "green")
+        dic.setValue(blue, forKey: "blue")
+        dic.setValue(alpha, forKey: "alpha")
+        
+        return dic
+    }
+    
+    class func colorforDictonary(dic:NSDictionary)->Color {
+        let newColor = Color()
+        
+        newColor.red = dic.objectForKey("red") as CGFloat
+        newColor.blue = dic.objectForKey("blue") as CGFloat
+        newColor.green = dic.objectForKey("green") as CGFloat
+        newColor.alpha = dic.objectForKey("alpha") as CGFloat
+        newColor.updateUIColor()
+        
+        return newColor
     }
 }

@@ -236,25 +236,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             let gecooder = CLGeocoder()
 
             gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
-                if ((placemarks.count > 0) && error == nil) {
-                
-                    let pm = placemarks[0] as CLPlacemark
-            
-                    let pin = MKPointAnnotation()
-                    pin.title = location.name
-                    let jobNumber = location.jobs.count
-                    pin.subtitle = "\(jobNumber) Jobs Availible"
-                    pin.coordinate = pm.location.coordinate
-                    
-                    self.map?.addAnnotation(pin)
-                    
-                    let detailButton: UIButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-                    
-                    let pinview = self.map?.viewForAnnotation(pin)
-                    
-                    pinview?.rightCalloutAccessoryView = detailButton
-                    self.flyBetweenLocations()
-                }
+
+//                if ((placemarks.count > 0) && error == nil) {
+//                
+//                    let pm = placemarks[0] as CLPlacemark
+//            
+//                    let pin = MKPointAnnotation()
+//                    pin.title = location.name
+//                    let jobNumber = location.jobs.count
+//                    pin.subtitle = "\(jobNumber) Jobs Availible"
+//                    pin.coordinate = pm.location.coordinate
+//                    
+//                    self.map?.addAnnotation(pin)
+//                    
+//                    let detailButton: UIButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+//                    
+//                    let pinview = self.map?.viewForAnnotation(pin)
+//                    
+//                    pinview?.rightCalloutAccessoryView = detailButton
+//                    self.flyBetweenLocations()
+//                }
             })
         }
     }

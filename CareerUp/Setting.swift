@@ -25,7 +25,6 @@ class Setting:NSObject {
     
     //background type
     var hasMap = false
-    var backgroundIsGif = false
     
     //images
     var icon:UIImage?

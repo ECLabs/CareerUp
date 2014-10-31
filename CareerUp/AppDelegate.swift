@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let canidateDictonary = dic as NSDictionary
                 let saved = Candidate()
                 
+                saved.objectId = canidateDictonary.objectForKey("objectId") as String
                 saved.email = canidateDictonary.objectForKey("email") as String
                 saved.lastName = canidateDictonary.objectForKey("lastName") as String
                 saved.firstName = canidateDictonary.objectForKey("firstName") as String
@@ -62,6 +63,82 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSFileManager.defaultManager().removeItemAtPath(filePath, error: nil)
         }
         
+        let eventFilePath = documentsDirectory + "events.ar"
+        
+        
+        if(NSFileManager.defaultManager().fileExistsAtPath(eventFilePath)){
+            let eventArray = NSArray(contentsOfFile: eventFilePath)
+            
+            println(eventArray)
+            let localEvents = EventHandler.sharedInstance().localEvents
+            
+            for dic in eventArray{
+                let eventDictonary = dic as NSDictionary
+                let saved = Event()
+                
+                saved.objectId = eventDictonary.objectForKey("objectId") as String
+                saved.name = eventDictonary.objectForKey("name") as String
+                saved.date = eventDictonary.objectForKey("eventDate") as NSDate
+                saved.details = eventDictonary.objectForKey("description") as String
+                
+                let savedSetting = Setting()
+                
+                let settingDictonary = eventDictonary.objectForKey("setting") as NSDictionary
+                
+                savedSetting.hasMap = settingDictonary.objectForKey("hasMap") as Bool
+                
+                
+                if settingDictonary.objectForKey("logo") as Bool {
+                    let logoPath = documentsDirectory + "\(saved.name)-logo"
+                    let imageData = NSData(contentsOfFile: logoPath)
+                    let image = UIImage.animatedImageWithAnimatedGIFData(imageData)
+                    savedSetting.icon = image
+                
+                }
+                
+                if settingDictonary.objectForKey("background") as Bool {
+                    let backgroundPath = documentsDirectory + "\(saved.name)-background"
+                    let imageData = NSData(contentsOfFile: backgroundPath)
+                    let image = UIImage.animatedImageWithAnimatedGIFData(imageData)
+                    savedSetting.backgroundImage = image
+                }
+                
+                if let iconBackgroundDictonary = settingDictonary.objectForKey("iconBackgroundColor") as? NSDictionary {
+                    savedSetting.iconBackgroundColor = Color.colorforDictonary(iconBackgroundDictonary)
+                }
+                if let backgroundDictonary = settingDictonary.objectForKey("backgroundColor") as? NSDictionary {
+                    savedSetting.backgroundColor = Color.colorforDictonary(backgroundDictonary)
+                }
+                if let textDictonary = settingDictonary.objectForKey("textColor") as? NSDictionary {
+                    savedSetting.textColor = Color.colorforDictonary(textDictonary)
+                }
+                if let highlightDictonary = settingDictonary.objectForKey("highlightColor") as? NSDictionary {
+                    savedSetting.highlightColor = Color.colorforDictonary(highlightDictonary)
+                }
+                
+                
+                if let pageTextArray = settingDictonary.objectForKey("pageTexts") as? NSArray {
+                    for aPage in pageTextArray {
+                        let pageDic = aPage as NSDictionary
+                        let savedPage = PageText()
+                        savedPage.objectId = pageDic.objectForKey("objectId") as String
+                        savedPage.title = pageDic.objectForKey("title") as String
+                        savedPage.content = pageDic.objectForKey("content") as String
+                        
+                        savedSetting.pagingText.append(savedPage)
+                    }
+                }
+                
+                saved.setting = savedSetting
+                
+                
+                EventHandler.sharedInstance().localEvents.append(saved)
+                EventHandler.sharedInstance().resave()
+                
+            }
+            NSFileManager.defaultManager().removeItemAtPath(eventFilePath, error: nil)
+        }
+        
         return true
     }
 
@@ -83,6 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var allCanidates = NSMutableArray()
         for candidate in localCandidates {
             var canidateDic = NSMutableDictionary()
+            canidateDic.setValue(candidate.objectId, forKey: "objectId")
             canidateDic.setValue(candidate.email, forKey: "email")
             canidateDic.setValue(candidate.lastName, forKey: "lastName")
             canidateDic.setValue(candidate.firstName, forKey: "firstName")
@@ -96,14 +174,93 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let imageData = UIImagePNGRepresentation(image)
                 let imagePath = documentsDirectory + "\(candidate.email)-\(index).png"
                 imageData.writeToFile(imagePath, atomically: true)
-                
-                
             }
             
             allCanidates.addObject(canidateDic)
         }
         
         allCanidates.writeToFile(filePath, atomically: true)
+        
+        
+        //save events
+        let eventFilePath = documentsDirectory + "events.ar"
+        
+        let localEvents = EventHandler.sharedInstance().localEvents
+        var allEvents = NSMutableArray()
+        for event in localEvents {
+            var eventDic = NSMutableDictionary()
+            eventDic.setValue(event.objectId, forKey: "objectId")
+            eventDic.setValue(event.name, forKey: "name")
+            eventDic.setValue(event.date, forKey: "eventDate")
+            eventDic.setValue(event.details, forKey: "description")
+            
+            
+            
+            //save setting
+            var settingDic = NSMutableDictionary()
+            settingDic.setValue(event.setting.objectId, forKey: "objectId")
+            settingDic.setValue(event.setting.hasMap, forKey: "hasMap")
+            
+            
+            let settingImagePath = documentsDirectory + "\(event.name)-"
+            
+            if let logo = event.setting.icon {
+            
+                let logoPath = settingImagePath + "logo"
+                
+                if logo.duration > 0 {
+                    let imageData = logo.getGIFdata()
+                    imageData.writeToFile(logoPath, atomically: true)
+                }
+                else {
+                    let imageData = UIImagePNGRepresentation(logo)
+                    imageData.writeToFile(logoPath, atomically: true)
+                }
+                settingDic.setValue(true, forKey: "logo")
+            }
+            else {
+                settingDic.setValue(false, forKey: "logo")
+            }
+            
+            if let backgroundImage = event.setting.backgroundImage {
+                            
+                let backgroundPath = settingImagePath + "background"
+                
+                if backgroundImage.duration > 0 {
+                    let imageData = backgroundImage.getGIFdata()
+                    imageData.writeToFile(backgroundPath, atomically: true)
+                }
+                else {
+                    let imageData = UIImagePNGRepresentation(backgroundImage)
+                    imageData.writeToFile(backgroundPath, atomically: true)
+                }
+                settingDic.setValue(true, forKey: "background")
+            }
+            else {
+                settingDic.setValue(false, forKey: "background")
+            }
+            
+            var pageArray = NSMutableArray()
+            for page in event.setting.pagingText {
+                var pageDic = NSMutableDictionary()
+                pageDic.setValue(page.objectId, forKey: "objectId")
+                pageDic.setValue(page.title, forKey: "title")
+                pageDic.setValue(page.content, forKey: "content")
+                pageArray.addObject(pageDic)
+            }
+            
+            settingDic.setValue(pageArray, forKey: "pageTexts")
+            
+            settingDic.setValue(event.setting.iconBackgroundColor.getSaveDictionary(), forKey: "iconBackgroundColor")
+            settingDic.setValue(event.setting.backgroundColor.getSaveDictionary(), forKey: "backgroundColor")
+            settingDic.setValue(event.setting.textColor.getSaveDictionary(), forKey: "textColor")
+            settingDic.setValue(event.setting.highlightColor.getSaveDictionary(), forKey: "highlightColor")
+            
+            eventDic.setValue(settingDic, forKey: "setting")
+            allEvents.addObject(eventDic)
+        }
+        allEvents.writeToFile(eventFilePath, atomically: true)
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
