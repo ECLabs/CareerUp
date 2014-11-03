@@ -56,7 +56,7 @@ class LocationHandler: NSObject {
             location.state = object["state"] as String
         }
         if (object["city"]? != nil) {
-            location.state = object["city"] as String
+            location.city = object["city"] as String
         }
         
         location.jobs = JobHandler.sharedInstance().getAllForLocation(location.objectId)

@@ -241,19 +241,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
                 
                     let pm = placemarks[0] as CLPlacemark
             
-                    let pin = MKPointAnnotation()
-                    pin.title = location.name
+                    let pin = LocationPointAnnotation()
+                    pin.title = "\(location.name) - \(location.city), \(location.state)"
                     let jobNumber = location.jobs.count
                     pin.subtitle = "\(jobNumber) Jobs Availible"
                     pin.coordinate = pm.location.coordinate
+                    pin.location = location
                     
                     self.map?.addAnnotation(pin)
-                    
-                    let detailButton: UIButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-                    
+
                     let pinview = self.map?.viewForAnnotation(pin)
-                    
-                    pinview?.rightCalloutAccessoryView = detailButton
                     self.flyBetweenLocations()
                 }
             })
@@ -277,18 +274,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    
+        let locationAnnotation:LocationPointAnnotation = annotation as LocationPointAnnotation
+        
         let identifier = "pinview"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
         
         if (pinView == nil) {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            pinView = LocationPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         } else {
             pinView.annotation = annotation
         }
+        let locationView:LocationPinAnnotationView = pinView as LocationPinAnnotationView
+        locationView.location = locationAnnotation.location
+        
+        
         pinView.canShowCallout = true
         pinView.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
         
         return pinView
+    }
+    
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    
+        let locationView:LocationPinAnnotationView = view as LocationPinAnnotationView
+        let location = locationView.location
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("joblist") as JobListingTable
+        vc.locations = [location!]
+        
+        self.navigationController?.showViewController(vc, sender: self)
     }
 }
 

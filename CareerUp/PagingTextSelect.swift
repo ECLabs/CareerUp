@@ -32,11 +32,11 @@ class PagingTextSelect: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activeSetting!.pagingText.count
     }
 
@@ -62,7 +62,7 @@ class PagingTextSelect: UITableViewController {
     }
 
 
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if let pageDetails = segue.destinationViewController as? PagingTextDetails {
             pageDetails.title = "Page"
             pageDetails.activeSetting = activeSetting

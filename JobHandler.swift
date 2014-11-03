@@ -46,8 +46,8 @@ class JobHandler: NSObject {
                 if (object["customer"]? != nil) {
                     job.customer = object["customer"] as String
                 }
-                if (object["details"]? != nil) {
-                    job.details = object["details"] as String
+                if (object["description"]? != nil) {
+                    job.details = object["description"] as String
                 }
                 jobs.append(job)
             }
