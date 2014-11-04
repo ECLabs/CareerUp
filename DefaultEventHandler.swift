@@ -26,7 +26,7 @@ class DefaultEventHandler: NSObject {
         defaultEvent.cachePolicy = kPFCachePolicyNetworkElseCache;
         var error = NSErrorPointer()
         let defaultObject = defaultEvent.getFirstObject(error)
-        if error == nil {
+        if error == nil && defaultObject != nil{
             self.defaultEvent.objectId = defaultObject.objectId
             
             if (defaultObject["event"]? != nil) {
@@ -42,11 +42,15 @@ class DefaultEventHandler: NSObject {
     
     func save(eventId:String){
         let submit = PFObject(className: "DefaultEvent")
-        submit.objectId = defaultEvent.objectId
+        
+        if !defaultEvent.objectId.isEmpty {
+            submit.objectId = defaultEvent.objectId
+        }
         submit["event"] = PFObject(withoutDataWithClassName: "Event", objectId: eventId)
         
         submit.saveInBackgroundWithBlock({(success, error) -> Void in
-            if (error == nil) {
+            if success {
+                self.defaultEvent.objectId = submit.objectId
                 println("uploadComplete")
             }
         })

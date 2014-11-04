@@ -101,6 +101,14 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         createPhotoActionSheet()
     }
     
+    @IBAction func clearLogoTapped(AnyObject) {
+        logoImage?.image = nil
+    }
+    
+    @IBAction func clearBackgroundTapped(AnyObject) {
+        backgroundImage?.image = nil
+    }
+    
     func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             usePhotoLibrary()
@@ -149,8 +157,8 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         setting?.iconBackgroundColor.convert(logobackgroundColor!.backgroundColor!)
         setting?.highlightColor.convert(highlightColor!.backgroundColor!)
         setting?.pagingText = pagingItems!
-        setting?.icon = logoImage?.image?
-        setting?.backgroundImage = backgroundImage?.image?
+        setting?.icon = logoImage?.image
+        setting?.backgroundImage = backgroundImage?.image
         setting?.hasMap = mapSwitch!.on
     
         
@@ -178,8 +186,9 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         if let root = self.navigationController?.viewControllers.first as? ViewController {
             root.loadEvent(eventSetting!)
         }
-        applyTapped("")
         
         DefaultEventHandler.sharedInstance().save(eventSetting!.objectId)
+        self.navigationController?.popViewControllerAnimated(true)
+        eventSetting?.editing = false
     }
 }

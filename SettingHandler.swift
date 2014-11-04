@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Foundation
 
 var settingInstance: SettingHandler?
 
@@ -59,7 +60,12 @@ class SettingHandler: NSObject {
                 let fileError = NSErrorPointer()
                 let logoData = logoFile.getData(fileError)
                 if error == nil {
-                    setting.icon = UIImage.animatedImageWithAnimatedGIFData(logoData)
+                    if logoFile.name.lowercaseString.hasSuffix(".gif") {
+                        setting.icon = UIImage.animatedImageWithAnimatedGIFData(logoData)
+                    }
+                    else {
+                        setting.icon = UIImage(data: logoData)
+                    }
                 
                 }
             }
@@ -68,7 +74,13 @@ class SettingHandler: NSObject {
                 let fileError = NSErrorPointer()
                 let backgroundImageData = backgroundImageFile.getData(fileError)
                 if error == nil {
-                    setting.backgroundImage = UIImage.animatedImageWithAnimatedGIFData(backgroundImageData)
+                    if backgroundImageFile.name.lowercaseString.hasSuffix(".gif") {
+                         setting.backgroundImage = UIImage.animatedImageWithAnimatedGIFData(backgroundImageData)
+                    }
+                    else {
+                        setting.backgroundImage = UIImage(data: backgroundImageData)
+                    }
+                   
                 
                 }
             }

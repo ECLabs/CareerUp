@@ -65,7 +65,7 @@ class Color: NSObject {
     
     class func colorforDictonary(dic:NSDictionary)->Color {
         let newColor = Color()
-        
+        newColor.objectId = dic.objectForKey("objectId") as String
         newColor.red = dic.objectForKey("red") as CGFloat
         newColor.blue = dic.objectForKey("blue") as CGFloat
         newColor.green = dic.objectForKey("green") as CGFloat

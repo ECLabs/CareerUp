@@ -57,6 +57,9 @@ class Setting:NSObject {
                 setting["logo"] = imageFile
             }
         }
+        else {
+            setting["logo"] = NSNull()
+        }
         if (self.backgroundImage != nil) {
         
             if self.backgroundImage?.duration > 0 {
@@ -70,6 +73,9 @@ class Setting:NSObject {
                 let imageFile = PFFile(name: "background.png", data: imageData)
                 setting["backgroundImage"] = imageFile
             }
+        }
+        else {
+            setting["backgroundImage"] = NSNull()
         }
         return setting
     }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pbp-jj-nI9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pbp-jj-nI9">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -953,14 +952,25 @@
                                                         <action selector="cameraLogoTapped:" destination="bKH-LJ-vUx" eventType="touchUpInside" id="W0S-im-ofa"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcv-Ix-8Ga">
+                                                    <rect key="frame" x="501" y="222" width="37" height="30"/>
+                                                    <state key="normal" title="Clear">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clearLogoTapped:" destination="6n8-w1-vQg" eventType="touchUpInside" id="rDm-Ir-HoN"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="gcv-Ix-8Ga" firstAttribute="top" secondItem="YTX-3u-ruF" secondAttribute="bottom" constant="77" id="2qn-CN-lza"/>
                                                 <constraint firstItem="viS-v2-a8D" firstAttribute="leading" secondItem="kgG-af-2ER" secondAttribute="leadingMargin" id="4Xe-zS-j9g"/>
                                                 <constraint firstItem="YTX-3u-ruF" firstAttribute="leading" secondItem="viS-v2-a8D" secondAttribute="trailing" constant="12" id="GJc-04-ic2"/>
                                                 <constraint firstAttribute="centerY" secondItem="YTX-3u-ruF" secondAttribute="centerY" id="NFY-nP-MuF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="viS-v2-a8D" secondAttribute="bottom" constant="-4" id="TtY-t7-iRb"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YTX-3u-ruF" secondAttribute="trailing" constant="20" id="c2e-2Q-GUa"/>
                                                 <constraint firstItem="viS-v2-a8D" firstAttribute="top" secondItem="kgG-af-2ER" secondAttribute="topMargin" constant="1" id="pCe-id-f1n"/>
+                                                <constraint firstItem="gcv-Ix-8Ga" firstAttribute="leading" secondItem="viS-v2-a8D" secondAttribute="trailing" constant="46" id="uP7-Yz-iog"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -988,14 +998,25 @@
                                                         <action selector="cameraBackgroundTapped:" destination="bKH-LJ-vUx" eventType="touchUpInside" id="wKZ-BV-KHI"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4H-b4-4sf">
+                                                    <rect key="frame" x="501" y="222" width="37" height="30"/>
+                                                    <state key="normal" title="Clear">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clearBackgroundTapped:" destination="6n8-w1-vQg" eventType="touchUpInside" id="0cw-pG-OTV"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="20Z-Su-3eF" secondAttribute="bottom" constant="-4" id="1xV-Ln-sLP"/>
+                                                <constraint firstItem="p4H-b4-4sf" firstAttribute="leading" secondItem="20Z-Su-3eF" secondAttribute="trailing" constant="46" id="CFT-7D-7Fj"/>
                                                 <constraint firstItem="20Z-Su-3eF" firstAttribute="leading" secondItem="gM7-UE-Kio" secondAttribute="leadingMargin" id="Rwo-7w-AgU"/>
                                                 <constraint firstAttribute="centerY" secondItem="mRv-G6-kiI" secondAttribute="centerY" id="YML-jl-vTQ"/>
                                                 <constraint firstItem="mRv-G6-kiI" firstAttribute="leading" secondItem="20Z-Su-3eF" secondAttribute="trailing" constant="12" id="giQ-1X-noI"/>
                                                 <constraint firstItem="20Z-Su-3eF" firstAttribute="top" secondItem="gM7-UE-Kio" secondAttribute="topMargin" constant="1" id="hB0-WX-whC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mRv-G6-kiI" secondAttribute="trailing" constant="20" id="tHk-xe-l4r"/>
+                                                <constraint firstItem="p4H-b4-4sf" firstAttribute="top" secondItem="mRv-G6-kiI" secondAttribute="bottom" constant="77" id="tNg-eb-byZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1656,7 +1677,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVu-aG-hvu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="346" y="2238"/>
+            <point key="canvasLocation" x="1404" y="1116"/>
         </scene>
         <!--Job Details-->
         <scene sceneID="x9c-Xy-wgw">
@@ -1799,7 +1820,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cX-NL-gOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1442" y="2217"/>
+            <point key="canvasLocation" x="1404" y="1801"/>
         </scene>
         <!--Title-->
         <scene sceneID="JWH-NI-sPK">

@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let savedSetting = Setting()
                 
                 let settingDictonary = eventDictonary.objectForKey("setting") as NSDictionary
-                
+                savedSetting.objectId = settingDictonary.objectForKey("objectId") as String
                 savedSetting.hasMap = settingDictonary.objectForKey("hasMap") as Bool
                 
                 
@@ -124,7 +124,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         savedPage.objectId = pageDic.objectForKey("objectId") as String
                         savedPage.title = pageDic.objectForKey("title") as String
                         savedPage.content = pageDic.objectForKey("content") as String
-                        
                         savedSetting.pagingText.append(savedPage)
                     }
                 }
