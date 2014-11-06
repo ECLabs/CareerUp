@@ -133,7 +133,6 @@ class CandidateHandler: NSObject {
             object.saveInBackgroundWithBlock({(success, error) -> Void in
                 if success {
                     submission.objectId = object.objectId
-                    self.localCandidates.removeLast()
                     
                     if let index = find(self.localCandidates, submission){
                         self.localCandidates.removeAtIndex(index)
