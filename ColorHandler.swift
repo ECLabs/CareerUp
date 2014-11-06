@@ -1,18 +1,8 @@
-//
-//  ColorHandler.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/22/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
-import UIKit
 import Parse
 
 var colorInstance: ColorHandler?
 
 class ColorHandler: NSObject {
-
     class func sharedInstance() -> ColorHandler {
         if !(colorInstance != nil) {
             colorInstance = ColorHandler()

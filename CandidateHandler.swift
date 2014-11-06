@@ -1,12 +1,3 @@
-//
-//  CandidateHandler.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/22/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
-import UIKit
 import Parse
 
 var candidateInstance: CandidateHandler?
@@ -161,6 +152,7 @@ class CandidateHandler: NSObject {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "resave", userInfo: nil, repeats: false)
         }
     }
+    
     func resave(){
         if self.localCandidates.count > 0 {
             let candidate = localCandidates.last

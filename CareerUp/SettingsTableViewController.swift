@@ -1,11 +1,3 @@
-//
-//  SettingsTableViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/6/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate {
@@ -91,24 +83,6 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         }
     }
     
-    @IBAction func cameraLogoTapped(AnyObject) {
-        selectedPicker = "logo"
-        createPhotoActionSheet()
-    }
-    
-    @IBAction func cameraBackgroundTapped(AnyObject) {
-        selectedPicker = "background"
-        createPhotoActionSheet()
-    }
-    
-    @IBAction func clearLogoTapped(AnyObject) {
-        logoImage?.image = nil
-    }
-    
-    @IBAction func clearBackgroundTapped(AnyObject) {
-        backgroundImage?.image = nil
-    }
-    
     func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             usePhotoLibrary()
@@ -146,6 +120,34 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         picker.dismissViewControllerAnimated(true, completion: {})
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if let colorPicker = segue.destinationViewController as? ColorPickerViewController {
+            colorPicker.colorButton = sender as UIButton
+        } else if let pageSelect = segue.destinationViewController as? PagingTextSelect {
+            pageSelect.activeSetting = eventSetting?.setting
+        } else {
+            eventSetting?.editing = false
+        }
+    }
+    
+    @IBAction func cameraLogoTapped(AnyObject) {
+        selectedPicker = "logo"
+        createPhotoActionSheet()
+    }
+    
+    @IBAction func cameraBackgroundTapped(AnyObject) {
+        selectedPicker = "background"
+        createPhotoActionSheet()
+    }
+    
+    @IBAction func clearLogoTapped(AnyObject) {
+        logoImage?.image = nil
+    }
+    
+    @IBAction func clearBackgroundTapped(AnyObject) {
+        backgroundImage?.image = nil
+    }
+    
     @IBAction func applyTapped(AnyObject) {
         eventSetting?.name = nameField!.text
         eventSetting?.details = detailsField!.text
@@ -170,16 +172,6 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         
         self.navigationController?.popViewControllerAnimated(true)
         eventSetting?.editing = false
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if let colorPicker = segue.destinationViewController as? ColorPickerViewController {
-            colorPicker.colorButton = sender as UIButton
-        } else if let pageSelect = segue.destinationViewController as? PagingTextSelect {
-            pageSelect.activeSetting = eventSetting?.setting
-        } else {
-            eventSetting?.editing = false
-        }
     }
     
     @IBAction func defaultTapped(AnyObject) {

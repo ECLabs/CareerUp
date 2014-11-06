@@ -1,16 +1,6 @@
-//
-//  ColorPickerViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/24/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class ColorPickerViewController: UIViewController, UITextFieldDelegate {
-    var colorButton = UIButton()
-    
     @IBOutlet var redSlider:UISlider?
     @IBOutlet var greenSlider:UISlider?
     @IBOutlet var blueSlider:UISlider?
@@ -23,6 +13,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var colorField:UITextField?
 
+    var colorButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,44 +40,6 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate {
         greenField?.text = "\(Int(greenFloat))"
         blueField?.text = "\(Int(blueFloat))"
         alphaField?.text = "\(Int(alphaFloat))"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func redSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.redColor()
-        
-        let value = Int(slider.value)
-        redField?.text = "\(value)"
-        setColorField()
-    }
-    
-    @IBAction func greenSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.greenColor()
-        
-        let value = Int(slider.value)
-        greenField?.text = "\(value)"
-        setColorField()
-    }
-    
-    
-    @IBAction func blueSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.blueColor()
-        
-        let value = Int(slider.value)
-        blueField?.text = "\(value)"
-        setColorField()
-    }
-    
-    @IBAction func alphaSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.clearColor()
-        
-        let value = Int(slider.value)
-        alphaField?.text = "\(value)"
-        setColorField()
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -135,6 +88,38 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate {
         let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         
         colorField?.backgroundColor = color
+    }
+    
+    @IBAction func redSliderChanged(slider:UISlider){
+        colorField?.backgroundColor = UIColor.redColor()
+        
+        let value = Int(slider.value)
+        redField?.text = "\(value)"
+        setColorField()
+    }
+    
+    @IBAction func greenSliderChanged(slider:UISlider){
+        colorField?.backgroundColor = UIColor.greenColor()
+        
+        let value = Int(slider.value)
+        greenField?.text = "\(value)"
+        setColorField()
+    }
+    
+    @IBAction func blueSliderChanged(slider:UISlider){
+        colorField?.backgroundColor = UIColor.blueColor()
+        
+        let value = Int(slider.value)
+        blueField?.text = "\(value)"
+        setColorField()
+    }
+    
+    @IBAction func alphaSliderChanged(slider:UISlider){
+        colorField?.backgroundColor = UIColor.clearColor()
+        
+        let value = Int(slider.value)
+        alphaField?.text = "\(value)"
+        setColorField()
     }
     
     @IBAction func apply(){

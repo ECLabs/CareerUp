@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 9/30/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 import Parse
 

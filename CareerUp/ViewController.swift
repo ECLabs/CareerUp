@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 9/30/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 import MapKit
 import Parse
@@ -17,22 +9,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     var animating = false
     var currentEvent:Event?
     var pageTimer:NSTimer?
+    var pagingText:UITextView?
+    var loadDelay:NSTimer?
+    var flyTimer:NSTimer?
+    var currentPin = 0
+    var loadedContent = -1;
     
     @IBOutlet var icon:UIImageView?
     @IBOutlet var iconBackground:UIView?
     @IBOutlet var settingButton:UIButton?
     @IBOutlet var submitButton:UIButton?
     @IBOutlet var pageIndicator:UIPageControl?
-    
     @IBOutlet var gifView:UIImageView?
-    
-    
-    var pagingText:UITextView?
-    
-    var loadDelay:NSTimer?
-    var flyTimer:NSTimer?
-    var currentPin = 0
-    var loadedContent = -1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +47,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         self.view.addSubview(pagingText!)
         
-        
         currentEvent = DefaultEventHandler.sharedInstance().get()
         
         loadEvent(currentEvent!)
-
     }
     
     func loadEvent(loadEvent:Event){
@@ -87,7 +73,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         if let backgroundImage = loadEvent.setting.backgroundImage {
             gifView?.image = backgroundImage
         }
-    
         
         if loadEvent.setting.hasMap && map == nil {
             map = MKMapView(frame: self.view.frame)
@@ -99,8 +84,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             map = nil
             self.overlayButton?.userInteractionEnabled = false
         }
-    
-    
     }
     
     override func viewDidLayoutSubviews() {
@@ -170,50 +153,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         overlayButton?.frame = CGRectMake(0, 0, size.width, size.height)
     }
 
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         if !showMap {
             let hideNav = (viewController == self)
         
             navigationController.setNavigationBarHidden(hideNav, animated: true)
         }
-    }
-    
-    @IBAction func toggleFullscreenMap(){
-        self.navigationController?.setNavigationBarHidden(showMap, animated: true)
-        
-        UIView.animateWithDuration(1, animations: {
-            for object in self.view.subviews {
-            
-                if object_getClassName(object) == object_getClassName(self.map){
-                    continue
-                }
-                
-                let subview = object as UIView
-
-                if self.showMap {
-                    subview.alpha = 1
-                }
-                else {
-                    subview.alpha = 0
-                }
-            }
-        })
-        
-        if showMap{
-            flyBetweenLocations()
-            flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
-        }
-        else{
-            flyTimer?.invalidate()
-        }
-        
-        
-        showMap = !showMap
     }
     
     func updateMapView(){
@@ -304,7 +249,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         return pinView
     }
     
-    
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
     
         let locationView:LocationPinAnnotationView = view as LocationPinAnnotationView
@@ -315,6 +259,37 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         vc.locations = [location!]
         
         self.navigationController?.showViewController(vc, sender: self)
+    }
+    
+    @IBAction func toggleFullscreenMap(){
+        self.navigationController?.setNavigationBarHidden(showMap, animated: true)
+        
+        UIView.animateWithDuration(1, animations: {
+            for object in self.view.subviews {
+                if object_getClassName(object) == object_getClassName(self.map){
+                    continue
+                }
+                
+                let subview = object as UIView
+
+                if self.showMap {
+                    subview.alpha = 1
+                }
+                else {
+                    subview.alpha = 0
+                }
+            }
+        })
+        
+        if showMap{
+            flyBetweenLocations()
+            flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
+        }
+        else{
+            flyTimer?.invalidate()
+        }
+        
+        showMap = !showMap
     }
 }
 

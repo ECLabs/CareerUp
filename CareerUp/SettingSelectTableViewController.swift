@@ -1,11 +1,3 @@
-//
-//  SettingSelectTableViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/10/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class SettingSelectTableViewController: UITableViewController {
@@ -39,6 +31,7 @@ class SettingSelectTableViewController: UITableViewController {
             EventHandler.sharedInstance().count()
         }
     }
+    
     override func viewWillDisappear(animated: Bool) {
         loadDelay?.invalidate()
 
@@ -76,13 +69,6 @@ class SettingSelectTableViewController: UITableViewController {
 
     }
 
-    @IBAction func AddSettings(AnyObject) {
-        let event = Event()
-        event.name = "New Event"
-        EventHandler.sharedInstance().save(event)
-        self.tableView.reloadData()
-    }
-
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         selectedIndex = indexPath.row as Int
         return indexPath
@@ -93,5 +79,12 @@ class SettingSelectTableViewController: UITableViewController {
         let settingDetail: SettingsTableViewController = segue.destinationViewController as SettingsTableViewController
         let selectedEvent = eventArray[selectedIndex]
         settingDetail.eventSetting = selectedEvent
+    }
+    
+    @IBAction func AddSettings(AnyObject) {
+        let event = Event()
+        event.name = "New Event"
+        EventHandler.sharedInstance().save(event)
+        self.tableView.reloadData()
     }
 }

@@ -1,27 +1,9 @@
-//
-//  jobListingTable.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/31/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class JobListingTable: UITableViewController {
     var locations = LocationHandler.sharedInstance().locations
     var selectedIndex = NSIndexPath(forRow: 0, inSection: 0)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return locations.count
     }
@@ -39,7 +21,6 @@ class JobListingTable: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         let job = locations[indexPath.section].jobs[indexPath.row]
         
-
         cell.textLabel?.text = job.title
         return cell
     }
@@ -50,7 +31,6 @@ class JobListingTable: UITableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
         if let jobDetail = segue.destinationViewController as? JobDetails {
             let location = locations[selectedIndex.section]
             jobDetail.title = "\(location.name) - \(location.city), \(location.state)"
@@ -58,6 +38,4 @@ class JobListingTable: UITableViewController {
             jobDetail.job = location.jobs[selectedIndex.row]
         }
     }
-
-
 }

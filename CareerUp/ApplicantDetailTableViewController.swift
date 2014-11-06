@@ -1,11 +1,3 @@
-//
-//  ApplicantDetailTableViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/13/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class ApplicantDetailTableViewController: UITableViewController, UITextViewDelegate {
@@ -37,10 +29,8 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         }
         
         notes?.text = applicantResume?.notes
-        
         notes?.delegate = self
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         applicantResume?.editing = true
@@ -49,20 +39,14 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
     override func viewWillDisappear(animated: Bool) {
         applicantResume?.editing = false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let resumeView: ResumeViewer = segue.destinationViewController as ResumeViewer
         resumeView.imageData = applicantResume?.pdfData
     }
 
-
     func textViewDidEndEditing(textView: UITextView) {
         applicantResume?.notes = textView.text
-        
         CandidateHandler.sharedInstance().save(applicantResume!)
     }
 }

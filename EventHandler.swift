@@ -123,7 +123,6 @@ class EventHandler: NSObject {
                 if success {
                     submission.objectId = event.objectId
 
-
                     if let index = find(self.localEvents, submission){
                      self.localEvents.removeAtIndex(index)
                     }
@@ -161,5 +160,4 @@ class EventHandler: NSObject {
             save(event!)
         }
     }
-    
 }

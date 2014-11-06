@@ -1892,35 +1892,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="cnr-sy-hxn">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="43" id="I4C-6Z-rhD">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="I4C-6Z-rhD" id="WCn-cc-DUo">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gir-08-y80">
-                                                    <rect key="frame" x="8" y="8" width="584" height="26"/>
-                                                    <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Delete">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="DeletePage:" destination="eNc-pw-ahe" eventType="touchUpInside" id="f1e-Pw-IBU"/>
-                                                        <action selector="applyTapped:" destination="6n8-w1-vQg" eventType="touchUpInside" id="qRo-Ve-pWW"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gir-08-y80" firstAttribute="top" secondItem="WCn-cc-DUo" secondAttribute="topMargin" id="Lic-TX-V5b"/>
-                                                <constraint firstItem="gir-08-y80" firstAttribute="leading" secondItem="WCn-cc-DUo" secondAttribute="leadingMargin" id="V8m-UE-mTw"/>
-                                                <constraint firstItem="gir-08-y80" firstAttribute="trailing" secondItem="WCn-cc-DUo" secondAttribute="trailingMargin" id="rAm-ET-Yqp"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gir-08-y80" secondAttribute="bottom" id="umb-hG-ngo"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="eNc-pw-ahe" id="mP6-y0-lN2"/>

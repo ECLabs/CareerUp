@@ -1,11 +1,3 @@
-//
-//  ApplicantsTableViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/10/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class ApplicantsTableViewController: UITableViewController {
@@ -16,7 +8,6 @@ class ApplicantsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         CandidateHandler.sharedInstance().get()
     }
     
@@ -40,15 +31,19 @@ class ApplicantsTableViewController: UITableViewController {
             CandidateHandler.sharedInstance().count()
         }
     }
+    
     override func viewWillDisappear(animated: Bool) {
         loadDelay?.invalidate()
     }
+    
     override func viewDidAppear(animated: Bool) {
         loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "reloadTable:", userInfo: nil, repeats: false)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -61,14 +56,12 @@ class ApplicantsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("resumeCell", forIndexPath: indexPath) as UITableViewCell
-    
         let resume = candidateArray[indexPath.row]
         
         cell.textLabel?.text = resume.email
-    
         cell.detailTextLabel?.text = "\(resume.firstName) \(resume.lastName)"
+        
         return cell
-
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -85,6 +78,4 @@ class ApplicantsTableViewController: UITableViewController {
         
         applicantDetail.title = selectedResume.email
     }
-
-
 }

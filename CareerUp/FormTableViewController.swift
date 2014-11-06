@@ -1,11 +1,3 @@
-//
-//  FormTableViewController.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/3/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
 import UIKit
 
 class FormTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate
@@ -21,65 +13,6 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     
     var imageViews:[UIImageView] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    @IBAction func cancelTapped(AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
-    
-    @IBAction func submitTapped(AnyObject) {
-        if(!validateEmail(email!.text)) {
-        
-            self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
-        
-            let emailMissingAlert = UIAlertView(title: "Missing Required Field",
-                                                message: "Please enter your email address before submitting",
-                                                delegate: nil, cancelButtonTitle: "Ok")
-            emailMissingAlert.show()
-            
-            
-        } else { 
-            let submission = Candidate()
-            submission.firstName = firstName!.text
-            submission.lastName = lastName!.text
-            submission.email = email!.text
-            submission.linkedIn = linkedIn!.text
-            submission.comments = comments!.text
-            submission.jobTitle = jobTitle!.text
-            
-            for imageView in imageViews {
-                submission.resumeImages.append(imageView.image!)
-            }
-
-            CandidateHandler.sharedInstance().candidates.append(submission)
-            
-            CandidateHandler.sharedInstance().save(submission)
-            
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-    
-    
-    @IBAction func cameraTapped(AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            let actionSheet = UIActionSheet()
-            actionSheet.addButtonWithTitle("Camera")
-            actionSheet.addButtonWithTitle("Photo Library")
-            actionSheet.addButtonWithTitle("Cancel")
-            actionSheet.cancelButtonIndex = 2
-            actionSheet.showInView(self.view)
-            actionSheet.delegate = self
-        }
-        else {
-            usePhotoLibrary()
-        }
-    }
     func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             usePhotoLibrary()
@@ -134,16 +67,6 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         picker.dismissViewControllerAnimated(true, completion: {})
     }
     
-    @IBAction func emailChanged() {
-        if(validateEmail(email!.text)){
-            emailCell?.accessoryType = UITableViewCellAccessoryType.Checkmark
-        }
-        else {
-            emailCell?.accessoryType = UITableViewCellAccessoryType.None
-        }
-    }
-    
-    
     func validateEmail(email:String)->Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
 
@@ -163,5 +86,61 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         }
     }
     
+    @IBAction func emailChanged() {
+        if(validateEmail(email!.text)){
+            emailCell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
+        else {
+            emailCell?.accessoryType = UITableViewCellAccessoryType.None
+        }
+    }
+    
+    @IBAction func cancelTapped(AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func submitTapped(AnyObject) {
+        if(!validateEmail(email!.text)) {
+        
+            self.tableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+        
+            let emailMissingAlert = UIAlertView(title: "Missing Required Field",
+                                                message: "Please enter your email address before submitting",
+                                                delegate: nil, cancelButtonTitle: "Ok")
+            emailMissingAlert.show()
+            
+        } else { 
+            let submission = Candidate()
+            submission.firstName = firstName!.text
+            submission.lastName = lastName!.text
+            submission.email = email!.text
+            submission.linkedIn = linkedIn!.text
+            submission.comments = comments!.text
+            submission.jobTitle = jobTitle!.text
+            
+            for imageView in imageViews {
+                submission.resumeImages.append(imageView.image!)
+            }
+
+            CandidateHandler.sharedInstance().candidates.append(submission)
+            CandidateHandler.sharedInstance().save(submission)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+
+    @IBAction func cameraTapped(AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let actionSheet = UIActionSheet()
+            actionSheet.addButtonWithTitle("Camera")
+            actionSheet.addButtonWithTitle("Photo Library")
+            actionSheet.addButtonWithTitle("Cancel")
+            actionSheet.cancelButtonIndex = 2
+            actionSheet.showInView(self.view)
+            actionSheet.delegate = self
+        }
+        else {
+            usePhotoLibrary()
+        }
+    }
 }
 

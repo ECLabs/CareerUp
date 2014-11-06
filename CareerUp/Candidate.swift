@@ -1,13 +1,3 @@
-//
-//  Resume.swift
-//  CareerUp
-//
-//  Created by Adam Emery on 10/5/14.
-//  Copyright (c) 2014 Adam Emery. All rights reserved.
-//
-
-import UIKit
-
 class Candidate: NSObject {
     var objectId = ""
     var updatedAt:NSDate?
@@ -24,9 +14,7 @@ class Candidate: NSObject {
     var pdfData:NSData?
     var notes = ""
     
-    
-    func getResumePDF()->NSData{
-    
+    func getResumePDF()->NSData {
         // get your images
         let image = UIImage(named: "thing.png")
 
