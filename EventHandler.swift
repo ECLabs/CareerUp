@@ -13,6 +13,7 @@ var eventInstance: EventHandler?
 
 class EventHandler: NSObject {
     var events:[Event] = []
+    var uploading:[Event] = []
     var localEvents:[Event] = []
     var loadingCount = 0
     var reloaded = false
@@ -122,7 +123,10 @@ class EventHandler: NSObject {
                 if success {
                     submission.objectId = event.objectId
 
-                    self.localEvents.removeLast()
+
+                    if let index = find(self.localEvents, submission){
+                     self.localEvents.removeAtIndex(index)
+                    }
                     
                     if (self.timer != nil) && self.localEvents.count == 0{
                         self.timer?.invalidate()

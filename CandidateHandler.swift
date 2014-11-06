@@ -135,6 +135,10 @@ class CandidateHandler: NSObject {
                     submission.objectId = object.objectId
                     self.localCandidates.removeLast()
                     
+                    if let index = find(self.localCandidates, submission){
+                        self.localCandidates.removeAtIndex(index)
+                    }
+                    
                     if (self.timer != nil) && self.localCandidates.count == 0{
                         self.timer?.invalidate()
                         self.timer = nil
