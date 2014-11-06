@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class Location: NSObject {
     var objectId = ""
@@ -19,4 +20,5 @@ class Location: NSObject {
     var address = ""
     var state = ""
     var city = ""
+    var coordinate:CLLocationCoordinate2D?
 }

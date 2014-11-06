@@ -235,26 +235,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             let address = location.address
             let gecooder = CLGeocoder()
 
-            gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
-
-                if ((placemarks.count > 0) && error == nil) {
-                
-                    let pm = placemarks[0] as CLPlacemark
-            
-                    let pin = LocationPointAnnotation()
-                    pin.title = "\(location.name) - \(location.city), \(location.state)"
-                    let jobNumber = location.jobs.count
-                    pin.subtitle = "\(jobNumber) Jobs Availible"
-                    pin.coordinate = pm.location.coordinate
-                    pin.location = location
+            if location.coordinate == nil {
+                gecooder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+                    if (error == nil && (placemarks.count > 0)) {
                     
-                    self.map?.addAnnotation(pin)
-
-                    let pinview = self.map?.viewForAnnotation(pin)
-                    self.flyBetweenLocations()
-                }
-            })
+                        let pm = placemarks[0] as CLPlacemark
+                        location.coordinate = pm.location.coordinate
+                        
+                        self.dropPinAt(location)
+                    }
+                })
+            }
+            else {
+                dropPinAt(location)
+            }
         }
+    }
+    
+    func dropPinAt(location:Location) {
+        let pin = LocationPointAnnotation()
+        pin.title = "\(location.name) - \(location.city), \(location.state)"
+        let jobNumber = location.jobs.count
+        pin.subtitle = "\(jobNumber) Jobs Availible"
+        pin.coordinate = location.coordinate!
+        pin.location = location
+        
+        self.map?.addAnnotation(pin)
+
+        let pinview = self.map?.viewForAnnotation(pin)
+        self.flyBetweenLocations()
     }
     
     func flyBetweenLocations(){
