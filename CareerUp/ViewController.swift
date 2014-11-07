@@ -113,6 +113,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         newTextView.backgroundColor = UIColor.clearColor()
         newTextView.alpha = self.pagingText!.alpha
         
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "pageInfo")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        newTextView.addGestureRecognizer(swipeLeft)
         
         let width = self.view.frame.width
         
@@ -155,9 +158,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
 
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         if !showMap {
-            let hideNav = (viewController == self)
-        
-            navigationController.setNavigationBarHidden(hideNav, animated: true)
+            if let hideNav = viewController as? ViewController {
+                navigationController.setNavigationBarHidden(true, animated: true)
+            }
+            else {
+                navigationController.setNavigationBarHidden(false, animated: true)
+            }
         }
     }
     
@@ -258,7 +264,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         let vc = storyboard.instantiateViewControllerWithIdentifier("joblist") as JobListingTable
         vc.locations = [location!]
         
-        self.navigationController?.showViewController(vc, sender: self)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func toggleFullscreenMap(){

@@ -91,32 +91,24 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func redSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.redColor()
-        
         let value = Int(slider.value)
         redField?.text = "\(value)"
         setColorField()
     }
     
     @IBAction func greenSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.greenColor()
-        
         let value = Int(slider.value)
         greenField?.text = "\(value)"
         setColorField()
     }
     
     @IBAction func blueSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.blueColor()
-        
         let value = Int(slider.value)
         blueField?.text = "\(value)"
         setColorField()
     }
     
     @IBAction func alphaSliderChanged(slider:UISlider){
-        colorField?.backgroundColor = UIColor.clearColor()
-        
         let value = Int(slider.value)
         alphaField?.text = "\(value)"
         setColorField()
@@ -124,7 +116,6 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func apply(){
         self.colorButton.backgroundColor =  colorField?.backgroundColor
-        
         self.navigationController?.popViewControllerAnimated(true)
     }
 }
