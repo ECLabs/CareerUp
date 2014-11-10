@@ -11,8 +11,17 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var resumeScroll:UIScrollView?
     @IBOutlet var emailCell:UITableViewCell?
     
+    var client:LIALinkedInHttpClient?
+    
     var imageViews:[UIImageView] = []
 
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.loginToLinkedIn()
+    }
+    
     func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 1 {
             usePhotoLibrary()
@@ -141,6 +150,69 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         else {
             usePhotoLibrary()
         }
+    }
+    
+    @IBAction func loginToLinkedIn() {
+        if client == nil {
+            initilizeClient()
+        }
+        
+        client?.getAuthorizationCode({(code:String!) in
+            self.getAccessToken(code)
+        }, cancel: {
+            println("cancelled")
+        }, failure: {(error) in
+            println(error)
+        })
+    }
+    
+    func getAccessToken(code:String){
+        self.client?.getAccessToken(code, success: {(accessTokenData) in
+            let converted = accessTokenData as NSDictionary
+            let token = converted.objectForKey("access_token") as String
+            self.getProfile(token)
+        }, failure: {(error) in
+            println(error)
+        })
+    }
+    
+    func initilizeClient() {
+        let application = LIALinkedInApplication(redirectURL: "http://sizzletec.com",
+        clientId: "77fioioshfj7u8",
+        clientSecret: "VbQKJkpJf0Z7p6kM",
+        state: "DCEEFWF45453sdffef424",
+        grantedAccess: ["r_basicprofile", "r_emailaddress"])
+        
+        self.client = LIALinkedInHttpClient(forApplication: application, presentingViewController: self)
+    }
+    
+    func getProfile(token:String) {
+        println(token)
+        client?.GET("https://api.linkedin.com/v1/people/~:(first-name,last-name,email-address,public-profile-url)?oauth2_access_token=\(token)&format=json", parameters: nil,
+        success: { (operation, result) in
+            println(result)
+            let resultDic = result as NSDictionary
+            
+            
+            if let firstNameResult = resultDic.objectForKey("firstName") as? String {
+                self.firstName?.text = firstNameResult
+            }
+            
+            if let lastNameResult = resultDic.objectForKey("lastName") as? String {
+                self.lastName?.text = lastNameResult
+            }
+            
+            if let emailResult = resultDic.objectForKey("emailAddress") as? String {
+                self.email?.text = emailResult
+            }
+            
+            if let urlResult = resultDic.objectForKey("publicProfileUrl") as? String {
+                self.linkedIn?.text = urlResult
+            }
+  
+        }, failure: { (operation, result) in
+            println(result)
+        })
     }
 }
 

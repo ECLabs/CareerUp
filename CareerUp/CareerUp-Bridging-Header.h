@@ -3,3 +3,9 @@
 //
 
 #import "UIImage+animatedGIF.h"
+#import "LIALinkedInApplication.h"
+#import "LIALinkedInAuthorizationViewController.h"
+#import "LIALinkedInHttpClient.h"
+#import "NSString+LIAEncode.h"
+#import "NSString+LIAEncode.h"
+#import "AFNetworking.h"
