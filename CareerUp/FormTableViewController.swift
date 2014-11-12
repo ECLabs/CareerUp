@@ -87,14 +87,6 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
         return (matches.count > 0)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println(validateEmail(email!.text))
-        if !validateEmail(email!.text){
-            let destination = segue.destinationViewController as ThankYouViewController
-            destination.hide = true
-        }
-    }
-    
     @IBAction func emailChanged() {
         if(validateEmail(email!.text)){
             emailCell?.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -133,7 +125,11 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
 
             CandidateHandler.sharedInstance().candidates.append(submission)
             CandidateHandler.sharedInstance().save(submission)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(false)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("thankyou") as ThankYouViewController
+            self.navigationController?.pushViewController(vc, animated: false)
         }
     }
 

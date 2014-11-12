@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pbp-jj-nI9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pbp-jj-nI9">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -24,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="10" y="432"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Ys7-k8-4Rm">
             <objects>
-                <viewController id="MwM-gT-Tso" sceneMemberID="viewController">
+                <viewController id="MwM-gT-Tso" customClass="LoginViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H9z-0V-Y7h"/>
                         <viewControllerLayoutGuide type="bottom" id="KE3-5W-h44"/>
@@ -47,7 +48,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yME-fd-t0a">
                                         <rect key="frame" x="96" y="85" width="203" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpv-Xw-hJ1">
                                         <rect key="frame" x="126" y="123" width="38" height="30"/>
@@ -55,7 +56,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Jaw-1u-8ac" kind="show" id="fYt-S1-Y3m"/>
+                                            <action selector="attemptLogin" destination="MwM-gT-Tso" eventType="touchUpInside" id="S3L-8q-5Vs"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1l-GJ-I17">
@@ -70,6 +71,9 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aOt-k9-Doj">
+                                        <rect key="frame" x="135" y="161" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.94991262335526316" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -85,16 +89,20 @@
                                     <constraint firstItem="G1l-GJ-I17" firstAttribute="leading" secondItem="Duz-Wb-RdZ" secondAttribute="leading" constant="8" id="Pba-0e-W7v"/>
                                     <constraint firstAttribute="height" constant="181" id="RwN-rh-Zq6"/>
                                     <constraint firstItem="yME-fd-t0a" firstAttribute="top" secondItem="KdW-79-owT" secondAttribute="bottom" constant="9" id="VhM-0k-42p"/>
+                                    <constraint firstAttribute="trailing" secondItem="aOt-k9-Doj" secondAttribute="trailing" constant="152" id="W41-Q9-Zhb"/>
                                     <constraint firstAttribute="trailing" secondItem="Cpv-Xw-hJ1" secondAttribute="trailing" constant="143" id="atd-Z2-fh6"/>
                                     <constraint firstItem="yME-fd-t0a" firstAttribute="leading" secondItem="G1l-GJ-I17" secondAttribute="trailing" constant="7" id="bFL-vw-gTV"/>
                                     <constraint firstItem="G1l-GJ-I17" firstAttribute="top" secondItem="6bE-nX-f1h" secondAttribute="bottom" constant="18" id="doi-sT-EUY"/>
                                     <constraint firstItem="yME-fd-t0a" firstAttribute="leading" secondItem="G1l-GJ-I17" secondAttribute="trailing" constant="7" id="eYR-Wg-nTf"/>
+                                    <constraint firstItem="aOt-k9-Doj" firstAttribute="leading" secondItem="Duz-Wb-RdZ" secondAttribute="leading" constant="135" id="g8b-me-5DV"/>
                                     <constraint firstItem="Cpv-Xw-hJ1" firstAttribute="leading" secondItem="Duz-Wb-RdZ" secondAttribute="leading" constant="126" id="gJ3-Kc-KIC"/>
                                     <constraint firstItem="yME-fd-t0a" firstAttribute="leading" secondItem="KdW-79-owT" secondAttribute="leading" id="hZY-Zc-Nh7"/>
                                     <constraint firstItem="KdW-79-owT" firstAttribute="leading" secondItem="6bE-nX-f1h" secondAttribute="trailing" constant="4" id="oje-Yl-LhP"/>
                                     <constraint firstAttribute="trailing" secondItem="KdW-79-owT" secondAttribute="trailing" constant="8" id="ouc-Xa-1bu"/>
+                                    <constraint firstAttribute="bottom" secondItem="aOt-k9-Doj" secondAttribute="bottom" id="q6S-oz-1fx"/>
                                     <constraint firstAttribute="trailing" secondItem="yME-fd-t0a" secondAttribute="trailing" constant="8" id="rFs-yF-YPP"/>
                                     <constraint firstItem="6bE-nX-f1h" firstAttribute="top" secondItem="Duz-Wb-RdZ" secondAttribute="top" constant="50" id="sGB-pq-n0W"/>
+                                    <constraint firstItem="aOt-k9-Doj" firstAttribute="top" secondItem="Cpv-Xw-hJ1" secondAttribute="bottom" constant="8" id="z6x-YF-4gM"/>
                                     <constraint firstItem="G1l-GJ-I17" firstAttribute="top" secondItem="6bE-nX-f1h" secondAttribute="bottom" constant="18" id="zPQ-BB-oSP"/>
                                 </constraints>
                                 <variation key="default">
@@ -111,6 +119,11 @@
                             <constraint firstAttribute="centerY" secondItem="Duz-Wb-RdZ" secondAttribute="centerY" constant="100" id="Zyq-hX-gzF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loading" destination="aOt-k9-Doj" id="mdC-N1-0ki"/>
+                        <outlet property="passField" destination="yME-fd-t0a" id="jPf-fm-hrx"/>
+                        <outlet property="userField" destination="KdW-79-owT" id="j6c-Fy-9aF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPV-EA-Uka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -119,7 +132,7 @@
         <!--Table View Controller-->
         <scene sceneID="iN3-7K-QXM">
             <objects>
-                <tableViewController id="Jaw-1u-8ac" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jaw-1u-8ac" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fLe-zX-yWZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -598,7 +611,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Jaw-1u-8ac" kind="show" id="9eA-kh-dHu"/>
+                                    <segue destination="MwM-gT-Tso" kind="show" id="BKn-an-rJo"/>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="abc-ZO-hvO">
@@ -1576,7 +1589,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="submitTapped:" destination="gNr-6x-1D8" eventType="touchUpInside" id="Isr-gR-HEh"/>
-                                                        <segue destination="teD-jh-0K6" kind="presentation" animates="NO" id="pfS-yD-mKn"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1615,7 +1627,7 @@
         <!--Thank You View Controller-->
         <scene sceneID="cOE-zo-ZVt">
             <objects>
-                <viewController id="teD-jh-0K6" customClass="ThankYouViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="thankyou" useStoryboardIdentifierAsRestorationIdentifier="YES" id="teD-jh-0K6" customClass="ThankYouViewController" customModule="CareerUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZUf-Pj-sZy"/>
                         <viewControllerLayoutGuide type="bottom" id="Nda-aO-WyB"/>
@@ -1925,7 +1937,6 @@
         <image name="ec_logo_header" width="249" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9eA-kh-dHu"/>
         <segue reference="2uX-60-I3A"/>
     </inferredMetricsTieBreakers>
 </document>

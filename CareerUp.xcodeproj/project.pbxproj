@@ -82,6 +82,7 @@
 		98EDAB3119F553D800D688B0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2E19F553D800D688B0 /* Parse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98EDAB3219F553D800D688B0 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		98F4BB5119FABF9A00A81330 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */; };
+		98FFE12A1A13E30500101C2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE1291A13E30500101C2B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +200,7 @@
 		98EDAB2E19F553D800D688B0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		98EDAB2F19F553D800D688B0 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		98F4BB5019FABF9A00A81330 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		98FFE1291A13E30500101C2B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE9387E7DBA4855C41AFC0A0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -327,6 +329,7 @@
 				9883886F19F7F7BE007DCB20 /* Jobs */,
 				98E8FA9E1A042CC200E16821 /* Map */,
 				989B7BF519DAEDBA001E3C60 /* AppDelegate.swift */,
+				98FFE1291A13E30500101C2B /* LoginViewController.swift */,
 				989B7BF719DAEDBA001E3C60 /* ViewController.swift */,
 				989B7C1919DAEE72001E3C60 /* Main.storyboard */,
 				989B7BFC19DAEDBA001E3C60 /* Images.xcassets */,
@@ -614,6 +617,7 @@
 				9883887619F7FBC1007DCB20 /* Color.swift in Sources */,
 				98E8FA9D1A042C8F00E16821 /* LocationPinAnnotationView.swift in Sources */,
 				98CE59CE1A112306003029A7 /* UIWebView+AFNetworking.m in Sources */,
+				98FFE12A1A13E30500101C2B /* LoginViewController.swift in Sources */,
 				98CE58D71A111855003029A7 /* LIALinkedInApplication.m in Sources */,
 				9883888519F8573E007DCB20 /* PageTextHandler.swift in Sources */,
 				98CE59CB1A112306003029A7 /* UIImageView+AFNetworking.m in Sources */,
