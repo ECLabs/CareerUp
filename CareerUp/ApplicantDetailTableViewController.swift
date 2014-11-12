@@ -23,7 +23,7 @@ class ApplicantDetailTableViewController: UITableViewController, UITextViewDeleg
         comments?.text = applicantResume?.comments
         
         if applicantResume?.pdfData == nil {
-            resume?.textLabel?.text = "No Attached Resume"
+            resume?.textLabel.text = "No Attached Resume"
             resume?.userInteractionEnabled = false
             resume?.accessoryType = UITableViewCellAccessoryType.None
         }

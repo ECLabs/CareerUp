@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let canidateArray = NSArray(contentsOfFile: filePath)
             
             let localCandidates = CandidateHandler.sharedInstance().localCandidates
-            for dic in canidateArray{
+            for dic in canidateArray!{
                 let canidateDictonary = dic as NSDictionary
                 let saved = Candidate()
                 
@@ -40,9 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if(NSFileManager.defaultManager().fileExistsAtPath(imagePath)){
                         let imageData = NSData(contentsOfFile: imagePath)
                         
-                        let image = UIImage(data: imageData)
+                        let image = UIImage(data: imageData!)
                         
-                        saved.resumeImages.append(image)
+                        saved.resumeImages.append(image!)
                     }
                     NSFileManager.defaultManager().removeItemAtPath(imagePath, error: nil)
                 }
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println(eventArray)
             let localEvents = EventHandler.sharedInstance().localEvents
             
-            for dic in eventArray{
+            for dic in eventArray!{
                 let eventDictonary = dic as NSDictionary
                 let saved = Event()
                 

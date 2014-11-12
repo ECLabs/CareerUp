@@ -17,7 +17,7 @@ class PagingTextSelect: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
 
         let page = activeSetting?.pagingText[indexPath.row]
-        cell.textLabel?.text = page?.title
+        cell.textLabel.text = page?.title
         cell.detailTextLabel?.text = page?.content
 
         return cell

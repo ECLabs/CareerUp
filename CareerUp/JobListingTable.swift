@@ -21,7 +21,7 @@ class JobListingTable: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         let job = locations[indexPath.section].jobs[indexPath.row]
         
-        cell.textLabel?.text = job.title
+        cell.textLabel.text = job.title
         return cell
     }
 

@@ -62,7 +62,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         else {
             text = "0 Paging Text Items"
         }
-        pageText?.textLabel?.text = text
+        pageText?.textLabel.text = text
 
         pagingItems = setting?.pagingText
     }

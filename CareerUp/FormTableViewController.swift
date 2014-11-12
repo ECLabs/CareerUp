@@ -83,7 +83,7 @@ class FormTableViewController: UITableViewController, UIImagePickerControllerDel
 
         let regex = NSRegularExpression(pattern: emailRegex, options: nil, error: nil)
         
-        let matches = regex.matchesInString(email, options: NSMatchingOptions.ReportProgress, range: range)
+        let matches = regex!.matchesInString(email, options: NSMatchingOptions.ReportProgress, range: range)
         return (matches.count > 0)
     }
     

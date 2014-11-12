@@ -58,7 +58,7 @@ class ApplicantsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("resumeCell", forIndexPath: indexPath) as UITableViewCell
         let resume = candidateArray[indexPath.row]
         
-        cell.textLabel?.text = resume.email
+        cell.textLabel.text = resume.email
         cell.detailTextLabel?.text = "\(resume.firstName) \(resume.lastName)"
         
         return cell

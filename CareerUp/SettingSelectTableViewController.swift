@@ -63,7 +63,7 @@ class SettingSelectTableViewController: UITableViewController {
         
         let setting = eventArray[indexPath.row]
         
-        cell.textLabel?.text = setting.name
+        cell.textLabel.text = setting.name
         cell.detailTextLabel?.text = setting.details
         return cell
 
