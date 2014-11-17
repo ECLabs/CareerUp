@@ -5,8 +5,11 @@
   "description": "Node.js app that receives PDF as input, and outputs a text searchable response.  Runs on Ubuntu using docker",
   "author": "Jamil Evans <jamil.evans@evanschambers.com>",
   "dependencies": {
-    "express": "3.2.4",
+    "express": "4.8.0",
     "exec": "0.1.2",
-    "fs": "0.0.2"
+    "fs": "0.0.2",
+    "body-parser":"*",
+    "mailgun-js":"*",
+    "path":"*"
   }
 }

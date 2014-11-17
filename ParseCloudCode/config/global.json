@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "CareerUp": {
+            "applicationId": "C0M2x71mmJo5iYXdSXC1lJSxnRgXP4Fx9efq5Pwg", 
+            "masterKey": "NbhwlkS6C8dUuQ2rBWWEglUrf0TavB3OyQUGQbtd"
+        }, 
+        "_default": {
+            "link": "CareerUp"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.1"
+    }
+}
