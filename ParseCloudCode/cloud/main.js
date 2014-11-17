@@ -36,9 +36,11 @@ Parse.Cloud.afterSave("Candidate", function(request) {
     
     var resumeImageUrl = request.object.get("resumeImage").url();
     Parse.Cloud.httpRequest({
+      /* for testing
       method: 'GET',
       url: 'http://www.google.com/images/srpr/logo11w.png',
-     /* method: 'POST',
+      */
+      method: 'POST',
       url: 'http://100.36.32.104:49160/', 
       body: {
         candidateName: request.object.get("firstName") + ' ' + request.object.get("lastName"),
@@ -47,31 +49,13 @@ Parse.Cloud.afterSave("Candidate", function(request) {
         comments: request.object.get("comments"),
         linkedInUrl: request.object.get("linkedInUrl"),
         resume: resumeImageUrl
-      }, */
+      },
       success: function(httpResponse) {
         var imageBuffer = httpResponse.buffer;
-        console.log("imageBuffer: " + imageBuffer);
-        request.object.set("searchableResume", imageBuffer);
-        request.object.save();
-        console.log("Image buffer base64: " + imageBuffer.toString('base64'));
-          
-        Mailgun.sendEmail({
-            to: "recruiter-a26uhzkuy7b4@applicantstack.com ",
-            cc: "admin@evanschambers.com",
-            from: "Mailgun@CloudCode.com",
-            subject: "Resume",
-            text: "Put the json http request body here.",
-            attachment: imageBuffer.toString('base64')
-        }, {
-            success: function(httpResponse) {
-                console.log("email sent!: " + httpResponse);
-                //response.success("Email sent!");
-            },
-            error: function(httpResponse) {
-                console.error("email send failed!: " + httpResponse);
-                //response.error("Uh oh, something went wrong");
-            }
-        });
+        // Commenting this out because it's not saving:
+        //console.log("imageBuffer: " + imageBuffer);
+        //request.object.set("searchableResume", imageBuffer);
+        //console.log("Image buffer base64: " + imageBuffer.toString('base64'));
       },
       error: function(httpResponse) {
         console.error('Request failed with response code ' + httpResponse.status);
