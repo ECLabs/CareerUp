@@ -9,8 +9,16 @@
 
 SOURCE_PDF=$1.pdf 
 PREFIX=$1
+CWD=$2 # current working directory
+
+cd $CWD
 
 echo '########## Processing' $SOURCE_PDF ' ##############'
+echo "Your command line contains $# arguments"
+echo "First argument is ($1)"
+echo "Second argument is ($2)"
+
+cd $CWD
 
 # Use ImageMagick to convert to high resolution, reduce blur, and make monochrome 
 # Also split into separate PNG files

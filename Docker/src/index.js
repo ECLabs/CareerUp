@@ -1,6 +1,7 @@
 var app = require('express')();
-var exec = require('child_process').exec
-var fs = require("fs");
+// var exec = require('child_process').exec
+var spawn = require('child_process').spawn
+var fs = require('fs');
 var http = require('http');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -27,9 +28,10 @@ app.post('/', function (req, res) {
   var filepath = path.join(__dirname, filename);
   var resumePdfUrl = req.body.resumeImageUrl;
   console.log('Fetching input PDF from: ' + resumePdfUrl);
+    
   console.log('Saving to: ' + filepath);
-
-  var file = fs.createWriteStream(filename);
+  var file = fs.createWriteStream(filepath);
+  console.log('Save complete to: ' + filepath);
 
   var request = http.get(resumePdfUrl, function(response) {
     response.pipe(file);
@@ -44,8 +46,40 @@ app.post('/', function (req, res) {
                 console.log('Beginning OCR...');
                 console.log("\n");
                 
-                exec('. process.sh ' + fileprefix,
-                    function(error, stdout, stderr) {
+                var commandpath = path.join(__dirname, 'process.sh');
+                var cwd = __dirname;
+                console.log("cwd is " + cwd);
+                var bashcmd = spawn('bash', [commandpath, fileprefix, cwd]);
+                
+                bashcmd.stdout.on('data', function (data) {
+                    console.log('stdout: ' + data);
+                });
+                bashcmd.stderr.on('data', function (data) {
+                    console.log('stderr: ' + data);
+                });
+                bashcmd.on('close', function(code) {
+                    console.log('bash process.sh has exited with code ' + code);
+                    if(code == 0) {
+                        console.log('Emailing to recruiter ' + RECRUITER_EMAIL);
+                        var emailData = {
+                            to: RECRUITER_EMAIL,
+                            cc: CC_EMAIL,
+                            from: FROM_EMAIL,
+                            subject: "Resume from CareerUp",
+                            text: "Enjoy!",
+                            attachment: cwd + '/' + fileprefix + ".final.pdf"
+                        };  
+                        mailgun.messages().send(emailData, function (error, body) {
+                            console.log(body);
+                            console.log("\n");
+                        });
+                    } else {
+                        console.log("error with OCR, stopping work.");   
+                    }
+                });
+
+                /*
+                exec('. ' + commandpath + ' ' + fileprefix, function(error, stdout, stderr) {
                       if(error !== null) {
                           console.log('exec error: ' + error);
                           return;
@@ -66,6 +100,7 @@ app.post('/', function (req, res) {
                         console.log("\n");
                     });
                 });
+                */
             }
         });
     });
