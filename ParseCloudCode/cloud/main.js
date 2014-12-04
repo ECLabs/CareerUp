@@ -35,21 +35,28 @@ Parse.Cloud.afterSave("Candidate", function(request) {
     }
     
     var resumeImageUrl = request.object.get("resumeImage").url();
+    console.log("resumeImageUrl: " + resumeImageUrl);
+    
+    var bodyJson = ({ 
+        candidateName: request.object.get("firstName") + ' ' + request.object.get("lastName"),
+        candidateEmail: request.object.get("email"),
+        jobTitle: request.object.get("desiredJobTitle"),
+        comments: request.object.get("comments"),
+        linkedInUrl: request.object.get("linkedInUrl"),
+        resumeImageUrl: resumeImageUrl
+      });
+    console.log("About to POST: " + JSON.stringify(bodyJson));
     Parse.Cloud.httpRequest({
       /* for testing
       method: 'GET',
       url: 'http://www.google.com/images/srpr/logo11w.png',
       */
       method: 'POST',
-      url: 'http://100.36.32.104:49160/', 
-      body: {
-        candidateName: request.object.get("firstName") + ' ' + request.object.get("lastName"),
-        candidateEmail: request.object.get("email"),
-        jobTitle: request.object.get("desiredJobTitle"),
-        comments: request.object.get("comments"),
-        linkedInUrl: request.object.get("linkedInUrl"),
-        resume: resumeImageUrl
+      headers: {
+          'Content-Type': 'application/json;charset=utf-8'
       },
+      url: 'http://54.85.4.149:80/', // this points to EC2 instance called CareerUp OCR
+      body: bodyJson,
       success: function(httpResponse) {
         var imageBuffer = httpResponse.buffer;
         // Commenting this out because it's not saving:

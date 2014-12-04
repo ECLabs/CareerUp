@@ -11,7 +11,7 @@ var domain = 'sandbox6f2648d56a9d4238a0be4ee94827288c.mailgun.org';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 // Constants
-var PORT = 8080;
+var PORT = 8000;
 var RECRUITER_EMAIL = "recruiter-a26uhzkuy7b4@applicantstack.com";
 var CC_EMAIL = "admin@evanschambers.com";
 var FROM_EMAIL = "Mailgun@CloudCode.com";
@@ -23,33 +23,53 @@ var FROM_EMAIL = "Mailgun@CloudCode.com";
 
 app.use(bodyParser.json()); // for parsing application/json
 app.post('/', function (req, res) {
-  var fileprefix = 'source-' + new Date().getTime();
-  var filename = fileprefix + ".pdf";
-  var filepath = path.join(__dirname, filename);
-  var resumePdfUrl = req.body.resumeImageUrl;
-  console.log('Fetching input PDF from: ' + resumePdfUrl);
     
-  console.log('Saving to: ' + filepath);
-  var file = fs.createWriteStream(filepath);
-  console.log('Save complete to: ' + filepath);
+  var resumePdfUrl = req.body.resumeImageUrl;
+  var candidateSummary = req.body.candidateName + "\r\n" + 
+      req.body.candidateEmail + "\r\n";
+  if(req.body.jobTitle) {
+      candidateSummary += req.body.jobTitle + "\r\n";
+  }
+  if(req.body.comments) {
+     candidateSummary += req.body.comments + "\r\n"; 
+  }
+  if(req.body.linkedInUrl) {
+     candidateSummary += req.body.linkedInUrl + "\r\n"; 
+  }   
+  console.log("POST received for candidate: " + candidateSummary);   
+    
+  // write to file
+  var dateTime = new Date().getTime();
+  var resumeFileprefix = 'resume_' + req.body.candidateEmail + "_" + dateTime;
+  var resumeFilename = resumeFileprefix + ".pdf";
+  var resumeFilepath = path.join(__dirname, resumeFilename);
+    /*
+  var summaryFileprefix = 'summary_' + + req.body.candidateEmail + "_" + dateTime;
+  var summaryFilename = summaryFileprefix + ".txt";
+  var summaryFilepath = path.join(__dirname, summaryFilename);
+  */
+  console.log('Fetching input PDF from: ' + resumePdfUrl);
+  console.log('And saving to: ' + resumeFilepath);
+  var file = fs.createWriteStream(resumeFilepath);
+  console.log('Save complete to: ' + resumeFilepath);
 
   var request = http.get(resumePdfUrl, function(response) {
     response.pipe(file);
     file.on('close', function () {
-        res.sendFile(filepath, function (err) {
+        res.sendFile(resumeFilepath, function (err) {
             if (err) {
                 console.log(err);
                 res.status(err.status).end();
             }
             else {
-                console.log('HttpResponse sent with contents of ' + filepath);
+                console.log('HttpResponse sent with contents of ' + resumeFilepath);
                 console.log('Beginning OCR...');
                 console.log("\n");
                 
                 var commandpath = path.join(__dirname, 'process.sh');
                 var cwd = __dirname;
                 console.log("cwd is " + cwd);
-                var bashcmd = spawn('bash', [commandpath, fileprefix, cwd]);
+                var bashcmd = spawn('bash', [commandpath, resumeFileprefix, cwd, candidateSummary]);
                 
                 bashcmd.stdout.on('data', function (data) {
                     console.log('stdout: ' + data);
@@ -67,7 +87,7 @@ app.post('/', function (req, res) {
                             from: FROM_EMAIL,
                             subject: "Resume from CareerUp",
                             text: "Enjoy!",
-                            attachment: cwd + '/' + fileprefix + ".final.pdf"
+                            attachment: cwd + '/' + resumeFileprefix + ".final.pdf"
                         };  
                         mailgun.messages().send(emailData, function (error, body) {
                             console.log(body);
@@ -77,30 +97,6 @@ app.post('/', function (req, res) {
                         console.log("error with OCR, stopping work.");   
                     }
                 });
-
-                /*
-                exec('. ' + commandpath + ' ' + fileprefix, function(error, stdout, stderr) {
-                      if(error !== null) {
-                          console.log('exec error: ' + error);
-                          return;
-                      } else {
-                        console.log('OCR complete.');
-                      }
-                      console.log('Emailing to recruiter ' + RECRUITER_EMAIL);
-                      var emailData = {
-                            to: RECRUITER_EMAIL,
-                            cc: CC_EMAIL,
-                            from: FROM_EMAIL,
-                            subject: "Resume from CareerUp",
-                            text: "Enjoy!",
-                            attachment: fileprefix + ".final.pdf"
-                        };  
-                      mailgun.messages().send(emailData, function (error, body) {
-                        console.log(body);
-                        console.log("\n");
-                    });
-                });
-                */
             }
         });
     });
