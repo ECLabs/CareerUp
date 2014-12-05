@@ -9,11 +9,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     var animating = false
     var currentEvent:Event?
     var pageTimer:NSTimer?
-    var pagingText:UITextView?
     var loadDelay:NSTimer?
     var flyTimer:NSTimer?
     var currentPin = 0
     var loadedContent = -1;
+    var pagingView:UIView?
+    let gradient : CAGradientLayer = CAGradientLayer()
+    
     
     @IBOutlet var icon:UIImageView?
     @IBOutlet var iconBackground:UIView?
@@ -28,43 +30,44 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         overlayButton = UIButton(frame: self.view.frame)
         self.view.insertSubview(overlayButton!, atIndex: 1)
-        //overlayButton!.backgroundColor = UIColor.whiteColor()
         
-        let gradient : CAGradientLayer = CAGradientLayer()
-        gradient.frame = overlayButton!.bounds
-        
-        let cor1 = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.1).CGColor // lighter
-        let cor2 = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.6).CGColor // darker
+        let cor1 = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.3).CGColor // lighter
+        let cor2 = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.8).CGColor // darker
         let arrayColors = [cor1, cor2]
         
+        
+        gradient.frame = overlayButton!.bounds
         gradient.colors = arrayColors
         overlayButton!.layer.insertSublayer(gradient, atIndex: 0)
-        
-        overlayButton?.addTarget(self, action: "toggleFullscreenMap", forControlEvents: UIControlEvents.TouchUpInside)
+        overlayButton!.addTarget(self,
+            action: "toggleFullscreenMap",
+            forControlEvents: UIControlEvents.TouchUpInside)
         
         LocationHandler.sharedInstance().get()
         updateMapView()
         
-        self.loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateMapView", userInfo: nil, repeats: false)
+        self.loadDelay = NSTimer.scheduledTimerWithTimeInterval(0.2,
+            target: self,
+            selector: "updateMapView",
+            userInfo: nil,
+            repeats: false)
 
-        flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
-        
-        var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0, alpha: 1.0 )
-        
-        pagingText = UITextView()
-        pagingText?.font = UIFont.boldSystemFontOfSize(17)
-        pagingText?.textColor = UIColor.whiteColor()
-        pagingText?.textAlignment = NSTextAlignment.Center
-        pagingText?.backgroundColor = UIColor.clearColor()
+        flyTimer = NSTimer.scheduledTimerWithTimeInterval(4,
+            target: self,
+            selector: "flyBetweenLocations",
+            userInfo: nil,
+            repeats: true)
         
         submitButton?.layer.cornerRadius = 33
         submitButton?.clipsToBounds = true
-        
-        self.view.addSubview(pagingText!)
-        
         currentEvent = DefaultEventHandler.sharedInstance().get()
-        
         loadEvent(currentEvent!)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        map?.frame = CGRectMake(0, 0, size.width, size.height)
+        gradient.frame = CGRectMake(0, 0, size.width, size.height)
+        overlayButton?.frame = CGRectMake(0, 0, size.width, size.height)
     }
     
     func loadEvent(loadEvent:Event){
@@ -73,16 +76,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         settingButton?.tintColor = loadEvent.setting.highlightColor.color
         submitButton?.tintColor = loadEvent.setting.highlightColor.color
         //overlayButton?.backgroundColor = loadEvent.setting.backgroundColor.color
-        pagingText?.textColor = loadEvent.setting.textColor.color
-        
         //icon?.image = loadEvent.setting.icon
         
         pageIndicator?.numberOfPages = loadEvent.setting.pagingText.count
         pageTimer?.invalidate()
         if loadEvent.setting.pagingText.count > 0 {
-            pagingText?.text = getPageTextString(loadEvent.setting.pagingText[0])
+            pagingView = buildPagingView(120.0 as CGFloat,
+                overallWidth: self.view.frame.width - 200.0,
+                title:getPageTextTitle(loadEvent.setting.pagingText[0]),
+                body:getPageTextBody(loadEvent.setting.pagingText[0]))
             
-            pageTimer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: "pageInfo", userInfo: nil, repeats: true)
+            self.view.addSubview(pagingView!)
+            
+            pageTimer = NSTimer.scheduledTimerWithTimeInterval(8,
+                target: self,
+                selector: "pageInfo",
+                userInfo: nil,
+                repeats: true)
         }
         
         if let backgroundImage = loadEvent.setting.backgroundImage {
@@ -103,16 +113,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
     
     override func viewDidLayoutSubviews() {
         if !animating {
-            let width = self.view.frame.width - 200.0
-            let height:CGFloat = 120.0
+            let width = self.pagingView!.frame.width
+            let height:CGFloat = self.pagingView!.frame.height
             let x = (self.view.frame.width - width)/2
             let y = pageIndicator!.frame.origin.y - height - 30
-            self.pagingText?.frame = CGRectMake(x, y, width, height)
+            self.pagingView?.frame = CGRectMake(x, y, width, height)
         }
     }
     
     func getPageTextString(page:PageText)->String{
         return "\(page.title)\n\n\(page.content)"
+    }
+    
+    func getPageTextTitle(page:PageText)->String{
+        return "\(page.title)"
+    }
+    func getPageTextBody(page:PageText)->String{
+        return "\(page.content)"
     }
     
     func pageInfo() { 
@@ -121,56 +138,49 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         let y = pageIndicator!.frame.origin.y - height - 30
         let x = (self.view.frame.width - frameWidth)/2
         
-        let newTextView = UITextView(frame: CGRectMake(x, y, frameWidth, height))
-        newTextView.font = self.pagingText?.font
+        let current = self.pageIndicator!.currentPage
         
-        newTextView.textColor = self.pagingText?.textColor
-        newTextView.textAlignment = self.pagingText!.textAlignment
-        newTextView.backgroundColor = UIColor.clearColor()
-        newTextView.alpha = self.pagingText!.alpha
+        if current < self.pageIndicator!.numberOfPages - 1{
+            self.pageIndicator!.currentPage = current + 1
+        } else {
+            self.pageIndicator!.currentPage = 0
+        }
         
+        let newPagingView = buildPagingView(120.0 as CGFloat,
+            overallWidth: self.view.frame.width - 200.0,
+            title:getPageTextTitle(self.currentEvent!.setting.pagingText[self.pageIndicator!.currentPage]),
+            body:getPageTextBody(self.currentEvent!.setting.pagingText[self.pageIndicator!.currentPage]))
+
+        newPagingView.frame = CGRectMake(x, y, newPagingView.frame.width, newPagingView.frame.height)
+
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "pageInfo")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        newTextView.addGestureRecognizer(swipeLeft)
+        newPagingView.addGestureRecognizer(swipeLeft)
         
         let width = self.view.frame.width
         
-        newTextView.center = CGPointMake(newTextView.center.x + width, newTextView.center.y)
-        self.view.addSubview(newTextView)
+        newPagingView.center = CGPointMake(newPagingView.center.x + width, newPagingView.center.y)
+        self.view.addSubview(newPagingView)
         
         UIView.animateWithDuration(0.25, animations: {
             self.animating = true
             
-            newTextView.center = CGPointMake(newTextView.center.x - width, newTextView.center.y)
-            newTextView.alpha = 1;
-            let x = newTextView.center.x - width
-            let y = newTextView.center.y
+            newPagingView.center = CGPointMake(newPagingView.center.x - width, newPagingView.center.y)
+            newPagingView.alpha = self.overlayButton!.alpha
             
-            self.pagingText!.center = CGPointMake(x,y)
-            self.pagingText!.alpha = 0;
+            let x = newPagingView.center.x - width
+            let y = newPagingView.center.y
             
-                        
-            let current = self.pageIndicator!.currentPage
-            
-            if current < self.pageIndicator!.numberOfPages - 1{
-                self.pageIndicator!.currentPage = current + 1
-            } else {
-                self.pageIndicator!.currentPage = 0
-            }
-            newTextView.text = self.getPageTextString(self.currentEvent!.setting.pagingText[self.pageIndicator!.currentPage])
-            
+            self.pagingView!.center = CGPointMake(x,y)
+            self.pagingView!.alpha = 0;
+
             self.pageIndicator!.updateCurrentPageDisplay()
         }, completion: { finished in
             self.animating = false
-            self.pagingText!.removeFromSuperview()
-            self.pagingText! = newTextView
+            self.pagingView!.removeFromSuperview()
+            self.pagingView = newPagingView
         })
         
-    }
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        map?.frame = CGRectMake(0, 0, size.width, size.height)
-        overlayButton?.frame = CGRectMake(0, 0, size.width, size.height)
     }
 
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
@@ -243,6 +253,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
             let region = MKCoordinateRegion(center:  pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
             self.map?.setRegion(region, animated: true)
             
+            // active current pin
+            map?.selectAnnotation(pin, animated: true)
+            
             currentPin++
             if currentPin + 1 > annotations?.count {
                 currentPin = 0
@@ -306,7 +319,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         if showMap{
             flyBetweenLocations()
-            flyTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "flyBetweenLocations", userInfo: nil, repeats: true)
+            flyTimer = NSTimer.scheduledTimerWithTimeInterval(4,
+                target: self,
+                selector: "flyBetweenLocations",
+                userInfo: nil,
+                repeats: true)
         }
         else{
             flyTimer?.invalidate()
@@ -314,5 +331,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIScroll
         
         showMap = !showMap
     }
-}
+    
+    func buildPagingView(overallHeight:CGFloat, overallWidth:CGFloat, title:NSString, body:NSString) -> UIView {
+        var paging = UIView(frame: CGRectMake(0,0,overallWidth, overallHeight))
+        let titleHeight = 35.0 as CGFloat
+        let bodyHeight = overallHeight - titleHeight
+        let y = pageIndicator!.frame.origin.y - overallHeight - 30
+        let x = (self.view.frame.width - overallWidth)/2
 
+        var pagingTextTitle = UITextView()
+        pagingTextTitle.frame = CGRectMake(0, 0, overallWidth, titleHeight)
+        pagingTextTitle.font = UIFont.boldSystemFontOfSize(22)
+        pagingTextTitle.textColor = currentEvent!.setting.textColor.color
+        pagingTextTitle.textAlignment = NSTextAlignment.Center
+        pagingTextTitle.backgroundColor = UIColor.clearColor()
+        pagingTextTitle.text = title
+        paging.addSubview(pagingTextTitle)
+        
+        var pagingTextBody = UITextView()
+        pagingTextBody.frame = CGRectMake(0, titleHeight, overallWidth, bodyHeight)
+        pagingTextBody.font = UIFont.systemFontOfSize(17)
+        pagingTextBody.textColor = currentEvent!.setting.textColor.color
+        pagingTextBody.textAlignment = NSTextAlignment.Center
+        pagingTextBody.backgroundColor = UIColor.clearColor()
+        pagingTextBody.text = body
+        paging.addSubview(pagingTextBody)
+        return paging
+    }
+}
